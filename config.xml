@@ -5,7 +5,7 @@
         versionCode = "1"
         version     = "1.0.0">
  
-    <name>Nail Heart</name>
+    <name>Gelato Tour</name>
  
     <description>
         Giro d'Italia delle gelaterie artigianali
@@ -68,7 +68,7 @@
     <access origin="*.akamaihd.net" subdomains="true" />
 
 
-    <preference name="phonegap-version" value="3.3.0" /> <!-- all: current version of PhoneGap -->
+    <preference name="phonegap-version" value="3.7.0" /> <!-- all: current version of PhoneGap -->
     <preference name="orientation" value="all" /> <!-- all: default means both landscape and portrait are enabled -->
     <preference name="target-device" value="universal" /> <!-- all: possible values handset, tablet, or universal -->
     <preference name="fullscreen" value="false" /> <!-- all: hides the status bar at the top of the screen -->
