@@ -1,0 +1,69 @@
+@font-face {
+  font-family: MyHelvetica;
+  src: local("Helvetica Neue"),
+       local("HelveticaNeue"),
+       url(HelveticaNeue.ttf);
+  /*font-weight: bold;*/
+}
+
+body {
+    font-family: MyHelvetica, "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight: 300;
+    background-color:#2F6A92;
+}
+
+.header {
+    text-align: center;
+    background-color:#2F6A92;
+}
+
+.ui-bar-a {
+    background-image: none!important;
+    background-color:#2F6A92;
+    border: none!important;
+}
+
+.ui-body-c {
+    background-image: none!important;
+    background-color:#2F6A92;
+}
+
+h1 {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+h2 {
+    font-style: italic;
+    font-size: 11px;
+    font-weight: normal;
+}
+
+h6 {
+    font-style: italic;
+    font-size: 11px;
+    font-weight: normal;
+}
+
+#map_city_canvas {
+  border-radius: 100%;
+}
+#map_shop_canvas {
+  border-radius: 100%;
+}
+
+#shop_contacts{
+  width: 100%;
+  text-align: center;
+}
+
+#shop_contacts img {
+  width: 10%;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  margin: 2%;
+}
+
+.shop_details_tile {
+  font-weight: bold;
+}
