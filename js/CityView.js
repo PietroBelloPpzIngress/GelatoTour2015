@@ -20,9 +20,6 @@ var CityView = function(dataManager) {
 
 	    $('.city-details').html(CityView.detailsTemplate(cityDetails));
 
-        $('#cityPage #footer').html(CityView.genericFooter());
-        $("#cityPage #footer").trigger("create");
-
         currentCity.showPage(cityDetails);
 	};
 
@@ -31,10 +28,14 @@ var CityView = function(dataManager) {
 		{
 	    	$('#city_Shops_list').html(CityView.poiListTemplate(cityShopsList));
 	    	$('#city_Shops_list').listview('refresh');
+
+	    	$('city-shops-not-found').hide();
     	}
     	else
     	{	$('#city_Shops_list').html('');
     		$('#city_Shops_list').listview('refresh');
+    		
+	    	$('city-shops-not-found').hide();
     	}
 
     	translate_page();
@@ -172,5 +173,4 @@ CityView.headerImageTemplate = Handlebars.compile($('#city-header-image-tpl').ht
 CityView.detailsTemplate = Handlebars.compile($('#city-tpl').html());
 CityView.poiListTemplate = Handlebars.compile($('#city-poi-li-tpl').html());
 
-CityView.genericFooter = Handlebars.compile($("#generic-footer").html());
 

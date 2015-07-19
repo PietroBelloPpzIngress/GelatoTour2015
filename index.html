@@ -10,6 +10,8 @@
 
 	<script src="css/source-sans-pro.js"></script>
 	<link href="css/jquery.mobile-1.3.2.min.css" rel="stylesheet"/>
+	<link href="css/owl.carousel.css" rel="stylesheet">
+	<link href="css/owl.theme.css" rel="stylesheet">
 	<link href="css/styles.css" rel="stylesheet">
 	<script src="lib/jquery-1.9.1.min.js"></script>
 	<script src="lib/jquery.mobile-1.3.2.min.js"></script>
@@ -37,10 +39,10 @@
 
 	<div data-role="page" id="splashPage">	   
 		<div data-role="header" class="header">
-				<div class="banner">
-		    		<h1>Gelato Tour</h1>
-		    		<h2>Giro d'Italia delle gelaterie artigianali</h2>
-		    	</div>
+			<div class="banner">
+	    		<h1>Gelato Tour</h1>
+	    		<h2>Giro d'Italia delle gelaterie artigianali</h2>
+	    	</div>
     	</div>
 	    <div id="splash_big_logo"
 	    		style="width:100%;
@@ -65,8 +67,6 @@
     	<div data-role="content">
     		<ul data-role="listview" data-filter="false" class='region-list' id="regions_list"></ul>
     	</div>
-
-	    <div id="footer" data-role="footer" ></div>
 	</div>
 
 	<div data-role="page" id="regionPage" data-add-back-btn="false">
@@ -75,14 +75,13 @@
 			<!--<div class="header-logo"></div>-->
 			<h1 class="header-region-name"></h1>
     		<div class='icon back-icon'><a href="" onclick="$.mobile.back()"><img src="css/images/back.png"></a></div>
-    		<div class='icon view-icon'><a href="" onclick=""><img src="css/images/circle.png"></a></div>
+    		<div class='icon view-icon-circle'><a href="" onclick="currentRegion.renderCitiesList(currentRegion.regionCitiesList,true)"><img src="css/images/circle.png"></a></div>
+    		<div class='icon view-icon-list' style="display:none;"><a href="" onclick="currentRegion.renderCitiesList(currentRegion.regionCitiesList,false)"><img src="css/images/list.png"></a></div>
     	</div>
 
 	    <div data-role="content">
 	    	<ul data-role="listview" data-filter="false" class='city-list' id="region_cities_list"></ul>
 	    </div>
-
-	    <div id="footer" data-role="footer" ></div>
 	</div>
 
 	<div data-role="page" id="cityPage" data-add-back-btn="false">
@@ -96,23 +95,19 @@
 	    <div data-role="content">
 	    	<ul data-role="listview" data-filter="false" class='poi-list' id="city_Shops_list"></ul>
 	    </div>
-
-	    <div id="footer" data-role="footer" ></div>
 	</div>
 
 	<div data-role="page" id="mapCityPage" data-add-back-btn="false">
 		<div class="ui-loader-background"> </div>
 		<div data-role="header" class="header">
 			<h1 class="header-city-name"></h1>
-    		<div class='icon back-icon'><a href="" onclick="ShowRegion(RegionView.currentRegion_id,RegionView.currentRegion_name)"><img src="css/images/back.png"></a></div>
-    		<div class='icon list-icon'><a href="" onclick="$.mobile.back()"><img src="css/images/list.png"></a></div>
+    		<div class='icon back-icon'><a href="" onclick="$.mobile.back();$.mobile.back();"><img src="css/images/back.png"></a></div>
+    		<div class='icon list-icon'><a href="" onclick="$.mobile.back();"><img src="css/images/list.png"></a></div>
     	</div>
 
     	<div data-role="content">
 	    	<div id="map_city_canvas" style="height:200px;"></div>
 	    </div>
-
-	    <div id="footer" data-role="footer" ></div>
 	</div>
 
 	<div id="shopPage" data-role="page" data-add-back-btn="false">
@@ -161,8 +156,6 @@
 
 	    	</div>
 	    </div>
-
-	    <div id="footer" data-role="footer" ></div>
 	</div>
 
 	<div data-role="page" id="geoPage" data-add-back-btn="false">
@@ -180,8 +173,6 @@
     	<div data-role="content">
     		<div id="map_geolocal_canvas" style="height:200px;"></div>
     	</div>
-	
-		<div id="footer" data-role="footer" ></div>
 	</div>
 
 	<div data-role="page" id="creditsPage" data-add-back-btn="false">
@@ -262,22 +253,14 @@
             </table>
 
     	</div>
-	
-		<div id="footer" data-role="footer" ></div>
 	</div>
 
  <!-- Inizio degli scripts -->
-
-	<script id="generic-footer" type="text/x-handlebars-template">
-		<div class="myFooter" style="height:80px;" align="center">	
-		</div>
-	</script>
 
 	<script id="region-li-tpl" type="text/x-handlebars-template">
 	    {{#.}}
 	     <li>
 	     	<a href="" onclick="ShowRegion({{this.id}},'{{this.name}}');">
-		        <img src="{{thumbnail_file_name}}">
 		        <h3>{{this.name}}</h3>
 		        <p>{{this.description}}</p>
 	        </a>
@@ -291,10 +274,10 @@
 	    {{this.name}}
 	</script>
 	<script id="region-header-image-tpl" type="text/x-handlebars-template">
-	   		<div class="banner">
-	    		<img src="{{this.image_file_name}}" style="width:100%">
-	    		<div class="banner_title">{{this.name}}</div>
-	    	</div>
+   		<div class="banner">
+    		<img src="{{this.image_file_name}}" style="width:100%">
+    		<div class="banner_title">{{this.name}}</div>
+    	</div>
 	</script>
 	<script id="region-tpl" type="text/x-handlebars-template">
 	    <p>{{this.description}}</p>
@@ -303,12 +286,30 @@
 	    {{#.}}
 	     <li>
 	     	<a href="" onclick="ShowCity({{this.id}},'{{this.name}}');">
-		        <img src="{{thumbnail_file_name}}">
+		        <div class="region-city-visual" style="background-image:url('http://www.gelatotour.com/img/zones/{{this.id}}/cover_800x600.jpg')"></div>
 		        <h3>{{this.name}}</h3>
 		        <p>{{this.description}}</p>
 	        </a>
     	</li>
 	    {{/.}}
+	</script>
+	<script id="region-city-li-tpl-slider" type="text/x-handlebars-template">
+	    <div id="owl-demo" class="owl-carousel owl-theme">
+        {{#.}}
+	     	<div class="item">
+		        <a href="" onclick="ShowCity({{this.id}},'{{this.name}}');">
+	     			<div class="region-city-visual-slider" style="background-image:url('http://www.gelatotour.com/img/zones/{{this.id}}/cover_800x600.jpg')"></div>
+                	<h1>{{this.name}}</h1>
+		        	<p>{{this.description}}</p>
+                </a>
+            </div>
+	    {{/.}}
+	    	<div class="item">
+	    		<h1>Stiamo mappando il territorio</h1>
+		        <p><i>Stiamo ancora cercando le migliori gelaterie presenti in questa zona, aiutaci a rovarle.</i></p>
+	    		<div class="consiglia-button-wrapper"><div class="consiglia-button"><a href="mailto:info@gelatotour.it" >Consigliaci una gelateria</a></div></div>
+	    	</div>
+	    </div>
 	</script>
 
 	<!-- city.html -->
@@ -329,41 +330,12 @@
 	    {{#.}}
 	     <li>
 	     	<a href="" onclick="ShowShop({{this.id}});">
-		        <img src="{{thumbnail_file_name}}">
 		        <h3>{{this.name}}</h3>
 		        <p>{{this.address}}</p>
 	        </a>
     	</li>
 	    {{/.}}
-	</script>
-	<script id="city-poi-li-tpl-immagini" type="text/x-handlebars-template">
-	    {{#.}}
-	     <li>
-	     	<a href="" onclick="ShowShop({{this.id}});">
-		        <img src="{{thumbnail_file_name}}">
-		        <h3>{{this.name}}</h3>
-		        <p>{{this.address}}</p>
-	        </a>
-    	</li>
-	    {{/.}}
-	</script>
-	    
-	</script>
-	
-    <!-- poi.html -->
-
-	<script id="poi-header-name-tpl" type="text/x-handlebars-template">
-	    {{this.name}}
-	</script>
-	<script id="poi-header-image-tpl" type="text/x-handlebars-template">
-	    <div class="banner">
-	    		<img src="{{this.image_file_name}}">
-	    		<div class="banner_title">{{this.name}}</div>
-	    	</div>
-	</script>
-	<script id="poi-tpl" type="text/x-handlebars-template">
-        
-       
+	    <div class="consiglia-button-wrapper"><div class="consiglia-button"><a href="mailto:info@gelatotour.it" >Consigliaci una gelateria</a></div></div>
 	</script>
 
 	<script src="phonegap.js"></script> <!--This instructs PhoneGap Build to inject a platform specific version of phonegap.js at build time. In other words, phonegaps.js doesn’t need to be (and shouldn’t be) present in your project folder.-->
@@ -371,6 +343,7 @@
     <script src="js/geolocation-wrapper.js"></script>
 	<script src="js/jso.js"></script>
 	<script src="lib/handlebars.js"></script>
+	<script src="lib/owl.carousel.js"></script>
 	<!--<script src="lib/iscroll.js"></script>-->
 
 	<script src="js/DeviceHelper.js"></script>

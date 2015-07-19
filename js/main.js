@@ -218,13 +218,8 @@ $(document).on("pageshow", "#cityPage", function(event) {
 });
 
 $(document).on("pageshow", "#mapCityPage", function(event) {
-    currentCity.showMap(currentCity.cityDetails);
-    $('#mapCityPage #footer').html(ShopView.genericFooter());
-    $("#mapCityPage #footer").trigger("create");});
+    currentCity.showMap(currentCity.cityDetails);});
 
-$(document).on("pageshow", "#shopPage", function(event) {
-    $('#shopPage #footer').html(ShopView.genericFooter());
-    $("#shopPage #footer").trigger("create");});
 
 $(document).on("pageshow", "#geoPage", function(event) {
     showGeolocalMap();});
@@ -261,9 +256,6 @@ function ShowStore()
         {   transition: 'slideup'
         }
     );
-
-    $('#storePage #footer').html(ShopView.genericFooter());
-    $("#storePage #footer").trigger("create");
 }
 
 function ShowGeo()
@@ -272,9 +264,6 @@ function ShowGeo()
         {   transition: 'slideup'
         }
     );
-
-    $('#geoPage #footer').html(ShopView.genericFooter());
-    $("#geoPage #footer").trigger("create");
 }
 
 function ShowCredits()
@@ -283,9 +272,6 @@ function ShowCredits()
         {   transition: 'slideup'
         }
     );
-
-    $('#creditsPage #footer').html(ShopView.genericFooter());
-    $("#creditsPage #footer").trigger("create");
 }
 
 function AdjustFontSize(container,text)

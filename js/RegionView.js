@@ -16,21 +16,44 @@ var RegionView = function(dataManager) {
 
         $('.region-details').html(RegionView.detailsTemplate(regionCitiesList));
 
-        $('#regionPage #footer').html(RegionView.genericFooter());
-        $("#regionPage #footer").trigger("create");
-
         currentRegion.showPage(regionCitiesList);
     };
 
-    this.renderCitiesList = function(regionCitiesList) {
-        if (regionCitiesList.length>=1)
+    this.renderCitiesList = function(regionCitiesList, visual) {
+        
+        if (visual)
         {
-            $('#region_cities_list').html(RegionView.cityListTemplate(regionCitiesList));
-            $('#region_cities_list').listview('refresh');
+            console.log("Visual TRUE");
+
+            if (regionCitiesList.length>=1)
+            {
+                $('#region_cities_list').html(RegionView.cityListTemplateSlider(regionCitiesList));
+                currentRegion.setupCarousel();
+            }
+            else
+            {   $('#region_cities_list').html('');
+                $('#region_cities_list').listview('refresh');
+            }
+
+            $('.view-icon-list').show();
+            $('.view-icon-circle').hide();
         }
         else
-        {   $('#region_cities_list').html('');
-            $('#region_cities_list').listview('refresh');
+        {
+            console.log("Visual FALSE");
+
+            if (regionCitiesList.length>=1)
+            {
+                $('#region_cities_list').html(RegionView.cityListTemplate(regionCitiesList));
+                $('#region_cities_list').listview('refresh');
+            }
+            else
+            {   $('#region_cities_list').html('');
+                $('#region_cities_list').listview('refresh');
+            }
+
+            $('.view-icon-list').hide();
+            $('.view-icon-circle').show();
         }
 
         translate_page();
@@ -38,7 +61,7 @@ var RegionView = function(dataManager) {
 
     this.showPage = function(regionCitiesList) {
         
-        if (dataManager.tipo=='REMOTE') currentRegion.renderCitiesList(regionCitiesList);
+        if (dataManager.tipo=='REMOTE') currentRegion.renderCitiesList(regionCitiesList, true);
  
         console.log("Rigenera pulsanti");
         $('button').button();
@@ -47,6 +70,17 @@ var RegionView = function(dataManager) {
         
         $.mobile.loading("hide");
     };
+
+    this.setupCarousel = function(regionCitiesList) {
+        $("#owl-demo").owlCarousel({
+          singleItem:true
+        });
+        
+        $(".next").on("click", function(){
+            var owl = $("#owl-demo").data('owlCarousel');
+            owl.next();
+        });
+    }
 
      
  }
@@ -101,6 +135,5 @@ RegionView.headerNameTemplate = Handlebars.compile($('#region-header-name-tpl').
 RegionView.headerImageTemplate = Handlebars.compile($('#region-header-image-tpl').html());
 RegionView.detailsTemplate = Handlebars.compile($('#region-tpl').html());
 RegionView.cityListTemplate = Handlebars.compile($('#region-city-li-tpl').html());
-
-RegionView.genericFooter = Handlebars.compile($("#generic-footer").html());
+RegionView.cityListTemplateSlider = Handlebars.compile($('#region-city-li-tpl-slider').html());
 

@@ -29,9 +29,6 @@ var ShopView = function(dataManager) {
         currentShop.renderShopDetailsSingle(shopDetails.specialities, 'shop_specialities');
         currentShop.renderShopDetailsSingle(shopDetails.services, 'shop_services');
 
-        $('#shopPage #footer').html(ShopView.genericFooter());
-        $("#shopPage #footer").trigger("create");
-
         currentShop.showPage();
         currentShop.showMap(shopDetails);
 
@@ -197,5 +194,3 @@ ShopView.already_shown = true;
 ShopView.headerNameTemplate = Handlebars.compile($("#poi-header-name-tpl").html());
 ShopView.headerImageTemplate = Handlebars.compile($("#poi-header-image-tpl").html());
 ShopView.detailsTemplate = Handlebars.compile($("#poi-tpl").html());
-
-ShopView.genericFooter = Handlebars.compile($("#generic-footer").html());

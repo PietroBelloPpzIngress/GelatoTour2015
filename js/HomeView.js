@@ -18,9 +18,6 @@ var HomeView = function(dataManager) {
         //$('#regions_list').html(renderRegionsList());
         $('#regions_list').listview('refresh');
 
-        $('#homePage #footer').html(HomeView.genericFooter());
-        $("#homePage #footer").trigger("create");
-
         translate_page();
 
         $.mobile.loading("hide");
@@ -52,4 +49,3 @@ $(document).on("pageshow", "#homePage", function(event) {
 
 HomeView.regionsList = null;
 HomeView.regionsListTemplate = Handlebars.compile($("#region-li-tpl").html());
-HomeView.genericFooter = Handlebars.compile($("#generic-footer").html());

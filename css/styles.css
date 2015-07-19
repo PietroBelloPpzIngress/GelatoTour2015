@@ -15,7 +15,7 @@ body {
 .header {
     text-align: center;
     background-color:#2F6A92;
-    height: 50px;
+    height: 60px;
     display: relative;
 }
 
@@ -25,7 +25,7 @@ body {
     left:0;
 }
 
-.map-icon, .view-icon, .list-icon, .share-icon {
+.map-icon, .view-icon-circle, .view-icon-list, .list-icon, .share-icon {
     position: absolute;
     top:0;
     right:0;
@@ -48,16 +48,18 @@ body {
 }
 
 h1 {
-    font-size: 26px!important;
+    font-size: 22px!important;
     margin: 0!important;
-    line-height: 50px;
+    line-height: 40px;
     font-weight: normal;
 }
 
 h2 {
     font-style: italic;
-    font-size: 11px;
+    font-size: 14px!important;
     font-weight: normal;
+    padding: 0!important;
+    margin: 0!important;
 }
 
 h6 {
@@ -106,7 +108,7 @@ h6 {
 
 .ui-li {
   border: none;
-  padding: 0 10px;
+  padding: 0;
   background-image: none;
   background-color: #2F6A92;
   text-shadow: none;
@@ -120,8 +122,9 @@ a.ui-link-inherit {
   border-bottom: 1px solid #fff;
   padding: 0!important;
   color: #fff!important;
-  font-style: italic!important;
+  font-style: normal!important;
   font-weight: normal!important;
+  text-decoration: none;
 }
 
 .ui-li-heading {
@@ -133,11 +136,80 @@ a.ui-link-inherit {
   box-shadow: none;
   border: 1px solid #fff;
   background-color: #2F6A92;
-  margin-top: -8px;
   width: 16px;
   height: 16px;
+
+  bottom: 0;
+  margin-top: auto!important;
+  margin-bottom: 16px;
 }
 
 h3.ui-li-heading {
   line-height: 38px;
+  padding-left : 10px;
+}
+
+.ui-li-desc {
+  padding-left : 10px;
+}
+
+.region-city-visual {
+  height: 76px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: center;
+  background-position-x: center;
+}
+
+.region-city-visual-slider {
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: center;
+  background-position-x: center;
+  border-radius: 50%;
+}
+
+
+.consiglia-button-wrapper {
+  text-align: center;
+  padding: 10%;
+}
+
+.consiglia-button {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+}
+
+.consiglia-button a {
+  color: #2F6A92!important;
+  text-decoration: none;
+  color: #2F6A92;
+}
+
+#owl-demo {
+    position: relative;
+}
+#owl-demo .item {
+    background: #2F6A92;
+    padding: 30px 30px;
+    margin: 10px;
+    text-align: center;
+    height: 250px;
+    color: #fff;
+    text-shadow: none;
+}
+.owl-theme .owl-controls .owl-page span{
+    background-color: #fff;
+}
+
+
+.owl-item a {
+  color: #fff;
+  font-style: none;
+  font-weight: normal;
+  text-decoration: none;
 }
