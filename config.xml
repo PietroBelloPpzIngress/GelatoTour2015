@@ -28,48 +28,35 @@
     <feature name="Geolocation">
         <param name="ios-package" value="CDVLocation" />
     </feature>
+    <!--
     <feature name="InAppBrowser">
         <param name="ios-package" value="CDVInAppBrowser" />
     </feature>
+	-->
 
                 <gap:platform name="ios"/>
                 <gap:platform name="android"/>
 
                 <!-- X-Services PhoneGap Build plugins -->
                 <gap:plugin name="org.apache.cordova.device" />
-                <gap:plugin name="org.apache.cordova.geolocation" version="0.3.6" />
-
-                <gap:plugin name="org.apache.cordova.inappbrowser" version="0.3.3" />
-
-                <gap:plugin name="nl.x-services.plugins.insomnia" version="3.0" /><!-- Insomnia (prevent screen sleep) -->
+                <!--<gap:plugin name="org.apache.cordova.geolocation" version="0.3.6" />-->
 
                 <gap:plugin name="nl.x-services.plugins.socialsharing" />
 
                 <gap:plugin name="com.phonegap.plugin.statusbar" />
 
-                <!--<gap:plugin name="cc.fovea.plugins.inapppurchase" version="3.4.0" />-->
                 <gap:plugin name="com.alexvillaro.plugins.inapppurchase" version="2.0.0" />
-                <!--<gap:plugin name="com.rjfun.cordova.plugin.appleiap" version="1.0" />-->
-                <!--<gap:plugin name="com.retoglobal.plugins.inapppurchase" version="1.0.1" />-->
 
-                <!--<gap:plugin name="com.phonegap.plugins.pushplugin" version="2.1.1" />-->
+                <!--<gap:plugin name="de.appplant.cordova.plugin.email-composer" version="0.8.2" />-->
 
 
     <access origin="http://gelatotour.com" subdomains="true" />   <!-- NECESSARIO PER CONNESSIONI AJAX E CREDO ANCHE PER OTTENERE LE IMMAGINI -->
     <access origin="http://127.0.0.1*"/> <!-- allow local pages -->
-    <access origin="http://facebook.com" subdomains="true" />
     <access origin="*" />
     <access origin=".*"/>
 
-    <access origin="m.facebook.com" subdomains="true" />
-    <access origin="graph.facebook.com" subdomains="true" />
-    <access origin="api.facebook.com" subdomains="true" />
-    <access origin="*.fbcdn.net" subdomains="true" />
-    <access origin="*.akamaihd.net" subdomains="true" />
-
-
     <preference name="phonegap-version" value="3.7.0" /> <!-- all: current version of PhoneGap -->
-    <preference name="orientation" value="all" /> <!-- all: default means both landscape and portrait are enabled -->
+    <preference name="orientation" value="portrait" /> <!-- all: default means both landscape and portrait are enabled -->
     <preference name="target-device" value="universal" /> <!-- all: possible values handset, tablet, or universal -->
     <preference name="fullscreen" value="false" /> <!-- all: hides the status bar at the top of the screen -->
     <preference name="webviewbounce" value="true" /> <!-- ios: control whether the screen 'bounces' when scrolled beyond the top -->
@@ -86,7 +73,7 @@
     <preference name="deployment-target" value="7.0" /> <!-- per iOS -->
     <preference name="SplashScreenDelay" value="0" />
 
-    <preference name="BackgroundColor" value="0xffffffff" />
+    <preference name="BackgroundColor" value="0x2F6A92ff" />
 
 <!-- Define app icon for each platform. -->
     <icon src="css/images/logo-grandtour.png" />

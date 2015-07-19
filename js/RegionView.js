@@ -25,17 +25,6 @@ var RegionView = function(dataManager) {
         {
             console.log("Visual TRUE");
 
-            /*
-            if (regionCitiesList.length>=1)
-            {
-                $('#region_cities_list').html(RegionView.cityListTemplateSlider(regionCitiesList));
-                currentRegion.setupCarousel();
-            }
-            else
-            {   $('#region_cities_list').html('');
-                $('#region_cities_list').listview('refresh');
-            }
-            */
             $('#region_cities_list').html(RegionView.cityListTemplateSlider(regionCitiesList));
             currentRegion.setupCarousel();
 
