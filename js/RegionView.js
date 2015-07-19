@@ -80,6 +80,11 @@ var RegionView = function(dataManager) {
             var owl = $("#owl-demo").data('owlCarousel');
             owl.next();
         });
+
+        if ($('.region-city-visual-slider').height()<$('.region-city-visual-slider').width())
+            $('.region-city-visual-slider').width($('.region-city-visual-slider').height());
+        else
+            $('.region-city-visual-slider').width($('.region-city-visual-slider').height());
     }
 
      

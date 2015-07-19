@@ -249,26 +249,9 @@ $(document).on("pageshow", "#optionsPage", function(event) {
     $('#app_info').html(app.name + " " + app.version);
 });
 
-
-function ShowStore()
+function ShowInfo()
 {   $.mobile.changePage(
-        '#storePage',
-        {   transition: 'slideup'
-        }
-    );
-}
-
-function ShowGeo()
-{   $.mobile.changePage(
-        '#geoPage',
-        {   transition: 'slideup'
-        }
-    );
-}
-
-function ShowCredits()
-{   $.mobile.changePage(
-        '#creditsPage',
+        '#infoPage',
         {   transition: 'slideup'
         }
     );

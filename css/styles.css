@@ -19,7 +19,7 @@ body {
     display: relative;
 }
 
-.back-icon, .info-icon {
+.back-icon, .info-icon, .close-icon {
     position: absolute;
     top:0;
     left:0;
@@ -52,6 +52,8 @@ h1 {
     margin: 0!important;
     line-height: 40px;
     font-weight: normal;
+    text-shadow: none;
+    color: #fff;
 }
 
 h2 {
@@ -60,6 +62,8 @@ h2 {
     font-weight: normal;
     padding: 0!important;
     margin: 0!important;
+    text-shadow: none;
+    color: #fff;
 }
 
 h6 {
@@ -75,19 +79,23 @@ h6 {
   border-radius: 100%;
 }
 
-#shop_contacts{
+.shop_contacts{
   width: 100%;
   text-align: center;
 }
 
-#shop_contacts img {
+.shop_contacts img, .info_contacts img {
   width: 10%;
-  border: 1px solid #fff;
+  border: 1px solid #fff!important;
   border-radius: 50%;
   margin: 2%;
 }
 
-.shop-details {
+.info_contacts {
+  text-align: center;
+}
+
+.shop-details, .info-details {
   text-shadow: none;
   color: #fff;
 }
@@ -100,7 +108,7 @@ h6 {
   visibility: hidden;
 }
 
-.shop_details_tile {
+.shop_details_tile, .info_details_tile {
   font-weight: bold;
 
 }
