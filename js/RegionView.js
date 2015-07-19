@@ -25,6 +25,7 @@ var RegionView = function(dataManager) {
         {
             console.log("Visual TRUE");
 
+            /*
             if (regionCitiesList.length>=1)
             {
                 $('#region_cities_list').html(RegionView.cityListTemplateSlider(regionCitiesList));
@@ -34,6 +35,9 @@ var RegionView = function(dataManager) {
             {   $('#region_cities_list').html('');
                 $('#region_cities_list').listview('refresh');
             }
+            */
+            $('#region_cities_list').html(RegionView.cityListTemplateSlider(regionCitiesList));
+            currentRegion.setupCarousel();
 
             $('.view-icon-list').show();
             $('.view-icon-circle').hide();
@@ -81,10 +85,14 @@ var RegionView = function(dataManager) {
             owl.next();
         });
 
+        /*
         if ($('.region-city-visual-slider').height()<$('.region-city-visual-slider').width())
             $('.region-city-visual-slider').width($('.region-city-visual-slider').height());
         else
             $('.region-city-visual-slider').width($('.region-city-visual-slider').height());
+        */
+        
+        $('.region-city-visual-slider').height($('.region-city-visual-slider').width());
     }
 
      

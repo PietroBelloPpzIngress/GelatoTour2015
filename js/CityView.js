@@ -34,7 +34,7 @@ var CityView = function(dataManager) {
     	else
     	{	$('#city_Shops_list').html('');
     		$('#city_Shops_list').listview('refresh');
-    		
+
 	    	$('city-shops-not-found').hide();
     	}
 
@@ -76,7 +76,8 @@ var CityView = function(dataManager) {
 		    city_map = new google.maps.Map(document.getElementById('map_city_canvas'), {
 		      zoom: minZoomLevel,
 		      center: new google.maps.LatLng( cityShopsList[0].lat, cityShopsList[0].lng ),
-		      mapTypeId: google.maps.MapTypeId.ROADMAP
+		      mapTypeId: google.maps.MapTypeId.ROADMAP,
+		      disableDefaultUI: true
 		    });
 
 			city_map.fitBounds(latlngbounds);
