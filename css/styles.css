@@ -1,13 +1,9 @@
 @font-face {
-  font-family: MyHelvetica;
-  src: local("Helvetica Neue"),
-       local("HelveticaNeue"),
-       url(HelveticaNeue.ttf);
-  /*font-weight: bold;*/
+  font-family: HelveticaNeue;
+  src: url("HelveticaNeue-Thin.otf") format("opentype");
 }
 
 html, body {
-    font-family: MyHelvetica, "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif; 
     font-weight: 300;
     background-color:#2F6A92!important;
 }
@@ -48,6 +44,7 @@ html, body {
 }
 
 h1 {
+    font-family: HelveticaNeue, "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif!important; 
     font-size: 22px!important;
     margin: 0!important;
     line-height: 40px;
@@ -57,6 +54,7 @@ h1 {
 }
 
 h2 {
+    font-family: HelveticaNeue, "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif!important; 
     font-style: italic;
     font-size: 14px!important;
     font-weight: normal;
@@ -67,6 +65,7 @@ h2 {
 }
 
 h6 {
+    font-family: HelveticaNeue, "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif!important; 
     font-style: italic;
     font-size: 11px;
     font-weight: normal;
@@ -96,6 +95,7 @@ h6 {
 }
 
 .shop-details, .info-details {
+  font-family: HelveticaNeue, "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif!important; 
   text-shadow: none;
   color: #fff;
 }
@@ -133,6 +133,7 @@ a.ui-link-inherit {
   font-style: normal!important;
   font-weight: normal!important;
   text-decoration: none;
+  font-family: HelveticaNeue, "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif!important; 
 }
 
 .ui-li-heading {
@@ -195,27 +196,28 @@ h3.ui-li-heading {
 .consiglia-button a {
   color: #2F6A92!important;
   text-decoration: none;
-  color: #2F6A92;
 }
 
 #owl-demo {
     position: relative;
 }
 #owl-demo .item {
-    background: #2F6A92;
-    padding: 30px 30px;
-    margin: 10px;
-    text-align: center;
-    height: 250px;
-    color: #fff;
-    text-shadow: none;
+  font-family: HelveticaNeue, "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif!important; 
+  color: #fff;
+  background: #2F6A92;
+  padding: 30px 30px;
+  margin: 10px;
+  text-align: center;
+  height: 250px;
+  text-shadow: none;
 }
 .owl-theme .owl-controls .owl-page span{
-    background-color: #fff;
+  background-color: #fff;
 }
 
 
 .owl-item a {
+  font-family: HelveticaNeue, "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif!important; 
   color: #fff;
   font-style: none;
   font-weight: normal;
