@@ -15,6 +15,25 @@ body {
 .header {
     text-align: center;
     background-color:#2F6A92;
+    height: 50px;
+    display: relative;
+}
+
+.back-icon, .info-icon {
+    position: absolute;
+    top:0;
+    left:0;
+}
+
+.map-icon, .view-icon, .list-icon, .share-icon {
+    position: absolute;
+    top:0;
+    right:0;
+}
+
+.icon a img {
+    height: 40px;
+    margin: 5px;
 }
 
 .ui-bar-a {
@@ -29,7 +48,9 @@ body {
 }
 
 h1 {
-    font-size: 16px;
+    font-size: 26px!important;
+    margin: 0!important;
+    line-height: 50px;
     font-weight: normal;
 }
 
@@ -46,7 +67,7 @@ h6 {
 }
 
 #map_city_canvas {
-  border-radius: 100%;
+  /*border-radius: 100%;*/
 }
 #map_shop_canvas {
   border-radius: 100%;
@@ -64,6 +85,59 @@ h6 {
   margin: 2%;
 }
 
+.shop-details {
+  text-shadow: none;
+  color: #fff;
+}
+
+.shop-details #shop_name, .shop-details #shop_address, .shop-details #shop_slogan {
+  text-align: center;
+}
+
+.shop_detail_single {
+  visibility: hidden;
+}
+
 .shop_details_tile {
   font-weight: bold;
+
+}
+
+
+.ui-li {
+  border: none;
+  padding: 0 10px;
+  background-image: none;
+  background-color: #2F6A92;
+  text-shadow: none;
+}
+
+li.ui-btn {
+  height
+}
+
+a.ui-link-inherit {
+  border-bottom: 1px solid #fff;
+  padding: 0!important;
+  color: #fff!important;
+  font-style: italic!important;
+  font-weight: normal!important;
+}
+
+.ui-li-heading {
+  font-style: normal;
+  font-weight: normal;
+}
+
+.ui-icon {
+  box-shadow: none;
+  border: 1px solid #fff;
+  background-color: #2F6A92;
+  margin-top: -8px;
+  width: 16px;
+  height: 16px;
+}
+
+h3.ui-li-heading {
+  line-height: 38px;
 }

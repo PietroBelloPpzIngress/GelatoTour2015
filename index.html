@@ -58,10 +58,9 @@
 
 	<div data-role="page" id="homePage" data-add-back-btn="false">
 		<div data-role="header" class="header">
-				<div class="banner">
-		    		<h1>Gelato Tour</h1>
-		    		<h2>Giro d'Italia delle gelaterie artigianali</h2>
-		    	</div>
+			<h1>Gelato Tour</h1>
+	    	<h2>Giro d'Italia delle gelaterie artigianali</h2>
+    		<div class='icon info-icon'><a href="" onclick=""><img src="css/images/info.png"></a></div>
     	</div>
     	<div data-role="content">
     		<ul data-role="listview" data-filter="false" class='region-list' id="regions_list"></ul>
@@ -70,67 +69,43 @@
 	    <div id="footer" data-role="footer" ></div>
 	</div>
 
-	<div data-role="page" id="regionPage" data-add-back-btn="true">
+	<div data-role="page" id="regionPage" data-add-back-btn="false">
 		<div class="ui-loader-background"> </div>
 		<div data-role="header" class="header">
 			<!--<div class="header-logo"></div>-->
 			<h1 class="header-region-name"></h1>
-			<div class="header-region-image">
-				<div class="banner" style="position:relative;">
-		    		<img class="banner_region" src="" style="width:100%;position:absolute; top:0; left:0; z-index=11">
-		    		<div class="title_region" style="z-index=13"></div>
-		    		<div class="title_city" style="z-index=13"></div>
-		    	</div>
-			</div>
+    		<div class='icon back-icon'><a href="" onclick="$.mobile.back()"><img src="css/images/back.png"></a></div>
+    		<div class='icon view-icon'><a href="" onclick=""><img src="css/images/circle.png"></a></div>
     	</div>
 
 	    <div data-role="content">
-	    	<!--<div class="region-details" data-inset="true"></div>-->
-	    	<ul data-role="listview" data-inset="true" data-filter="false" class='city-list' id="region_cities_list"></ul>
-
-	    	<div class='region-map-click'></div>
+	    	<ul data-role="listview" data-filter="false" class='city-list' id="region_cities_list"></ul>
 	    </div>
 
 	    <div id="footer" data-role="footer" ></div>
 	</div>
 
-	<div data-role="page" id="cityPage" data-add-back-btn="true">
+	<div data-role="page" id="cityPage" data-add-back-btn="false">
 		<div class="ui-loader-background"> </div>
 		<div data-role="header" class="header">
-			<!--<div class="header-logo"></div>-->
 			<h1 class="header-city-name"></h1>
-			<div class="header-city-image">
-				<div class="banner" style="position:relative;">
-		    		<img class="banner_city" src="" style="width:100%;position:absolute; top:0; left:0; z-index=11">
-		    		<div class="title_city" style="z-index=13"></div>
-		    		<div class="title_poi" style="z-index=13"></div>
-		    	</div>
-			</div>
+    		<div class='icon back-icon'><a href="" onclick="$.mobile.back()"><img src="css/images/back.png"></a></div>
+    		<div class='icon map-icon'><a href="" onclick="ShowCityMap(CityView.currentCity_id)"><img src="css/images/map.png"></a></div>
     	</div>
 
 	    <div data-role="content">
-	    	<!--<div class="city-details" data-inset="true"></div>-->
-	    	<ul data-role="listview" data-inset="true" data-filter="false" class='poi-list' id="city_POIs_list"></ul>
-
-	    	<div class='city-map-click'></div>
+	    	<ul data-role="listview" data-filter="false" class='poi-list' id="city_Shops_list"></ul>
 	    </div>
 
 	    <div id="footer" data-role="footer" ></div>
 	</div>
 
-	<div data-role="page" id="mapCityPage" data-add-back-btn="true">
+	<div data-role="page" id="mapCityPage" data-add-back-btn="false">
 		<div class="ui-loader-background"> </div>
 		<div data-role="header" class="header">
-			<!--<div class="header-logo"></div>-->
 			<h1 class="header-city-name"></h1>
-			<div class="header-city-image">
-				<div class="banner" style="position:relative;">
-		    		<img class="banner_city" src="" style="width:100%;position:absolute; top:0; left:0; z-index=11">
-		    		<img class="banner_poi" src="" style="width:100%;position:absolute; top:0; left:0; z-index=12">
-		    		<div class="title_city" style="z-index=13"></div>
-		    		<div class="title_poi" style="z-index=13"></div>
-		    	</div>
-			</div>
+    		<div class='icon back-icon'><a href="" onclick="ShowRegion(RegionView.currentRegion_id,RegionView.currentRegion_name)"><img src="css/images/back.png"></a></div>
+    		<div class='icon list-icon'><a href="" onclick="$.mobile.back()"><img src="css/images/list.png"></a></div>
     	</div>
 
     	<div data-role="content">
@@ -140,18 +115,12 @@
 	    <div id="footer" data-role="footer" ></div>
 	</div>
 
-	<div id="shopPage" data-role="page" data-add-back-btn="true">
+	<div id="shopPage" data-role="page" data-add-back-btn="false">
 		<div class="ui-loader-background"> </div>
 		<div data-role="header" class="header">
-			<!--<div class="header-logo"></div>-->
-			<h1 class="header-poi-name"></h1>
-			<div class="header-poi-image">
-				<div class="banner" style="position:relative;">
-		    		<img class="banner_poi" src="" style="width:100%;position:absolute; top:0; left:0; z-index=12">
-		    		<div class="title_city" style="z-index=13"></div>
-		    		<div class="title_poi" style="z-index=13"></div>
-		    	</div>
-			</div>
+			<h1 class="header-shop-name"></h1>
+    		<div class='icon back-icon'><a href="" onclick="$.mobile.back()"><img src="css/images/back.png"></a></div>
+    		<div class='icon share-icon'><a href="" onclick=""><img src="css/images/share.png"></a></div>
     	</div>
 
 	    <div data-role="content">
@@ -161,31 +130,31 @@
 	    		<h2 id="shop_address"></h2>
 	    		<h2 id="shop_slogan"></h2>
 	    		<div id="shop_contacts">
-	    			<img class="shop_phone" src="/css/images/telefono.png">
-	    			<img class="shop_mail" src="/css/images/mail.png">
-	    			<img class="shop_link" src="/css/images/link.png">
-	    			<img class="shop_routing" src="/css/images/routing.png">
+	    			<span class="contact_disabled" id="shop_phone" ></span>
+	    			<span class="contact_disabled" id="shop_mail" ></span>
+	    			<span class="contact_disabled" id="shop_link" ></span>
+	    			<span class="contact_disabled" id="shop_routing" ></span>
 	    		</div>
-	    		<div id="shop_description">
+	    		<div class="shop_detail_single" id="shop_description">
 	    			<span></span>
 	    		</div>
-	    		<div id="shop_master">
-	    			<div class="shop_details_tile">Mastro giornaliere</div>
+	    		<div class="shop_detail_single" id="shop_master">
+	    			<div class="shop_details_tile">Mastro gelatiere</div>
 	    			<span></span>
 	    		</div>
-	    		<div id="shop_staff">
+	    		<div class="shop_detail_single" id="shop_staff">
 	    			<div class="shop_details_tile">Al banco</div>
 	    			<span></span>
 	    		</div>
-	    		<div id="shop_opening_hours">
+	    		<div class="shop_detail_single" id="shop_opening_hours">
 	    			<div class="shop_details_tile">Orari d'apertura</div>
 	    			<span></span>
 	    		</div>
-	    		<div id="shop_specialities">
+	    		<div class="shop_detail_single" id="shop_specialities">
 	    			<div class="shop_details_tile">Specialità</div>
 	    			<span></span>
 	    		</div>
-	    		<div id="shop_services">
+	    		<div class="shop_detail_single" id="shop_services">
 	    			<div class="shop_details_tile">Servizi</div>
 	    			<span></span>
 	    		</div>
@@ -196,7 +165,7 @@
 	    <div id="footer" data-role="footer" ></div>
 	</div>
 
-	<div data-role="page" id="geoPage" data-add-back-btn="true">
+	<div data-role="page" id="geoPage" data-add-back-btn="false">
 		<div class="ui-loader-background"> </div>
 	    <div data-role="header" class="header">
 	    	<h1 class="header-city-name"></h1>
@@ -215,7 +184,7 @@
 		<div id="footer" data-role="footer" ></div>
 	</div>
 
-	<div data-role="page" id="creditsPage" data-add-back-btn="true">
+	<div data-role="page" id="creditsPage" data-add-back-btn="false">
 		<div class="ui-loader-background"> </div>
 	    <div data-role="header" class="header">
 	    	<h1 class="header-city-name"></h1>
@@ -299,10 +268,6 @@
 
  <!-- Inizio degli scripts -->
 
-	<script id="generic-header" type="text/x-handlebars-template">
-	    <div class="search-bar"><input class='search-key' type="search"></div>
-	</script>
-
 	<script id="generic-footer" type="text/x-handlebars-template">
 		<div class="myFooter" style="height:80px;" align="center">	
 		</div>
@@ -312,20 +277,10 @@
 	    {{#.}}
 	     <li>
 	     	<a href="" onclick="ShowRegion({{this.id}},'{{this.name}}');">
-	        <img src="{{thumbnail_file_name}}">
-	        <h2>{{this.name}}</h2>
-	        <p>{{this.description}}</p><span class="ui-li-count">{{point_of_interest_count}}</span></a>
-    	</li>
-	    {{/.}}
-	</script>
-
-	<script id="city-li-tpl" type="text/x-handlebars-template">
-	    {{#.}}
-	     <li>
-	     	<a href="" onclick="ShowCity({{this.id}},'{{this.name}}');">
-	        <img src="{{thumbnail_file_name}}">
-	        <h2>{{this.name}}</h2>
-	        <p>{{this.description}}</p><span class="ui-li-count">{{point_of_interest_count}}</span></a>
+		        <img src="{{thumbnail_file_name}}">
+		        <h3>{{this.name}}</h3>
+		        <p>{{this.description}}</p>
+	        </a>
     	</li>
 	    {{/.}}
 	</script>
@@ -348,9 +303,10 @@
 	    {{#.}}
 	     <li>
 	     	<a href="" onclick="ShowCity({{this.id}},'{{this.name}}');">
-	        <img src="{{thumbnail_file_name}}">
-	        <h2>{{this.name}}</h2>
-	        <p>{{this.description}}</p><!--<span class="ui-li-count">{{this.price}} &#8364;</span>--></a>
+		        <img src="{{thumbnail_file_name}}">
+		        <h3>{{this.name}}</h3>
+		        <p>{{this.description}}</p>
+	        </a>
     	</li>
 	    {{/.}}
 	</script>
@@ -370,18 +326,28 @@
 	    <p>{{this.description}}</p>
 	</script>
 	<script id="city-poi-li-tpl" type="text/x-handlebars-template">
-	    <li class="list-title"><span class="vocabulary" data-vocabulary-id="SHOPS"></span></li>
 	    {{#.}}
 	     <li>
 	     	<a href="" onclick="ShowShop({{this.id}});">
-	        <img src="{{thumbnail_file_name}}">
-	        <h2>{{this.name}}</h2>
-	        <p>{{this.description}}</p><!--<span class="ui-li-count">{{this.price}} &#8364;</span>--></a>
+		        <img src="{{thumbnail_file_name}}">
+		        <h3>{{this.name}}</h3>
+		        <p>{{this.address}}</p>
+	        </a>
     	</li>
 	    {{/.}}
 	</script>
-	<script id="city-map-button" type="text/x-handlebars-template">
-	    <button onclick="ShowCityMap(CityView.currentCity_id)"><span class="vocabulary" data-vocabulary-id="CITY_MAP"></span></button>
+	<script id="city-poi-li-tpl-immagini" type="text/x-handlebars-template">
+	    {{#.}}
+	     <li>
+	     	<a href="" onclick="ShowShop({{this.id}});">
+		        <img src="{{thumbnail_file_name}}">
+		        <h3>{{this.name}}</h3>
+		        <p>{{this.address}}</p>
+	        </a>
+    	</li>
+	    {{/.}}
+	</script>
+	    
 	</script>
 	
     <!-- poi.html -->

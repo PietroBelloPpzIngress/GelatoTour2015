@@ -1,25 +1,25 @@
 var RegionView = function(dataManager) {
 
     this.id = "";
-    this.regionDetails = null;
+    this.regionCitiesList = null;
 
     this.getRegionDetails = function(region_id, region_name) {
         $.mobile.loading("show");
         dataManager.getCitiesByRegion(region_id, region_name, currentRegion.renderRegionDetails );
     };
  
-    this.renderRegionDetails = function(regionDetails) {
+    this.renderRegionDetails = function(regionCitiesList) {
 
-        currentRegion.regionDetails = regionDetails;
+        currentRegion.regionCitiesList = regionCitiesList;
 
-        $('.title_region').html(regionDetails.name);
+        $('.header-region-name').html(RegionView.currentRegion_name);
 
-        $('.region-details').html(RegionView.detailsTemplate(regionDetails));
+        $('.region-details').html(RegionView.detailsTemplate(regionCitiesList));
 
         $('#regionPage #footer').html(RegionView.genericFooter());
         $("#regionPage #footer").trigger("create");
 
-        currentRegion.showPage(regionDetails);
+        currentRegion.showPage(regionCitiesList);
     };
 
     this.renderCitiesList = function(regionCitiesList) {
@@ -36,9 +36,9 @@ var RegionView = function(dataManager) {
         translate_page();
     };
 
-    this.showPage = function(regionDetails) {
+    this.showPage = function(regionCitiesList) {
         
-        if (dataManager.tipo=='REMOTE') currentRegion.renderCitiesList(regionDetails);
+        if (dataManager.tipo=='REMOTE') currentRegion.renderCitiesList(regionCitiesList);
  
         console.log("Rigenera pulsanti");
         $('button').button();

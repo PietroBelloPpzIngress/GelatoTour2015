@@ -300,6 +300,20 @@ function AdjustFontSize(container,text)
     */
 }
 
+$.mobile.back = function() {
+    var nav = window.navigator;
+
+    // if the setting is on and the navigator object is
+    // available use the phonegap navigation capability
+    if( this.phonegapNavigationEnabled &&
+        nav &&
+        nav.app &&
+        nav.app.backHistory ){
+        nav.app.backHistory();
+    } else {
+        window.history.back();
+    }
+};
 
 function Exit()
 {    navigator.app.exitApp();

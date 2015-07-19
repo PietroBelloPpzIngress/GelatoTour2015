@@ -229,9 +229,10 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 
 	        	$.mobile.loading("hide");
 
-        		DataManagerRemote.currentCity = data;
+        		DataManagerRemote.currentShop = data[0];
+
         		console.log('DataManagerRemote.getShop '+shop_id+' : Ajax success '+DataManagerRemote.currentCity.id);
-	            callback(DataManagerRemote.currentCity);
+	            callback(DataManagerRemote.currentShop);
 	        },
 	        error: function(data) {	
 
