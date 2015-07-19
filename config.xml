@@ -28,9 +28,11 @@
     <feature name="Geolocation">
         <param name="ios-package" value="CDVLocation" />
     </feature>
+    <!--
     <feature name="InAppBrowser">
         <param name="ios-package" value="CDVInAppBrowser" />
     </feature>
+	-->
 
                 <gap:platform name="ios"/>
                 <gap:platform name="android"/>
