@@ -105,7 +105,8 @@ var ShopView = function(dataManager) {
 		    var map = new google.maps.Map(document.getElementById('map_shop_canvas'), {
 		      zoom: minZoomLevel,
 		      center: new google.maps.LatLng( shopDetails.lat, shopDetails.lng ),
-		      mapTypeId: google.maps.MapTypeId.ROADMAP 
+		      mapTypeId: google.maps.MapTypeId.ROADMAP,
+		      disableDefaultUI: true 
 		    });
 
 			//map.fitBounds(latlngbounds);
