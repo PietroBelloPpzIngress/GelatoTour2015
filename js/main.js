@@ -285,13 +285,14 @@ $.mobile.back = function() {
 };
 
 function Consiglia()
-{   
-    window.plugins.email.open({
-        to:      'info@gelatotour.it',
+{   alert("1");
+    window.plugin.email.open({
+        to:      ['info@gelatotour.it'],
         subject: 'Suggerimento gelateria',
         body:    'Compila i seguenti campi per suggerirci una gelateria da inserire<BR><BR>Nome Gelateria: <BR>Indirizzo: <BR>Città: <BR>Note: <BR>',
         isHtml:  true
     });
+    alert("2");
 }
 
 function Exit()
