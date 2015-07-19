@@ -284,6 +284,16 @@ $.mobile.back = function() {
     }
 };
 
+function Consiglia()
+{
+    window.plugins.email.open({
+        to:      'info@gelatotour.it',
+        subject: 'Suggerimento gelateria',
+        body:    'Compila i seguenti campi per suggerirci una gelateria da inserire<BR><BR>Nome Gelateria: <BR>Indirizzo: <BR>Città: <BR>Note: <BR>',
+        isHtml:  true
+    });
+}
+
 function Exit()
 {    navigator.app.exitApp();
 }
