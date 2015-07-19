@@ -66,7 +66,10 @@ var ShopView = function(dataManager) {
 			$('#'+element_id).removeClass("contact_disabled");
 			$('#'+element_id).addClass("contact_enabled");
 
-			$('#'+element_id).html('<a href="'+link+'"><img src="css/images/'+image+'.png"></a>');
+			if (element_id=="shop_link")
+				$('#'+element_id).html('<a href="" onClick="navigator.app.loadUrl('+link+', { openExternal:true })"><img src="css/images/'+image+'.png"></a>');
+			else
+				$('#'+element_id).html('<a href="'+link+'"><img src="css/images/'+image+'.png"></a>');
 		}
 	}
  
