@@ -84,7 +84,7 @@ var RegionView = function(dataManager) {
         var h_orig = $('.region-city-visual-slider').height();
         $('.region-city-visual-slider').height($('.region-city-visual-slider').width());
 
-        $(".item").height(h+h_orig-$('.region-city-visual-slider').height());
+        $(".item").height(h-h_orig+$('.region-city-visual-slider').height());
     }
 
      

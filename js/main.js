@@ -6,6 +6,7 @@ currentCity = null;
 currentShop = null;
 
 test_PC = true;//false;//true;
+//if (test_PC)    alert("RUNNING PC TEST");
 
 function translate_page()
 {
@@ -17,7 +18,6 @@ function translate(index)
     return index;
 }
 
-if (test_PC)    alert("RUNNING PC TEST");
 
 var app = {
     
@@ -285,7 +285,7 @@ $.mobile.back = function() {
 };
 
 function Consiglia()
-{
+{   
     window.plugins.email.open({
         to:      'info@gelatotour.it',
         subject: 'Suggerimento gelateria',
