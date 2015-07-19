@@ -284,7 +284,6 @@ $.mobile.back = function() {
     }
 };
 
-/*
 function Consiglia()
 {
     window.plugins.email.open({
@@ -294,7 +293,6 @@ function Consiglia()
         isHtml:  true
     });
 }
-*/
 
 function Exit()
 {    navigator.app.exitApp();
