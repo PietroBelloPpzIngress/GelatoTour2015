@@ -115,7 +115,8 @@ h6 {
 }
 
 .shop_detail_single {
-  /*visibility: hidden;*/
+  visibility: hidden;
+  margin-top: 10px;
 }
 
 .shop_details_tile, .info_details_tile {
