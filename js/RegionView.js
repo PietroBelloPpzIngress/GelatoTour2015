@@ -80,8 +80,11 @@ var RegionView = function(dataManager) {
         else
             $('.region-city-visual-slider').width($('.region-city-visual-slider').height());
         */
-        
-        //$('.region-city-visual-slider').height($('.region-city-visual-slider').width());
+        var h = $(".item").height();
+        var h_orig = $('.region-city-visual-slider').height();
+        $('.region-city-visual-slider').height($('.region-city-visual-slider').width());
+
+        $(".item").height(h+h_orig-$('.region-city-visual-slider').height());
     }
 
      
