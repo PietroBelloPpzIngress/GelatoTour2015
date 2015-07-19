@@ -105,7 +105,7 @@ h6 {
 }
 
 .shop_detail_single {
-  visibility: hidden;
+  /*visibility: hidden;*/
 }
 
 .shop_details_tile, .info_details_tile {
@@ -156,6 +156,7 @@ a.ui-link-inherit {
 h3.ui-li-heading {
   line-height: 38px;
   padding-left : 10px;
+  font-weight: bold;
 }
 
 .ui-li-desc {

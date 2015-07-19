@@ -15,8 +15,14 @@ var ShopView = function(dataManager) {
 
     	$('#shop_name').html(shopDetails.name);
     	$('#shop_address').html(shopDetails.address);
-    	$('#shop_slogan').html(shopDetails.slogan);
 
+    	if (typeof shopDetail === "undefined" || shopDetail.trim()=="")
+		{	$('#shop_slogan').html();
+		}
+		else
+		{	$('#shop_slogan').html("'"+shopDetails.slogan+"'");
+		}
+    	
     	currentShop.renderShopContactsSingle(shopDetails.phone, 'shop_phone', 'tel:'+shopDetails.phone, 'telefono' );
 		currentShop.renderShopContactsSingle(shopDetails.email, 'shop_mail','mailto:'+shopDetails.email, 'mail');
     	currentShop.renderShopContactsSingle(shopDetails.website, 'shop_link', shopDetails.website, 'link');
@@ -41,8 +47,8 @@ var ShopView = function(dataManager) {
 		{	$('#'+element_id).hide();
 		}
 		else
-		{	$('#'+element_id).show();
-        	$('#'+element_id+' span').html(shopDetails.master);
+		{	$('#'+element_id+' span').html(shopDetail);
+			$('#'+element_id).show();
 		}
 	}
 
