@@ -11,6 +11,12 @@ var HomeView = function(dataManager) {
 	this.render = function(regions, free_POIs) {
         
         console.log('renderRegionsList');
+
+        regions.sort(function(a, b){
+            if(a.name < b.name) return -1;
+            if(a.name > b.name) return 1;
+            return 0;
+        })
         
         HomeView.regionsList = regions;
 
