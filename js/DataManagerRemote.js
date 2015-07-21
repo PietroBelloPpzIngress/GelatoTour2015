@@ -86,6 +86,43 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 	    });
 	}
 
+	/*
+    this.getRegionsShopsCount = function(callback) {
+	    var bugs = $('#bugs ul');
+
+	    $.mobile.loading("show");
+	     
+	    $.ajax({
+	        type: 'GET',
+	        url: base_url+'/app-conteggioGelaterie.php',
+	        data: {   },
+	        dataType: 'JSON',
+	        timeout: 50000,
+	        success: function(data) {
+
+	        	$.mobile.loading("hide");
+
+				DataManagerRemote.regionsShopsCountList = [];
+
+           		$.each(data, function(i,item){
+	                DataManagerRemote.regionsShopsCountList.push(item);
+	            });
+        		console.log('DataManagerRemote.getRegions : Ajax success '+DataManagerRemote.regionsShopsCountList.length);
+	            callback(DataManagerRemote.regionsShopsCountList);
+	        },
+	        error: function(data) {		
+
+	        	$.mobile.loading("hide");
+
+	            runtimePopup(translate("CONNECTION_ERROR"));
+
+	            console.log('DataManagerRemote.getRegions : Ajax error '+JSON.stringify(data));
+	            errorCallback();
+	        }
+	    });
+	}
+	*/
+
     this.getCitiesByRegion = function(region_id, region_name, callback) {
 	    var bugs = $('#bugs ul');
 /*
@@ -253,6 +290,7 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 DataManagerRemote.updateSQL = [];
 
 DataManagerRemote.regionsList = [];
+DataManagerRemote.regionsShopsCountList = [];
 DataManagerRemote.citiesList = [];
 DataManagerRemote.currentRegion = null;
 DataManagerRemote.currentCity = null;

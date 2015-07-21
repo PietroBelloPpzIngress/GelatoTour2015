@@ -17,6 +17,24 @@ var RegionView = function(dataManager) {
         $('.region-details').html(RegionView.detailsTemplate(regionCitiesList));
 
         currentRegion.showPage(regionCitiesList);
+
+        for (var i = 0; i < regionCitiesList.length; i++) {
+            dataManager.getShopsByCity(RegionView.currentRegion_id, RegionView.currentRegion_name, regionCitiesList[i].id, regionCitiesList[i].name, currentRegion.updateCityShopCount );
+        }
+    };
+
+    this.updateCityShopCount = function(cityDetails) {
+
+        if (cityDetails.length==1)
+        {   
+            $('.shops_counter-list#'+cityDetails[0].province_id).html("1 gelateria");
+            $('.shops_counter-slider#'+cityDetails[0].province_id).html("1 gelateria");
+        }
+        else if (cityDetails.length>1)
+        {   
+            $('.shops_counter-list#'+cityDetails[0].province_id).html(cityDetails.length+" gelaterie");
+            $('.shops_counter-slider#'+cityDetails[0].province_id).html(cityDetails.length+" gelaterie");
+        }
     };
 
     this.renderCitiesList = function(regionCitiesList, visual) {
@@ -49,7 +67,9 @@ var RegionView = function(dataManager) {
             $('.view-icon-circle').show();
         }
 
-        translate_page();
+        for (var i = 0; i < regionCitiesList.length; i++) {
+            dataManager.getShopsByCity(RegionView.currentRegion_id, RegionView.currentRegion_name, regionCitiesList[i].id, regionCitiesList[i].name, currentRegion.updateCityShopCount );
+        }
     };
 
     this.showPage = function(regionCitiesList) {

@@ -2,6 +2,23 @@
   font-family: HelveticaNeue;
   src: url("HelveticaNeue-Thin.otf") format("opentype");
 }
+@font-face {
+  font-family: HelveticaNeueItalic;
+  src: url("HelveticaNeue-Italic.otf") format("opentype");
+}
+@font-face {
+  font-family: HelveticaNeueCondensedItalic;
+  src: url("HelveticaNeue-LightCondObl.otf") format("opentype");
+}
+@font-face {
+  font-family: HelveticaLightItalic;
+  src: url("Helvetica-LightOblique.otf") format("opentype");
+}
+@font-face {
+  font-family: HelveticaNeueBold;
+  src: url("helvetica-neue-bold.otf") format("opentype");
+}
+
 
 html, body {
     font-weight: 300;
@@ -38,8 +55,14 @@ html, body {
 */
 
 .icon a img {
-    height: 40px;
-    margin: 10px;
+    height: 28px;
+    margin: 16px 8px;
+}
+
+.info-icon a img {
+    height: 20px;
+    margin-top: 20px;
+    margin-left: 10px;
 }
 
 .ui-bar-a {
@@ -57,7 +80,7 @@ h1 {
     font-family: HelveticaNeue, "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif!important; 
     font-size: 22px!important;
     margin: 0!important;
-    line-height: 40px;
+    line-height: 60px;
     font-weight: normal;
     text-shadow: none;
     color: #fff;
@@ -65,7 +88,7 @@ h1 {
 
 h2 {
     font-family: HelveticaNeue, "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif!important; 
-    font-style: italic;
+    font-style: oblique;
     font-size: 14px!important;
     font-weight: normal;
     padding: 0!important;
@@ -74,9 +97,13 @@ h2 {
     color: #fff;
 }
 
+h2.app-slogan {
+    font-size: 12px!important;
+}
+
 h6 {
     font-family: HelveticaNeue, "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif!important; 
-    font-style: italic;
+    font-style: oblique;
     font-size: 11px;
     font-weight: normal;
 }
@@ -157,18 +184,19 @@ a.ui-link-inherit {
   box-shadow: none;
   border: 1px solid #fff;
   background-color: #2F6A92;
-  width: 16px;
-  height: 16px;
+  width: 10px;
+  height: 10px;
 
   bottom: 0;
   margin-top: auto!important;
-  margin-bottom: 16px;
+  margin-bottom: 22px;
 }
 
 h3.ui-li-heading {
+  font-family: HelveticaNeueBold, "HelveticaNeueBold", Helvetica, Arial, "Lucida Grande", sans-serif!important; 
   line-height: 38px;
   padding-left : 10px;
-  font-weight: bold;
+  /*font-weight: bold;*/
 }
 
 .ui-li-desc {
@@ -193,6 +221,15 @@ h3.ui-li-heading {
   border-radius: 50%;
 }
 
+.shop-city-visual {
+  display: none;
+  height: 76px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: center;
+  background-position-x: center;
+}
 
 .consiglia-button-wrapper {
   text-align: center;
@@ -220,12 +257,16 @@ h3.ui-li-heading {
   background: #2F6A92;
   padding: 30px 30px;
   margin: 10px;
+  margin-bottom: 40px;
   text-align: center;
   height: 250px;
   text-shadow: none;
 }
 .owl-theme .owl-controls .owl-page span{
   background-color: #fff;
+  width: 8px;
+  height: 8px;
+  margin: 4px 4px;
 }
 
 
@@ -235,4 +276,16 @@ h3.ui-li-heading {
   font-style: none;
   font-weight: normal;
   text-decoration: none;
+}
+
+.shops_counter {
+  margin-top: -10px;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.owl-controls.clickable {
+  position: fixed;
+  bottom: 5px;
+  width: 100%;
 }

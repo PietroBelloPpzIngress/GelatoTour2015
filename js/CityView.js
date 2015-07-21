@@ -37,8 +37,14 @@ var CityView = function(dataManager) {
 
 	    	$('city-shops-not-found').hide();
     	}
-
-    	translate_page();
+console.log($('.shop-city-visual#5141').css('background-image'));
+		var shop_id = null;
+        for (var i = 0; i < cityShopsList.length; i++) {
+            shop_id = cityShopsList[i].id;
+            checkImage(shop_id, 
+            	function(shop_id){ console.log(shop_id);$('.shop-city-visual#'+shop_id).show(); }, 
+            	function(shop_id){  } );
+        }
 	};
 
 	this.showPage = function(cityDetails) {
@@ -119,6 +125,13 @@ function markerClick_Shop(marker, i, cityShopsList)
 
 		Shop_infowindow.open(city_map,marker);
 	});
+}
+
+function checkImage(shop_id, good, bad) {
+    var img = new Image();
+    img.onload = good(shop_id); 
+    img.onerror = bad(shop_id);
+    img.src = "http://www.gelatotour.com/img/shops/"+shop_id+"/cover_800x600.jpg";
 }
 
 function ShowCity(id,name)
