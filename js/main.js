@@ -300,6 +300,10 @@ function Exit()
 }
 
 function runtimePopup(message, popupafterclose) {
+    
+    alert(message);
+
+    /*
     var template = "<div data-role='popup' data-theme='e' data-overlay-theme='a'  data-shadow='true' class='ui-content messagePopup' style='max-width:280px'>"
         + "<a href='#' data-role='button' data-theme='g' data-icon='delete' data-iconpos='notext' "
         + " class='ui-btn-right closePopup'>Close</a> <span style='text-align:center;min-width:240px;min-height:100px;font-weight:bold;valing:middle;'> "
@@ -318,4 +322,5 @@ function runtimePopup(message, popupafterclose) {
                     popupafterclose();
             }
         });
+    */
 }

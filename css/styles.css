@@ -84,8 +84,9 @@ h6 {
 #map_city_canvas {
   /*border-radius: 100%;*/
 }
-#map_shop_canvas {
-  border-radius: 100%;
+
+#map_shop_canvas_container {
+  border-radius: 50%;
 }
 
 .shop_contacts{
