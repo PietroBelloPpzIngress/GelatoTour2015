@@ -113,14 +113,18 @@ h6 {
 }
 
 #map_shop_canvas_container {
-  border-radius: 50%!important;
   position: relative;
   padding: 0 30px;
 }
 
 #map_shop_canvas {
-  border-radius: 50%!important;
   z-index: 10;
+
+  
+  -moz-border-radius: 50%!important;
+  -webkit-border-radius: 50%!important;
+  -khtml-border-radius: 50%!important;
+  border-radius: 50%!important;
 }
 
 .map_thumbnail {
@@ -181,6 +185,7 @@ h6 {
   font-family: HelveticaNeue, "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif!important; 
   text-shadow: none;
   color: #fff;
+  padding: 0 15px;
 }
 
 .shop-details #shop_name, .shop-details #shop_address, .shop-details #shop_slogan {
@@ -347,25 +352,3 @@ h3.ui-li-heading {
   bottom: 5px;
   width: 100%;
 }
-
-
-
-#gmap{
-height: 100%;
-left: 0;
-top: 0;
-width: 100%;
-z-index: 1; } /* Has to be at least one increment smaller in value than the container's z-index */
-
-#container{
-background: rgba(0, 0, 0, 0.8);
-border-radius: 20px;
-border: 3px solid #fff;
-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-margin: 0 auto;
-overflow: visible !important; /* Has to be !important only if you're using an on/off switch */
-padding: 40px;
-position: relative;
-top: 100px;
-width: 800px;
-z-index: 2; } /* Has
