@@ -120,11 +120,11 @@ var ShopView = function(dataManager) {
 
 			//map.fitBounds(latlngbounds);
 
-		    //var pinImage = new google.maps.MarkerImage("css/images/marker_gtp.png");
+		    var pinImage = new google.maps.MarkerImage("css/images/pin.brightred.png");
 
 		    var marker_shop = new google.maps.Marker({
 		      position: new google.maps.LatLng( shopDetails.lat, shopDetails.lng ),
-			  /*icon: pinImage,*/
+			  icon: pinImage,
 		      map: map
 		    });
 

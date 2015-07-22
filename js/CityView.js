@@ -85,7 +85,7 @@ var CityView = function(dataManager) {
 
 			city_map.fitBounds(latlngbounds);
 
-		    //var pinImage = new google.maps.MarkerImage("css/images/marker_gtp.png");
+		    var pinImage = new google.maps.MarkerImage("css/images/pin.brightred.png");
 
 		    Shop_markers = new Array();
 		    contentString  = new Array();
@@ -93,7 +93,7 @@ var CityView = function(dataManager) {
 			    
 				    Shop_markers[i] = new google.maps.Marker({
 				      	position: new google.maps.LatLng( cityShopsList[i].lat, cityShopsList[i].lng ),
-				      	/*icon: pinImage,*/
+				      	icon: pinImage,
 				      	map: city_map,
 	      			  	id: cityShopsList[i].id
 				    });
