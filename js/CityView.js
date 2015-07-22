@@ -37,14 +37,15 @@ var CityView = function(dataManager) {
 
 	    	$('city-shops-not-found').hide();
     	}
-console.log($('.shop-city-visual#5141').css('background-image'));
-		var shop_id = null;
+
+        var img = [];
         for (var i = 0; i < cityShopsList.length; i++) {
-            shop_id = cityShopsList[i].id;
-            checkImage(shop_id, 
-            	function(shop_id){ console.log(shop_id);$('.shop-city-visual#'+shop_id).show(); }, 
-            	function(shop_id){  } );
-        }
+	        img[i] = $('<img />');
+
+			img[i].bind('load', display_visual(cityShopsList[i].id));
+
+			img.attr('src', 'http://www.gelatotour.com/img/shops/'+cityShopsList[i].id+'/cover_800x600.jpg');
+		}
 	};
 
 	this.showPage = function(cityDetails) {
@@ -127,11 +128,11 @@ function markerClick_Shop(marker, i, cityShopsList)
 	});
 }
 
-function checkImage(shop_id, good, bad) {
-    var img = new Image();
-    img.onload = good(shop_id); 
-    img.onerror = bad(shop_id);
-    img.src = "http://www.gelatotour.com/img/shops/"+shop_id+"/cover_800x600.jpg";
+function display_visual(id)
+{
+		$('.shop-city-visual#'+id).css('background-image', 'url(http://www.gelatotour.com/img/shops/'+id+'/cover_800x600.jpg');
+		$('.shop-city-visual#'+id).show();
+		console.log(id);
 }
 
 function ShowCity(id,name)
