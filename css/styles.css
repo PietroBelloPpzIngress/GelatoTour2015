@@ -133,8 +133,8 @@ h6 {
   position: absolute;
   right: 20px;
   bottom: 30px; 
-  width: 75px;
-  height: 75px;
+  width: 100px;
+  height: 100px;
   border: 1px solid #fff!important;
   border-radius: 50%;
   z-index: 30;
