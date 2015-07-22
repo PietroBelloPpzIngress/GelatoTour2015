@@ -114,11 +114,52 @@ h6 {
 
 #map_shop_canvas_container {
   border-radius: 50%!important;
+  position: relative;
+  padding: 30px;
 }
 
 #map_shop_canvas {
   border-radius: 50%!important;
+  z-index: 10;
 }
+
+.map_thumbnail {
+  position: absolute;
+  right: 20px;
+  bottom: 30px; 
+  width: 75px;
+  height: 75px;
+  border: 1px solid #fff!important;
+  border-radius: 50%;
+  z-index: 30;
+  background-size: cover;
+}
+
+#map_thumbnail_foto {
+  display: none;
+}
+
+#map_thumbnail_map {
+  display: none;
+  background-image:url('images/thumbnail_maps.png');
+}
+
+#foto_shop {
+  display: none;
+  z-index: 20;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+}
+
+.content-shop {
+  padding: 15px 0;
+}
+
 
 .shop_contacts{
   width: 100%;
@@ -185,7 +226,7 @@ a.ui-link-inherit {
 
 .border-bottom {
   border-bottom: 1px solid #fff;
-  margin: 0 10px;
+  margin-left: 0 0 0 10px;
 }
 
 .ui-li-heading {

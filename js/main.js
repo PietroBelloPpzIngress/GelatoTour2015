@@ -249,6 +249,26 @@ $(document).on("pageshow", "#optionsPage", function(event) {
     $('#app_info').html(app.name + " " + app.version);
 });
 
+$('#map_thumbnail_foto').click( function(event) {
+    
+    $('#map_thumbnail_map').show();
+    $(this).hide();
+
+    $('#foto_shop').show();
+    //$('#map_shop_canvas').show();
+
+});
+
+$('#map_thumbnail_map').click( function(event) {
+    
+    $('#map_thumbnail_foto').show();
+    $(this).hide();
+
+    //$('#map_shop_canvas').hide();
+    $('#foto_shop').hide();
+
+});
+
 function ShowInfo()
 {   $.mobile.changePage(
         '#infoPage',

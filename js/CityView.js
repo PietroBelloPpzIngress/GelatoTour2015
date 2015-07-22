@@ -40,7 +40,7 @@ var CityView = function(dataManager) {
 
         var img = [];
         for (var i = 0; i < cityShopsList.length; i++) {
-	        urlExists(cityShopsList[i].id);
+	        cityVisualExists(cityShopsList[i].id);
 		}
 	};
 
@@ -124,7 +124,7 @@ function markerClick_Shop(marker, i, cityShopsList)
 	});
 }
 
-function urlExists(id){
+function cityVisualExists(id){
   $.ajax({
     type: 'HEAD',
     url: 'http://www.gelatotour.com/img/shops/'+id+'/cover_800x600.jpg',

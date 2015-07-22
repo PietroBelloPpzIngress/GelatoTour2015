@@ -38,6 +38,9 @@ var ShopView = function(dataManager) {
         currentShop.showPage();
         currentShop.showMap(shopDetails);
 
+        //shopFotoExists(shopDetails.id);
+        shopFotoExists('5184');
+
 	    return this;
 	};
 
@@ -131,6 +134,23 @@ var ShopView = function(dataManager) {
 		} 
 	};
  }
+
+
+function shopFotoExists(id){
+  $.ajax({
+    type: 'HEAD',
+    url: 'http://www.gelatotour.com/img/shops/'+id+'/gallery/800x600/Senzanome.jpg',
+    success: function(){
+      $('#map_thumbnail_foto').css('background-image', "url('http://www.gelatotour.com/img/shops/"+id+"/gallery/800x600/Senzanome.jpg')");
+      $('#foto_shop').css('background-image', "url('http://www.gelatotour.com/img/shops/"+id+"/gallery/800x600/Senzanome.jpg')");
+      $('#map_thumbnail_foto').show();
+      console.log(id);
+    },
+    error: function() {
+      $('#map_thumbnail_foto').hide();
+    }
+  });
+}
 
 function ShowShop(id)
 {	//$.mobile.showPageLoadingMsg('a', '');
