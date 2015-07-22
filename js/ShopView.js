@@ -14,13 +14,13 @@ var ShopView = function(dataManager) {
         $('.header-shop-name').html(shopDetails.city);
 
     	$('#shop_name').html(shopDetails.name);
-    	$('#shop_address').html(shopDetails.address);
+    	$('#shop_address').html(shopDetails.address + ' - ' + shopDetails.city);
 
-    	if (typeof shopDetail === "undefined" || shopDetail.trim()=="")
+    	if (typeof shopDetails.slogan === "undefined" || shopDetails.slogan.trim()=="")
 		{	$('#shop_slogan').html();
 		}
 		else
-		{	$('#shop_slogan').html("'"+shopDetails.slogan+"'");
+		{	$('#shop_slogan').html('"'+shopDetails.slogan+'"');
 		}
     	
     	currentShop.renderShopContactsSingle(shopDetails.phone, 'shop_phone', 'tel:'+shopDetails.phone, 'telefono' );

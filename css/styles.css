@@ -109,11 +109,15 @@ h6 {
 }
 
 #map_city_canvas {
-  /*border-radius: 100%;*/
+  /*border-radius: 50%!important;*/
 }
 
 #map_shop_canvas_container {
-  border-radius: 50%;
+  border-radius: 50%!important;
+}
+
+#map_shop_canvas {
+  border-radius: 50%!important;
 }
 
 .shop_contacts{
@@ -152,6 +156,10 @@ h6 {
 
 }
 
+.shop_address {
+  font-size: 12px;
+  margin: -14px 0 32px 0!important;
+}
 
 .ui-li {
   border: none;
@@ -298,3 +306,25 @@ h3.ui-li-heading {
   bottom: 5px;
   width: 100%;
 }
+
+
+
+#gmap{
+height: 100%;
+left: 0;
+top: 0;
+width: 100%;
+z-index: 1; } /* Has to be at least one increment smaller in value than the container's z-index */
+
+#container{
+background: rgba(0, 0, 0, 0.8);
+border-radius: 20px;
+border: 3px solid #fff;
+box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+margin: 0 auto;
+overflow: visible !important; /* Has to be !important only if you're using an on/off switch */
+padding: 40px;
+position: relative;
+top: 100px;
+width: 800px;
+z-index: 2; } /* Has
