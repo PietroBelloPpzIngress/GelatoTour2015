@@ -115,7 +115,7 @@ h6 {
 #map_shop_canvas_container {
   border-radius: 50%!important;
   position: relative;
-  padding: 30px;
+  padding: 0 30px;
 }
 
 #map_shop_canvas {
@@ -226,7 +226,7 @@ a.ui-link-inherit {
 
 .border-bottom {
   border-bottom: 1px solid #fff;
-  margin-left: 0 0 0 10px;
+  margin: 0 0 0 10px;
 }
 
 .ui-li-heading {
