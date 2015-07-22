@@ -226,8 +226,9 @@
 	    {{#.}}
 	     <li>
 	     	<a href="" onclick="ShowRegion({{this.id}},'{{this.name}}');">
-		        <h3>{{this.name}}</h3>
-		        <p>{{this.description}}</p>
+		        <div class="border-bottom">
+		        	<h3>{{this.name}}</h3>
+		        </div>
 	        </a>
     	</li>
 	    {{/.}}
@@ -252,8 +253,10 @@
 	     <li>
 	     	<a href="" onclick="ShowCity({{this.id}},'{{this.name}}');">
 		        <div class="region-city-visual" style="background-image:url('http://www.gelatotour.com/img/zones/{{this.id}}/cover_800x600.jpg')"></div>
-		        <h3>{{this.name}}</h3>
-		        <p class="shops_counter-list" id="{{this.id}}"></p>
+		        <div class="border-bottom">
+			        <h3>{{this.name}}</h3>
+			        <p class="shops_counter-list" id="{{this.id}}"></p>
+			    </div>
 	        </a>
     	</li>
 	    {{/.}}
@@ -296,8 +299,10 @@
 	     <li>
 	     	<a href="" onclick="ShowShop({{this.id}});">
 		        <div class="shop-city-visual" id="{{this.id}}" style="background-image:url('http://www.gelatotour.com/img/shops/{{this.id}}/cover_800x600.jpg')"></div>
-		        <h3>{{this.name}}</h3>
-		        <p>{{this.address}}</p>
+		        <div class="border-bottom">
+		        	<h3>{{this.name}}</h3>
+		        	<p>{{this.address}}</p>
+		        </div>
 	        </a>
     	</li>
 	    {{/.}}
