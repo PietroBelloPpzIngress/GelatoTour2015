@@ -124,11 +124,9 @@ h6 {
 #map_shop_canvas {
   z-index: 10;
 
-  
-  -moz-border-radius: 50%!important;
-  -webkit-border-radius: 50%!important;
-  -khtml-border-radius: 50%!important;
-  border-radius: 50%!important;
+  /*border-radius: 50%!important;*/
+  -webkit-clip-path: circle(50% at 50% 50%);
+  clip-path: circle(50% at 50% 50%);
 }
 
 .map_thumbnail {
