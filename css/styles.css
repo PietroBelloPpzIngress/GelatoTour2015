@@ -97,6 +97,10 @@ h2 {
     color: #fff;
 }
 
+.shop-details h2 {
+
+}
+
 h2.app-slogan {
     font-size: 12px!important;
 }
@@ -202,9 +206,11 @@ h6 {
 
 }
 
-.shop_address {
-  font-size: 12px;
+#shop_address {
+  font-family: HelveticaNeue, "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif!important; 
+  font-size: 12px!important;
   margin: -14px 0 32px 0!important;
+  font-style: normal;
 }
 
 .ui-li {
