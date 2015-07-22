@@ -100,6 +100,10 @@ var ShopView = function(dataManager) {
 		var div = $('#map_shop_canvas');
 		var width = div.width();
 		div.css('height', width);
+		
+		var mask = $('#map_shop_mask');
+		mask.css('width', width);
+		mask.css('height', width);
 			
 		BuildMap( shopDetails );
 
@@ -139,10 +143,10 @@ var ShopView = function(dataManager) {
 function shopFotoExists(id){
   $.ajax({
     type: 'HEAD',
-    url: 'http://www.gelatotour.com/img/shops/'+id+'/gallery/800x600/Senzanome.jpg',
+    url: 'http://www.gelatotour.com/img/shops/'+id+'/gallery/1400x800/Senzanome.jpg',
     success: function(){
-      $('#map_thumbnail_foto').css('background-image', "url('http://www.gelatotour.com/img/shops/"+id+"/gallery/800x600/Senzanome.jpg')");
-      $('#foto_shop').css('background-image', "url('http://www.gelatotour.com/img/shops/"+id+"/gallery/800x600/Senzanome.jpg')");
+      $('#map_thumbnail_foto').css('background-image', "url('http://www.gelatotour.com/img/shops/"+id+"/gallery/1400x800/Senzanome.jpg')");
+      $('#foto_shop').css('background-image', "url('http://www.gelatotour.com/img/shops/"+id+"/gallery/1400x800/Senzanome.jpg')");
       $('#map_thumbnail_foto').show();
       console.log(id);
     },

@@ -28,19 +28,25 @@ html, body {
 .header {
     text-align: center;
     background-color:#2F6A92;
-    height: 60px;
-    display: relative;
+    height: 70px;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+.ui-content {
+  margin: 60px 0 0 0;
 }
 
 .back-icon, .info-icon, .close-icon {
     position: absolute;
-    top:0;
+    top:10px;
     left:0;
 }
 
 .map-icon, .view-icon-circle, .view-icon-list, .list-icon, .share-icon {
     position: absolute;
-    top:0;
+    top:10px;
     right:0;
 }
 
@@ -56,12 +62,12 @@ html, body {
 
 .icon a img {
     height: 28px;
-    margin: 16px 8px;
+    margin: 6px 8px;
 }
 
 .info-icon a img {
     height: 20px;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-left: 10px;
 }
 
@@ -78,12 +84,13 @@ html, body {
 
 h1 {
     font-family: HelveticaNeue, "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif!important; 
-    font-size: 22px!important;
+    font-size: 26px!important;
     margin: 0!important;
-    line-height: 60px;
+    line-height: 40px;
     font-weight: normal;
     text-shadow: none;
     color: #fff;
+    margin-top: 10px!important;
 }
 
 h2 {
@@ -113,7 +120,10 @@ h6 {
 }
 
 #map_city_canvas {
-  /*border-radius: 50%!important;*/
+  height: 100%;
+  width: 100%;
+  position: absolute!important;
+  height: 100%!important;
 }
 
 #map_shop_canvas_container {
@@ -121,12 +131,21 @@ h6 {
   padding: 0 30px;
 }
 
+#map_shop_mask {
+  z-index: 19;
+  pointer-events: none;
+  background-image:url('images/map_shop_mask.png');
+  position: absolute;
+  background-size: 100%;
+}
+
 #map_shop_canvas {
   z-index: 10;
 
-  /*border-radius: 50%!important;*/
+  /*
   -webkit-clip-path: circle(50% at 50% 50%);
   clip-path: circle(50% at 50% 50%);
+  */
 }
 
 .map_thumbnail {
@@ -162,7 +181,7 @@ h6 {
   background-position: center center;
 }
 
-.content-shop {
+.content-full-width {
   padding: 15px 0;
 }
 
@@ -170,6 +189,7 @@ h6 {
 .shop_contacts{
   width: 100%;
   text-align: center;
+  margin: 10px;
 }
 
 .shop_contacts img, .info_contacts img {
@@ -190,24 +210,37 @@ h6 {
   padding: 0 15px;
 }
 
+.shop-details {
+  padding: 0 15px;
+}
+.info-details {
+  padding: 0;
+}
+
 .shop-details #shop_name, .shop-details #shop_address, .shop-details #shop_slogan {
   text-align: center;
 }
 
+.shop_name {
+  line-height: 60px;
+}
+
 .shop_detail_single {
   display: none;
-  margin-top: 10px;
 }
 
 .shop_details_tile, .info_details_tile {
   font-weight: bold;
+}
 
+.shop_details_tile {
+  margin-top: 10px;
 }
 
 #shop_address {
   font-family: HelveticaNeue, "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif!important; 
   font-size: 12px!important;
-  margin: -14px 0 24px 0!important;
+  margin: -4px 0 14px 0!important;
   font-style: normal;
 }
 
@@ -263,6 +296,7 @@ h3.ui-li-heading {
   font-family: HelveticaNeueBold, "HelveticaNeueBold", Helvetica, Arial, "Lucida Grande", sans-serif!important; 
   line-height: 38px;
   padding-left : 10px;
+  font-size: 18px;
   /*font-weight: bold;*/
 }
 
@@ -271,7 +305,7 @@ h3.ui-li-heading {
 }
 
 .region-city-visual {
-  height: 76px;
+  height: 100px;
   width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -288,9 +322,18 @@ h3.ui-li-heading {
   border-radius: 50%;
 }
 
+.region-city-text, .shop-city-text {
+  height: 64px;
+}
+
+.region-city-text h3.ui-li-heading, .shop-city-text  h3.ui-li-heading {
+  line-height: 16px;
+}
+
+
 .shop-city-visual {
   display: none;
-  height: 76px;
+  height: 100px;
   width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -322,8 +365,8 @@ h3.ui-li-heading {
   font-family: HelveticaNeue, "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif!important; 
   color: #fff;
   background: #2F6A92;
-  padding: 30px 30px;
-  margin: 10px;
+  padding: 10px 30px 30px 30px;
+  margin: 0;
   margin-bottom: 40px;
   text-align: center;
   height: 250px;
@@ -346,13 +389,28 @@ h3.ui-li-heading {
 }
 
 .shops_counter {
-  margin-top: -10px;
+  margin-top: -0;
   font-weight: normal;
   font-size: 14px;
 }
 
 .owl-controls.clickable {
   position: fixed;
-  bottom: 5px;
   width: 100%;
+}
+
+#splash_big_logo {
+  width:100%;
+  height:100%;
+  min-height:400px;
+  position:relative;
+  text-align:center;
+}
+
+#splash_big_logo img {
+  display:block;
+  margin-left: auto;
+  margin-right:auto;
+  width: 50%;
+  margin-top: 80px;
 }

@@ -110,8 +110,9 @@ function markerClick_Shop(marker, i, cityShopsList)
 	google.maps.event.addListener(marker, 'click', function() {
 	    var contentString = '<div>'+
 	  						'<a href="" onClick="ShowShop('+cityShopsList[i].id+')">'+
-	      						'<img src="/css/images/info_azzurra.png" style="width:80px;height:80px;">'+
-	      						cityShopsList[i].name+'</a>'+
+	      						cityShopsList[i].name+
+	      						'<img src="css/images/info_azzurra.png" style="width:16px;height:16px;margin:0 6px;">'+
+	      						'</a>'+
 	  					'</div>';
 
 		if (Shop_infowindow) Shop_infowindow.close();
@@ -127,7 +128,7 @@ function markerClick_Shop(marker, i, cityShopsList)
 function cityVisualExists(id){
   $.ajax({
     type: 'HEAD',
-    url: 'http://www.gelatotour.com/img/shops/'+id+'/cover_800x600.jpg',
+    url: 'http://www.gelatotour.com/img/shops/'+id+'/cover_1400x800.jpg',
     success: function(){
       $('.shop-city-visual#'+id).show();
     },

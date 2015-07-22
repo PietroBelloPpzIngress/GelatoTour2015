@@ -44,17 +44,8 @@
 	    		<h2 class="app-slogan">Giro d'Italia delle gelaterie artigianali</h2>
 	    	</div>
     	</div>
-	    <div id="splash_big_logo"
-	    		style="width:100%;
-	    			height:100%;
-	    			min-height:400px;
-	    			position:relative;
-                    text-align:center;
-                    ">
-                    
-                    <img src="css/images/logo.png" 
-                            style="display:block; margin-left: auto; margin-right:auto; width: 50% ">
-                
+	    <div id="splash_big_logo">
+            <img src="css/images/logo.png">
     	</div>
 	</div>
 
@@ -105,7 +96,7 @@
     		<div class='icon list-icon'><a href="" onclick="$.mobile.back();"><img src="css/images/list.png"></a></div>
     	</div>
 
-    	<div data-role="content">
+    	<div data-role="content" class="content-full-width">
 	    	<div id="map_city_canvas" style="height:200px;"></div>
 	    </div>
 	</div>
@@ -118,8 +109,9 @@
     		<div class='icon share-icon'><a href="" onclick="socialsharingWrapper()"><img src="css/images/share.png"></a></div>
     	</div>
 
-	    <div data-role="content" class="content-shop">
+	    <div data-role="content" class="content-full-width">
 	    	<div id="map_shop_canvas_container" >
+	    		<div id="map_shop_mask" style="height:200px;"></div>
 	    		<div id="map_shop_canvas" style="height:200px;"></div>
 	    		<div class="map_thumbnail" id="map_thumbnail_map"></div>
 	    		<div class="map_thumbnail" id="map_thumbnail_foto" style="background-image:url('http://www.gelatotour.com/img/shops/5184/gallery/800x600/Senzanome.jpg')"></div>
@@ -172,7 +164,7 @@
     	<div data-role="content" class="credits">
     		<h1>Gelato Tour</h1>
     		<h2 class="ui-title">Giro d'Italia delle gelaterie artigianali</h2>
-            <BR><BR>
+            <BR>
             <div class="info-details">
 	            <div class="info_detail_single">
 	    			<div class="info_details_tile">Mission</div>
@@ -256,7 +248,7 @@
 	     <li>
 	     	<a href="" onclick="ShowCity({{this.id}},'{{this.name}}');">
 		        <div class="region-city-visual" style="background-image:url('http://www.gelatotour.com/img/zones/{{this.id}}/cover_800x600.jpg')"></div>
-		        <div class="border-bottom">
+		        <div class="border-bottom region-city-text">
 			        <h3>{{this.name}}</h3>
 			        <p class="shops_counter-list" id="{{this.id}}"></p>
 			    </div>
@@ -302,7 +294,7 @@
 	     <li>
 	     	<a href="" onclick="ShowShop({{this.id}});">
 		        <div class="shop-city-visual" id="{{this.id}}" style="background-image:url('http://www.gelatotour.com/img/shops/{{this.id}}/cover_800x600.jpg')"></div>
-		        <div class="border-bottom">
+		        <div class="border-bottom shop-city-text">
 		        	<h3>{{this.name}}</h3>
 		        	<p>{{this.address}}</p>
 		        </div>

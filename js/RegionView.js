@@ -105,6 +105,8 @@ var RegionView = function(dataManager) {
         $('.region-city-visual-slider').height($('.region-city-visual-slider').width());
 
         $(".item").height(h-h_orig+$('.region-city-visual-slider').height());
+
+        $('.owl-controls').css('top',($('#regionPage').height()-40)+'px');
     }
 
      
