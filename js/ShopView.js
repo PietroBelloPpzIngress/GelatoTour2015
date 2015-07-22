@@ -38,8 +38,8 @@ var ShopView = function(dataManager) {
         currentShop.showPage();
         currentShop.showMap(shopDetails);
 
-        //shopFotoExists(shopDetails.id);
-        shopFotoExists('5184');
+        shopFotoExists(shopDetails.id);
+        //shopFotoExists('5184');
 
 	    return this;
 	};
