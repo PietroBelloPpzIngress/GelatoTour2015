@@ -100,10 +100,11 @@ var ShopView = function(dataManager) {
 		var div = $('#map_shop_canvas');
 		var width = div.width();
 		div.css('height', width);
-		
+
 		var mask = $('#map_shop_mask');
-		mask.css('width', width);
-		mask.css('height', width);
+		mask.css('width', width+2);
+		mask.css('height', width+2);
+		mask.css('margin', '-1px -1px');
 			
 		BuildMap( shopDetails );
 
