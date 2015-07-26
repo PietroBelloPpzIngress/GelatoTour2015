@@ -46,7 +46,7 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 	            runtimePopup(translate("CONNECTION_ERROR"));
 
 	            console.log('DataManagerRemote.getUpdateSQL : Ajax error '+JSON.stringify(data));
-	            errorCallback();
+	            //errorCallback();
 	        }
 	    });
 	}
@@ -81,7 +81,7 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 	            runtimePopup(translate("CONNECTION_ERROR"));
 
 	            console.log('DataManagerRemote.getRegions : Ajax error '+JSON.stringify(data));
-	            errorCallback();
+	            //errorCallback();
 	        }
 	    });
 	}
@@ -170,7 +170,7 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 	            runtimePopup(translate("CONNECTION_ERROR"));
 
 	            console.log('DataManagerRemote.getCitiesByRegion '+region_id+'/'+region_name+' : Ajax error '+JSON.stringify(data));
-	            errorCallback();
+	            //errorCallback();
 	        }
 	    });
 	}
@@ -224,7 +224,7 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 	            runtimePopup(translate("CONNECTION_ERROR"));
 
 	            console.log('DataManagerRemote.getShopsByCity '+region_id+'/'+region_name+' '+city_id+'/'+city_name+' : Ajax error '+JSON.stringify(data));
-	            errorCallback();
+	            //errorCallback();
 	        }
 	    });
 	}
@@ -268,7 +268,7 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 
         		DataManagerRemote.currentShop = data[0];
 
-        		console.log('DataManagerRemote.getShop '+shop_id+' : Ajax success '+DataManagerRemote.currentCity.id);
+        		console.log('DataManagerRemote.getShop '+shop_id+' : Ajax success '+DataManagerRemote.currentShop.id);
 	            callback(DataManagerRemote.currentShop);
 	        },
 	        error: function(data) {	
@@ -278,7 +278,62 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 	            runtimePopup(translate("CONNECTION_ERROR"));
 
 	            console.log('DataManagerRemote.getShop '+shop_id+' : Ajax error '+JSON.stringify(data));
-	            errorCallback();
+	            //errorCallback();
+	        }
+	    });
+	}
+
+	this.getGallery = function(shop_id, callback) {
+	    var bugs = $('#bugs ul');
+/*
+	    // LOOK FOR CACHED CUTY
+	    console.log("LOOK FOR CACHED GALLERY");
+	    DataManagerRemote.currentRegion = null;
+	    $.each(DataManagerRemote.regionsList, function(i,item){
+            if (item.id==region_id)
+            {	
+            	DataManagerRemote.currentRegion = item;
+            	callback(DataManagerRemote.currentRegion);
+            	return;
+            }
+        });
+
+        if (DataManagerRemote.currentRegion!=null)
+        {	console.log("CACHED GALLERY FOUND");
+        	return;
+        }
+*/
+	    // CACHED GALLERY NOT FOUND : I RETRIEVE IT
+	    console.log("CACHED GALLERY NOT FOUND");
+
+	    $.mobile.loading("show");
+	     
+	    $.ajax({
+	        type: 'GET',
+	        url: base_url+'/app-galleryList.php?id_gelateria='+shop_id+'&size=1400',
+	        /*data: { id_gelateria	: shop_id,
+	        		size			: 1400
+	        	  },*/
+	        dataType: 'JSON',
+	        timeout: 50000,
+	        cache: false,
+	        success: function(data) {
+
+	        	$.mobile.loading("hide");
+
+        		DataManagerRemote.currentGallery = data;
+
+        		console.log('DataManagerRemote.getGallery '+shop_id+' : Ajax success '+DataManagerRemote.currentGallery);
+	            callback(DataManagerRemote.currentGallery);
+	        },
+	        error: function(data) {	
+
+	        	$.mobile.loading("hide");
+
+	            runtimePopup(translate("CONNECTION_ERROR"));
+
+	            console.log('DataManagerRemote.getGallery '+shop_id+' : Ajax error '+JSON.stringify(data));
+	            //errorCallback();
 	        }
 	    });
 	}
@@ -295,3 +350,4 @@ DataManagerRemote.citiesList = [];
 DataManagerRemote.currentRegion = null;
 DataManagerRemote.currentCity = null;
 DataManagerRemote.currentShop = null;
+DataManagerRemote.currentGallery = null;

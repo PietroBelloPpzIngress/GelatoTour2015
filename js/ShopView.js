@@ -4,12 +4,12 @@ var ShopView = function(dataManager) {
 
 	   	$.mobile.loading("show");
 		dataManager.getShop(id, currentShop.renderShopDetails );
+		dataManager.getGallery(id, currentShop.renderShopGallery );
 	};
 
     this.renderShopDetails = function(shopDetails) {
     	
     	currentShop.shopDetails = shopDetails;
-
 
         $('.header-shop-name').html(shopDetails.city);
 
@@ -38,7 +38,7 @@ var ShopView = function(dataManager) {
         currentShop.showPage();
         currentShop.showMap(shopDetails);
 
-        shopFotoExists(shopDetails.id);
+        //shopFotoExists(shopDetails.id);
         //shopFotoExists('5184');
 
 	    return this;
@@ -75,6 +75,46 @@ var ShopView = function(dataManager) {
 				$('#'+element_id).html('<a href="'+link+'"><img src="css/images/'+image+'.png"></a>');
 		}
 	}
+
+	this.renderShopGallery = function(shopGallery)
+	{
+    	currentShop.gallery = shopGallery;
+
+    	if (shopGallery.length>0)
+    	{
+			$('#map_thumbnail_foto').css({'background-image':'url(http://www.gelatotour.com/img/shops/'+ShopView.currentShop_id+'/gallery/1400x800/'+shopGallery[0]+')'});
+	      	//$('#foto_shop').css({'background-image': 'url(http://www.gelatotour.com/img/shops/'+ShopView.currentShop_id+'/gallery/1400x800/'+shopGallery[0]+')'});
+	      	$('#map_thumbnail_foto').show();
+
+	      	$('#owl-demo-shop').html();
+	      	$.each(shopGallery , function(index, value ) { 
+	      		if (value!=false)
+	      		{	$('#owl-demo-shop').append('<div class="item"><div class="shop-slider" style="background-image:url(\'http://www.gelatotour.com/img/shops/'+ShopView.currentShop_id+'/gallery/1400x800/'+value+'\')"></div></div>');
+	      			//$('#owl-demo-shop').append('<div class="item"><img src="http://www.gelatotour.com/img/shops/'+ShopView.currentShop_id+'/gallery/1400x800/'+value+'"></div></div>');
+	      		}
+	      	});
+
+	      	currentShop.setupCarousel();
+	    }
+	    else
+	    {
+	    	$('#map_thumbnail_foto').hide();
+	    }
+    }
+
+    this.setupCarousel = function(regionCitiesList) {
+        $("#owl-demo-shop").owlCarousel({
+          singleItem:true
+        });
+        
+        $(".next").on("click", function(){
+            var owl = $("#owl-demo-shop").data('owlCarousel');
+            owl.next();
+        });
+
+        $("#owl-demo-shop .owl-item").width($('#shopPage').width());
+        $(".shop-slider").width($('#shopPage').width());
+    }
  
 	this.showPage = function() {
 
@@ -182,6 +222,10 @@ function ShowShop(id)
 }
 
 $(document).on("pageshow", "#shopPage", function(event) {
+    
+	$('#shop_slogan').html();
+	$('#map_thumbnail_foto').hide();
+
     currentShop = new ShopView(app.dataManager);
 	currentShop.getShopDetails(ShopView.currentShop_id);
 
@@ -225,6 +269,7 @@ function ShowShopMap(id)
 
 ShopView.currentShop_id = null;
 ShopView.already_shown = true;
+ShopView.gallery = true;
  
 ShopView.headerNameTemplate = Handlebars.compile($("#poi-header-name-tpl").html());
 ShopView.headerImageTemplate = Handlebars.compile($("#poi-header-image-tpl").html());

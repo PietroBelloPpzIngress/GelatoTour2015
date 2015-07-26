@@ -254,8 +254,7 @@ $('#map_thumbnail_foto').click( function(event) {
     $('#map_thumbnail_map').show();
     $(this).hide();
 
-    $('#foto_shop').show();
-    //$('#map_shop_canvas').show();
+    $('#shopPage #slider_container').show();
 
 });
 
@@ -264,8 +263,7 @@ $('#map_thumbnail_map').click( function(event) {
     $('#map_thumbnail_foto').show();
     $(this).hide();
 
-    //$('#map_shop_canvas').hide();
-    $('#foto_shop').hide();
+    $('#shopPage #slider_container').hide();
 
 });
 

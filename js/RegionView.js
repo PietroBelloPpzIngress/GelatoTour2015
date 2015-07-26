@@ -85,21 +85,15 @@ var RegionView = function(dataManager) {
     };
 
     this.setupCarousel = function(regionCitiesList) {
-        $("#owl-demo").owlCarousel({
+        $("#owl-demo-region").owlCarousel({
           singleItem:true
         });
         
         $(".next").on("click", function(){
-            var owl = $("#owl-demo").data('owlCarousel');
+            var owl = $("#owl-demo-region").data('owlCarousel');
             owl.next();
         });
 
-        /*
-        if ($('.region-city-visual-slider').height()<$('.region-city-visual-slider').width())
-            $('.region-city-visual-slider').width($('.region-city-visual-slider').height());
-        else
-            $('.region-city-visual-slider').width($('.region-city-visual-slider').height());
-        */
         var h = $(".item").height();
         var h_orig = $('.region-city-visual-slider').height();
         $('.region-city-visual-slider').height($('.region-city-visual-slider').width());

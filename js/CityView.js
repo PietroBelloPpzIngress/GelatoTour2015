@@ -108,10 +108,10 @@ var CityView = function(dataManager) {
 function markerClick_Shop(marker, i, cityShopsList)
 {	
 	google.maps.event.addListener(marker, 'click', function() {
-	    var contentString = '<div>'+
+	    var contentString = '<div class="map_marker_content">'+
 	  						'<a href="" onClick="ShowShop('+cityShopsList[i].id+')">'+
 	      						cityShopsList[i].name+
-	      						'<img src="css/images/info_azzurra.png" style="width:16px;height:16px;margin:0 6px;">'+
+	      						'<img src="css/images/info_azzurra.png">'+
 	      						'</a>'+
 	  					'</div>';
 

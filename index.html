@@ -35,7 +35,7 @@
 		}
 	 </style>
 </head>
-<body>
+<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
 
 	<div data-role="page" id="splashPage">	   
 		<div data-role="header" class="header">
@@ -110,6 +110,10 @@
     	</div>
 
 	    <div data-role="content" class="content-full-width">
+	    	<div id="slider_container">
+	    		<div id="owl-demo-shop" class="owl-carousel owl-theme">
+	    		</div>
+	    	</div>
 	    	<div id="map_shop_canvas_container" >
 	    		<div id="map_shop_mask" style="height:200px;"></div>
 	    		<div id="map_shop_canvas" style="height:200px;"></div>
@@ -255,9 +259,10 @@
 	        </a>
     	</li>
 	    {{/.}}
+	    <div class="consiglia-button-wrapper"><div class="consiglia-button"><a href="" onClick="Consiglia()">Consigliaci una gelateria</a></div></div>
 	</script>
 	<script id="region-city-li-tpl-slider" type="text/x-handlebars-template">
-	    <div id="owl-demo" class="owl-carousel owl-theme">
+	    <div id="owl-demo-region" class="owl-carousel owl-theme">
         {{#.}}
 	     	<div class="item">
 		        <a href="" onclick="ShowCity({{this.id}},'{{this.name}}');">

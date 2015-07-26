@@ -22,7 +22,7 @@
 
 html, body {
     font-weight: 300;
-    background-color:#2F6A92!important;
+    background-color:#2F6A92!important;a
 }
 
 .header {
@@ -33,9 +33,15 @@ html, body {
     width: 100%;
     z-index: 1000;
 }
-
 .ui-content {
   margin: 60px 0 0 0;
+}
+
+#mapCityPage .header {
+  height: 55px;
+}
+#mapCityPage .ui-content {
+  margin: 40px 0 0 0;
 }
 
 .back-icon, .info-icon, .close-icon {
@@ -109,6 +115,10 @@ h2 {
 }
 
 h2.app-slogan {
+    margin-top: -8px!important;
+}
+
+credits h2 {
     font-size: 12px!important;
 }
 
@@ -151,9 +161,9 @@ h6 {
 .map_thumbnail {
   position: absolute;
   right: 20px;
-  bottom: 30px; 
-  width: 100px;
-  height: 100px;
+  bottom: 25px; 
+  width: 75px;
+  height: 75px;
   border: 1px solid #fff!important;
   border-radius: 50%;
   z-index: 30;
@@ -211,7 +221,7 @@ h6 {
 }
 
 .shop-details {
-  padding: 0 15px;
+  padding: 0 15px 50px 15px;
 }
 .info-details {
   padding: 0;
@@ -232,9 +242,9 @@ h6 {
 .shop_details_tile, .info_details_tile {
   font-weight: bold;
 }
-
+  
 .shop_details_tile {
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 #shop_address {
@@ -242,6 +252,10 @@ h6 {
   font-size: 12px!important;
   margin: -4px 0 14px 0!important;
   font-style: normal;
+}
+
+.info_detail_single p {
+    margin-top: 0;
 }
 
 .ui-li {
@@ -326,6 +340,11 @@ h3.ui-li-heading {
   height: 64px;
 }
 
+
+.region-list h3.ui-li-heading {
+  line-height: 32px;
+}
+
 .region-city-text h3.ui-li-heading, .shop-city-text  h3.ui-li-heading {
   line-height: 16px;
 }
@@ -358,10 +377,10 @@ h3.ui-li-heading {
   text-decoration: none;
 }
 
-#owl-demo {
+#owl-demo-region, #owl-demo-shop {
     position: relative;
 }
-#owl-demo .item {
+#owl-demo-region .item {
   font-family: HelveticaNeue, "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif!important; 
   color: #fff;
   background: #2F6A92;
@@ -379,13 +398,33 @@ h3.ui-li-heading {
   margin: 4px 4px;
 }
 
-
 .owl-item a {
   font-family: HelveticaNeue, "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif!important; 
   color: #fff;
   font-style: none;
   font-weight: normal;
   text-decoration: none;
+}
+
+#shopPage #slider_container {
+  position: absolute;
+  display: none;
+  z-index: 29;
+  background-color: #2F6A92;
+}
+
+#owl-demo-shop img {
+  width: 100%;
+}
+
+#owl-demo-shop .shop-slider {
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+}
+
+#owl-demo-shop .owl-controls {
+  margin: -20px 0;
 }
 
 .shops_counter {
@@ -413,4 +452,18 @@ h3.ui-li-heading {
   margin-right:auto;
   width: 50%;
   margin-top: 80px;
+}
+
+.map_marker_content a {
+  font-family: HelveticaNeueBold, "HelveticaNeueBold", Helvetica, Arial, "Lucida Grande", sans-serif!important;
+  color: #000;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.map_marker_content a img {
+  width: 20px;
+  height: 20px;
+  margin: 0 0 0 10px;
+  float: right;
 }
