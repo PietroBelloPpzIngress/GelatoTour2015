@@ -411,6 +411,7 @@ h3.ui-li-heading {
   display: none;
   z-index: 29;
   background-color: #2F6A92;
+  height: 300px;
 }
 
 #owl-demo-shop img {
@@ -466,4 +467,8 @@ h3.ui-li-heading {
   height: 20px;
   margin: 0 0 0 10px;
   float: right;
+}
+
+#gallery_list {
+  margin: 0;
 }
