@@ -28,11 +28,11 @@
     <feature name="Geolocation">
         <param name="ios-package" value="CDVLocation" />
     </feature>
-    <!--
+    
     <feature name="InAppBrowser">
         <param name="ios-package" value="CDVInAppBrowser" />
     </feature>
-	-->
+	
 
                 <gap:platform name="ios"/>
                 <gap:platform name="android"/>
@@ -49,6 +49,7 @@
 
                 <gap:plugin name="io.github.siegfriedbolz.cordova.plugins.email-composer" />
 
+                <gap:plugin name="org.apache.cordova.inappbrowser" />
 
     <access origin="http://gelatotour.com" subdomains="true" />   <!-- NECESSARIO PER CONNESSIONI AJAX E CREDO ANCHE PER OTTENERE LE IMMAGINI -->
     <access origin="http://127.0.0.1*"/> <!-- allow local pages -->
