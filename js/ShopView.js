@@ -86,7 +86,7 @@ var ShopView = function(dataManager) {
 	      	//$('#foto_shop').css({'background-image': 'url(http://www.gelatotour.com/img/shops/'+ShopView.currentShop_id+'/gallery/1400x800/'+shopGallery[0]+')'});
 	      	$('#map_thumbnail_foto').show();
 
-	      	$('#owl-demo-shop').html();
+	      	$('.shop-slider').remove();
 	      	$.each(shopGallery , function(index, value ) { 
 	      		if (value!=false)
 	      		{	$('#owl-demo-shop').append('<div class="item"><div class="shop-slider" style="background-image:url(\'http://www.gelatotour.com/img/shops/'+ShopView.currentShop_id+'/gallery/1400x800/'+value+'\')"></div></div>');
@@ -200,16 +200,7 @@ function shopFotoExists(id){
 function ShowShop(id)
 {	//$.mobile.showPageLoadingMsg('a', '');
 
-	$('.banner_poi').attr('src',"");
-	$('.title_poi').html("");
-	$('.poi-details').html("");
-	$('#free_poi_disclaimer').html("");
-
-
-    $('.banner_city').hide();
-    $('.banner_poi').show();
-    $('.title_city').hide();
-    $('.title_poi').show();
+    $('#shopPage #slider_container').hide();
 
 			$.mobile.changePage(
 			'#shopPage',
