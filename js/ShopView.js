@@ -70,8 +70,7 @@ var ShopView = function(dataManager) {
 			$('#'+element_id).addClass("contact_enabled");
 
 			if (element_id=="shop_link")
-				//$('#'+element_id).html('<a href="" onClick="navigator.app.loadUrl(\''+link+'\', { openExternal:true })"><img src="css/images/'+image+'.png"></a>');
-			$('#'+element_id).html('<a href="" onClick="open_inAppBrowser(\''+link+'\')"><img src="css/images/'+image+'.png"></a>');
+				$('#'+element_id).html('<a href="" onClick="navigator.app.loadUrl(\''+link+'\', { openExternal:true })"><img src="css/images/'+image+'.png"></a>');
 			else
 				$('#'+element_id).html('<a href="'+link+'"><img src="css/images/'+image+'.png"></a>');
 		}
