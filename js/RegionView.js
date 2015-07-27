@@ -39,6 +39,8 @@ var RegionView = function(dataManager) {
 
     this.renderCitiesList = function(regionCitiesList, visual) {
         
+        RegionView.visual = visual;
+
         if (visual)
         {
             console.log("Visual TRUE");
@@ -74,7 +76,7 @@ var RegionView = function(dataManager) {
 
     this.showPage = function(regionCitiesList) {
         
-        if (dataManager.tipo=='REMOTE') currentRegion.renderCitiesList(regionCitiesList, true);
+        if (dataManager.tipo=='REMOTE') currentRegion.renderCitiesList(regionCitiesList, RegionView.visual);
  
         console.log("Rigenera pulsanti");
         $('button').button();
@@ -126,6 +128,7 @@ function ShowRegion(id,name)
 }
 
 $(document).on("pageshow", "#regionPage", function(event) {
+
     currentRegion = new RegionView(app.dataManager);
     currentRegion.id = RegionView.currentRegion_id;
     currentRegion.getRegionDetails(RegionView.currentRegion_id, RegionView.currentRegion_name);
@@ -148,6 +151,7 @@ function ShowRegionMap(id)
 
 var region_map = null;
 
+RegionView.visual = true;
 RegionView.currentRegion_id = null;
 RegionView.currentRegion_name = null;
 RegionView.headerNameTemplate = Handlebars.compile($('#region-header-name-tpl').html());

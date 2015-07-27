@@ -85,6 +85,9 @@ var CityView = function(dataManager) {
 
 			city_map.fitBounds(latlngbounds);
 
+			//minZoomLevel = city_map.getZoom();
+			//city_map.setZoom(minZoomLevel);
+
 		    var pinImage = new google.maps.MarkerImage("css/images/pin.brightred.png");
 
 		    Shop_markers = new Array();
@@ -111,7 +114,7 @@ function markerClick_Shop(marker, i, cityShopsList)
 	    var contentString = '<div class="map_marker_content">'+
 	  						'<a href="" onClick="ShowShop('+cityShopsList[i].id+')">'+
 	      						cityShopsList[i].name+
-	      						'<img src="css/images/info_azzurra.png">'+
+	      						'<!--<img src="css/images/info_azzurra.png">-->'+
 	      						'</a>'+
 	  					'</div>';
 
@@ -158,11 +161,30 @@ function ShowCity(id,name)
 }
 
 $(document).on("pageshow", "#cityPage", function(event) {
-    currentCity = new CityView(app.dataManager);
-	currentCity.id = CityView.currentCity_id;
-	currentCity.getCityDetails(RegionView.currentRegion_id, RegionView.currentRegion_name,CityView.currentCity_id,CityView.currentCity_name);
 
-	translate();
+	/*
+	var load = false;	
+	if (currentCity==null)
+    {	
+		console.log("CITY : not set");
+		load = true;
+	}
+	else if (CityView.currentCity_id==currentCity.id)
+	{
+		console.log("CITY : SAME CITY "+CityView.currentCity_id+" : "+currentCity.id);
+	}
+	else
+    {	
+		console.log("CITY : DIFFERENT CITY "+CityView.currentCity_id+" : "+currentCity.id);
+		load = true;
+	}
+	*/
+
+	if (true)
+    {	currentCity = new CityView(app.dataManager);
+		currentCity.id = CityView.currentCity_id;
+		currentCity.getCityDetails(RegionView.currentRegion_id, RegionView.currentRegion_name,CityView.currentCity_id,CityView.currentCity_name);
+	}
 });
 
 function ShowCityMap(id)

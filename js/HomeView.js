@@ -45,11 +45,12 @@ function ShowHomeView()
 }
 
 $(document).on("pageshow", "#homePage", function(event) {
+
+    RegionView.visual = true;
+
     if (app.reloadHomepage)
     {   currentHome = new HomeView(app.dataManager);
         currentHome.getRegions();
-
-        translate_page();
     }
 });
 

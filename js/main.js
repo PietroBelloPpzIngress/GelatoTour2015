@@ -256,7 +256,6 @@ $('#map_thumbnail_foto').click( function(event) {
 
     $('#shopPage #slider_container').show();
     $('#shopPage #map_shop_canvas_container').hide();
-
 });
 
 $('#map_thumbnail_map').click( function(event) {
