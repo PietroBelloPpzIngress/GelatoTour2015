@@ -129,8 +129,6 @@ $(document).on("pageshow", "#regionPage", function(event) {
     currentRegion = new RegionView(app.dataManager);
     currentRegion.id = RegionView.currentRegion_id;
     currentRegion.getRegionDetails(RegionView.currentRegion_id, RegionView.currentRegion_name);
-
-    translate();
 });
 
 function ShowRegionMap(id)

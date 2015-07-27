@@ -34,7 +34,7 @@ html, body {
     z-index: 1000;
 }
 .ui-content {
-  margin: 60px 0 0 0;
+  margin: 70px 0 0 0;
 }
 
 #mapCityPage .header {
@@ -319,7 +319,7 @@ h3.ui-li-heading {
 }
 
 .region-city-visual {
-  height: 100px;
+  height: 105px;
   width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -352,7 +352,7 @@ h3.ui-li-heading {
 
 .shop-city-visual {
   display: none;
-  height: 100px;
+  height: 105px;
   width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
