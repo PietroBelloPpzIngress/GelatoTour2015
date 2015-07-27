@@ -215,6 +215,10 @@ $(document).on("pageshow", "#shopPage", function(event) {
     
 	$('#shop_slogan').html();
 	$('#map_thumbnail_foto').hide();
+	$('#map_thumbnail_map').hide();
+    $('#shopPage #slider_container').hide();
+
+    $('#shopPage #map_shop_canvas_container').show();
 
     currentShop = new ShopView(app.dataManager);
 	currentShop.getShopDetails(ShopView.currentShop_id);

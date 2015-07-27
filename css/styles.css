@@ -407,7 +407,7 @@ h3.ui-li-heading {
 }
 
 #shopPage #slider_container {
-  position: absolute;
+  position: relative;
   display: none;
   z-index: 29;
   background-color: #2F6A92;
