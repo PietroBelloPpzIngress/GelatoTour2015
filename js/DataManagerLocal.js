@@ -10,7 +10,7 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 	this.init = function(SQL_init, callback) {
 		//DataManagerLocal.SQL_init = SQL_init;
 		//DataManagerLocal.SQL_init = "DROP TABLE api_request;";
-		DataManagerLocal.SQL_init = "CREATE TABLE IF NOT EXISTS api_request (url VARCHAR(255) PRIMARY KEY, value TEXT, last_update VARCHAR(10))";
+		DataManagerLocal.SQL_init = "CREATE TABLE IF NOT EXISTS api_request (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, url VARCHAR(255), value TEXT, last_update VARCHAR(10))";
 
 	    this.db = window.openDatabase("GelatoTour2015", "1.0", "Gelato Tour 2015 Local Database", 1024*1024);
 
@@ -56,6 +56,7 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 		console.log("Finish init DB");
 	}
 
+	/*
 	this.getRequest = function(param_1, param_2, param_3, param_4, url, callback) {
 		console.log("DataManagerLocal.getRequest");
 
@@ -73,9 +74,26 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 			});
 		}, this.transaction_error);
 	}
+	*/
 
+	this.getRequests = function(param_1, param_2, param_3, param_4, url, callback) {
+		console.log("DataManagerLocal.getRequest");
 
-	this.setRequest= function(url, value, tx) {
+		this.db.transaction(function(tx) {
+			var sql = "SELECT * FROM api_request WHERE url='"+url+"';";
+			console.log(sql);
+
+			tx.executeSql(sql, [], function(tx, results) {
+		    	var values = [];
+		    	for(var i=0; i<results.rows.length; i++) {
+		    		values.push(results.rows.item(i).value);
+		    	}
+				callback(param_1, param_2, param_3, param_4, values, callback);
+			});
+		}, this.transaction_error);
+	}
+
+	this.setRequests = function(url, values, tx) {
 
 	    $.mobile.loading("show");
 
@@ -87,15 +105,46 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 		            ('00' + (date.getUTCMonth() + 1)).slice(-2) + '-' +
 		            ('00' + date.getUTCDate()).slice(-2);     
 
-			var sql = "INSERT INTO api_request(url,value,last_update) VALUES('"+url+"','"+value+"','"+date+"');" ;
-			console.log("INSERT "+url);
+		    var sql = "";
+		    for(var i=0; i<values.length; i++) {
+				sql = "INSERT INTO api_request(url,value,last_update) VALUES('"+url+"','"+(JSON.stringify(values[i]))+"','"+date+"');" ;
+				console.log("INSERT "+url);
+				console.log("INSERT "+(JSON.stringify(values[i])));
+				console.log("");
+				console.log("");
 
-			tx.executeSql( sql );
+				tx.executeSql( sql );
+			}
 
 			$.mobile.loading("hide");
-		});
+		}, console.log(this.transaction_error));
 	}
 
 }
 
-DataManagerLocal.SQL_init = "asd";
+DataManagerLocal.SQL_init = "";
+
+function mysql_real_escape_string (str) {
+    return str.replace(/[\0\x08\x09\x1a\n\r"'\\\%]/g, function (char) {
+        switch (char) {
+            case "\0":
+                return "\\0";
+            case "\x08":
+                return "\\b";
+            case "\x09":
+                return "\\t";
+            case "\x1a":
+                return "\\z";
+            case "\n":
+                return "\\n";
+            case "\r":
+                return "\\r";
+            case "\"":
+            case "'":
+            case "\\":
+            case "%":
+                return "\\"+char; // prepends a backslash to backslash, percent,
+                                  // and double/single quotes
+        }
+    });
+}

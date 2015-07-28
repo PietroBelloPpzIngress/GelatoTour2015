@@ -82,24 +82,24 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 
     this.getCitiesByRegion = function(region_id, region_name, callback) {
 	    var bugs = $('#bugs ul');
-/*
+
 	    var param_3 = "";
 	    var param_4 = "";
 
 	    // LOOK FOR CACHED REGION
 	    console.log("LOOK FOR CACHED REGION");
 	    var request_url = '/app-list.php?regione='+region_name;
-	    app.dataManagerLocal.getRequest( region_id, region_name, param_3, param_4, request_url, function(region_id, region_name, param_3, param_4, value){
+	    app.dataManagerLocal.getRequests( region_id, region_name, param_3, param_4, request_url, function(region_id, region_name, param_3, param_4, values){
 
-	        if (value!="")
+	        if (values.length>0)
 	        {
 	        	console.log("CACHED REGION *FOUND*");
-	        	console.log(value);
-	        	DataManagerRemote.currentRegion = JSON.parse(value);
+	        	console.log(values[0]);
+	        	DataManagerRemote.currentRegion = JSON.parse(values[0]);
 	        	callback(DataManagerRemote.currentRegion);
 	        	return;
 	        }
-*/
+
 		    console.log("CACHED REGION NOT FOUND");
 
 		    $.mobile.loading("show");
@@ -121,7 +121,7 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 	        		console.log('DataManagerRemote.getCitiesByRegion '+region_id+'/'+region_name+' : Ajax success '+DataManagerRemote.currentRegion.id);
 		            callback(DataManagerRemote.currentRegion);
 
-		            //app.dataManagerLocal.setRequest( '/app-list.php?regione='+region_name, JSON.stringify(data));
+		            app.dataManagerLocal.setRequests( '/app-list.php?regione='+region_name, data);
 		        },
 		        error: function(data) {	
 
@@ -134,27 +134,27 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 		        }
 		    });
 
-//		});
+		});
 	}
 
     this.getShopsByCity = function(region_id, region_name, city_id, city_name, callback) {
 	    var bugs = $('#bugs ul');
-/*
+
 	    // LOOK FOR CACHED REGION
 	    console.log("LOOK FOR CACHED CITY");
 	    var request_url = '/app-list.php?regione='+region_name+'&provincia='+city_name;
-	    app.dataManagerLocal.getRequest( region_id, region_name, city_id, city_name, request_url, function(region_id, region_name, city_id, city_name, value){
+	    app.dataManagerLocal.getRequests( region_id, region_name, city_id, city_name, request_url, function(region_id, region_name, city_id, city_name, values){
 
 	    	
-	        if (value!="")
+	        if (values.length>0)
 	        {
 	        	console.log("CACHED CITY *FOUND*");
-	        	console.log(value);
-	        	DataManagerRemote.currentCity = JSON.parse(value);
+	        	console.log(values);
+	        	DataManagerRemote.currentCity = JSON.parse(values);
 	        	callback(DataManagerRemote.currentCity);
 	        	return;
 	        }
-	        */
+	        
 
 		    console.log("CACHED CITY NOT FOUND");
 
@@ -179,7 +179,7 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 	        		console.log('DataManagerRemote.getShopsByCity '+region_id+'/'+region_name+' '+city_id+'/'+city_name+' : Ajax success '+DataManagerRemote.currentCity.id);
 		            callback(DataManagerRemote.currentCity);
 
-		            //app.dataManagerLocal.setRequest( '/app-list.php?regione='+region_name+'&provincia='+city_name, JSON.stringify(data));
+		            app.dataManagerLocal.setRequests( '/app-list.php?regione='+region_name+'&provincia='+city_name, data);
 		        },
 		        error: function(data) {	
 
@@ -192,7 +192,7 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 		        }
 		    });
 
-	//	});
+		});
 	}
 
     this.getShop = function(shop_id, callback) {
