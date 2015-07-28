@@ -82,7 +82,7 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 
     this.getCitiesByRegion = function(region_id, region_name, callback) {
 	    var bugs = $('#bugs ul');
-
+/*
 	    var param_3 = "";
 	    var param_4 = "";
 
@@ -99,7 +99,7 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 	        	callback(DataManagerRemote.currentRegion);
 	        	return;
 	        }
-
+*/
 		    console.log("CACHED REGION NOT FOUND");
 
 		    $.mobile.loading("show");
@@ -134,7 +134,7 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 		        }
 		    });
 
-		});
+//		});
 	}
 
     this.getShopsByCity = function(region_id, region_name, city_id, city_name, callback) {
