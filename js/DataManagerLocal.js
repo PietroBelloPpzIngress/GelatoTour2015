@@ -4,12 +4,15 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 	this.dbCreated = false;
 	this.tipo = "LOCAL";
 
+	this.request_url = "";
+	this.request_value = "";
+
 	this.init = function(SQL_init, callback) {
 		//DataManagerLocal.SQL_init = SQL_init;
-		//DataManagerLocal.SQL_init = "DROP TABLE purchases;";
-		DataManagerLocal.SQL_init = "CREATE TABLE IF NOT EXISTS purchases (IAP VARCHAR(50) PRIMARY KEY)";
+		//DataManagerLocal.SQL_init = "DROP TABLE api_request;";
+		DataManagerLocal.SQL_init = "CREATE TABLE IF NOT EXISTS api_request (url VARCHAR(255) PRIMARY KEY, value TEXT, last_update VARCHAR(10))";
 
-	    this.db = window.openDatabase("GrandTourProjectDB", "1.2", "GrandTourProject Local Database", 1024*1024);
+	    this.db = window.openDatabase("GelatoTour2015", "1.0", "Gelato Tour 2015 Local Database", 1024*1024);
 
 	    if (this.dbCreated)	{
 	    	//this.db.transaction(this.getCities, this.transaction_error, callback);
@@ -28,60 +31,6 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 		this.dbCreated = true;
 		//callback();
 	    //this.db.transaction(this.getCities, this.transaction_error);
-	}
-
-	this.getCities = function(callback) {
-		console.log("DataManagerLocal.getCities");
-
-		this.db.transaction(function(tx) {
-			var sql = "SELECT * FROM city JOIN city_language ON city.id=city_language.city_id AND language='Italiano' ORDER BY created_at DESC";
-			//console.log(sql);
-
-			tx.executeSql(sql, [], function(tx, results) {
-		    	var cities = [];
-		    	for(var i=0; i<results.rows.length; i++) {
-		    		cities.push(results.rows.item(i));
-		    	}
-				callback(cities);
-			});
-		}, this.transaction_error);
-	}
-
-	this.getCity = function(id, callback) {
-		this.db.transaction( function(tx) {
-			var sql = "SELECT * FROM city JOIN city_language ON city.id=city_language.city_id AND language='Italiano' WHERE city.id='"+id+"'";
-			//console.log(sql);
-
-			tx.executeSql(sql, [], function(tx, results) {
-				callback(results.rows.item(0));
-			}); 
-		}, this.transaction_error);
-	}
-
-	this.getPOIsByCity = function(city_id, callback) {
-		this.db.transaction( function(tx) {
-			var sql = "SELECT * FROM point_of_interest JOIN point_of_interest_language ON point_of_interest.id=point_of_interest_language.point_of_interest_id AND language='Italiano' WHERE city_id='"+city_id+"' ORDER BY name ASC";
-			//console.log(sql);
-
-			tx.executeSql(sql, [], function(tx, results) {
-			    var POIs = [];
-			    for(var i=0; i<results.rows.length; i++) {
-		        	POIs.push(results.rows.item(i));
-		    	}
-				callback(POIs);
-			});
-		}, this.transaction_error);
-	}
-
-	this.getPOI = function(id, callback) {
-		this.db.transaction( function(tx) {
-			var sql = "SELECT * FROM point_of_interest JOIN point_of_interest_language ON point_of_interest.id=point_of_interest_language.point_of_interest_id AND language='Italiano' WHERE point_of_interest.id='"+id+"'";
-			console.log(sql);
-
-			tx.executeSql(sql, [], function(tx, results) {
-				callback(results.rows.item(0));
-			}); 
-		}, this.transaction_error);
 	}
 
 	this.populateDB= function(tx) {
@@ -107,7 +56,45 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 		console.log("Finish init DB");
 	}
 
-	
+	this.getRequest = function(param_1, param_2, param_3, param_4, url, callback) {
+		console.log("DataManagerLocal.getRequest");
+
+		this.db.transaction(function(tx) {
+			var sql = "SELECT * FROM api_request WHERE url='"+url+"';";
+			console.log(sql);
+
+			tx.executeSql(sql, [], function(tx, results) {
+		    	var value = "";
+		    	if(results.rows.length>0) 
+		    	{
+		    		value = results.rows.item(0).value;
+		    	}
+				callback(param_1, param_2, param_3, param_4, value, callback);
+			});
+		}, this.transaction_error);
+	}
+
+
+	this.setRequest= function(url, value, tx) {
+
+	    $.mobile.loading("show");
+
+		this.db.transaction( function(tx) {
+
+			var date;
+		    date = new Date();
+		    date = date.getUTCFullYear() + '-' +
+		            ('00' + (date.getUTCMonth() + 1)).slice(-2) + '-' +
+		            ('00' + date.getUTCDate()).slice(-2);     
+
+			var sql = "INSERT INTO api_request(url,value,last_update) VALUES('"+url+"','"+value+"','"+date+"');" ;
+			console.log("INSERT "+url);
+
+			tx.executeSql( sql );
+
+			$.mobile.loading("hide");
+		});
+	}
 
 }
 
