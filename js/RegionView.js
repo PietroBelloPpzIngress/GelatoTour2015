@@ -114,6 +114,8 @@ function ShowRegion(id,name)
     $('.title_region').html("");
     $('#region_cities_list').html("");
 
+    RegionView.refresh = true;
+
     $.mobile.changePage(
             '#regionPage',
             {   transition: 'fade', 
@@ -129,9 +131,14 @@ function ShowRegion(id,name)
 
 $(document).on("pageshow", "#regionPage", function(event) {
 
-    currentRegion = new RegionView(app.dataManager);
-    currentRegion.id = RegionView.currentRegion_id;
-    currentRegion.getRegionDetails(RegionView.currentRegion_id, RegionView.currentRegion_name);
+    if (RegionView.refresh)
+    {   
+        RegionView.refresh = false;
+
+        currentRegion = new RegionView(app.dataManager);
+        currentRegion.id = RegionView.currentRegion_id;
+        currentRegion.getRegionDetails(RegionView.currentRegion_id, RegionView.currentRegion_name);
+    }
 });
 
 function ShowRegionMap(id)
@@ -151,6 +158,7 @@ function ShowRegionMap(id)
 
 var region_map = null;
 
+RegionView.refresh = false;
 RegionView.visual = true;
 RegionView.currentRegion_id = null;
 RegionView.currentRegion_name = null;

@@ -147,6 +147,8 @@ function ShowCity(id,name)
 	$('.title_city').html("");
 	$('#city_Shops_list').html("");
 
+	CityView.refresh = true;
+
 	$.mobile.changePage(
 			'#cityPage',
 			{   transition: 'fade', 
@@ -162,26 +164,11 @@ function ShowCity(id,name)
 
 $(document).on("pageshow", "#cityPage", function(event) {
 
-	/*
-	var load = false;	
-	if (currentCity==null)
+	if (CityView.refresh)
     {	
-		console.log("CITY : not set");
-		load = true;
-	}
-	else if (CityView.currentCity_id==currentCity.id)
-	{
-		console.log("CITY : SAME CITY "+CityView.currentCity_id+" : "+currentCity.id);
-	}
-	else
-    {	
-		console.log("CITY : DIFFERENT CITY "+CityView.currentCity_id+" : "+currentCity.id);
-		load = true;
-	}
-	*/
+		CityView.refresh = false;
 
-	if (true)
-    {	currentCity = new CityView(app.dataManager);
+		currentCity = new CityView(app.dataManager);
 		currentCity.id = CityView.currentCity_id;
 		currentCity.getCityDetails(RegionView.currentRegion_id, RegionView.currentRegion_name,CityView.currentCity_id,CityView.currentCity_name);
 	}
@@ -206,6 +193,7 @@ var city_map = null;
 var Shop_markers = null;
 var Shop_infowindow = null;
 
+CityView.refresh = false;
 CityView.currentCity_id = null;
 CityView.currentCity_name = null;
 CityView.headerNameTemplate = Handlebars.compile($('#city-header-name-tpl').html());

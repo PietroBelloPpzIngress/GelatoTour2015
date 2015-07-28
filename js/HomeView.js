@@ -37,6 +37,8 @@ function ShowHomeView()
     currentHome = new HomeView(app.dataManager);
     currentHome.getRegions();
 
+    HomeView.refresh = true;
+
     $.mobile.changePage(
         '#homePage',
         {   transition: 'fade',
@@ -48,11 +50,16 @@ $(document).on("pageshow", "#homePage", function(event) {
 
     RegionView.visual = true;
 
-    if (app.reloadHomepage)
-    {   currentHome = new HomeView(app.dataManager);
+    if (HomeView.refresh)
+    {   
+        HomeView.refresh = false;
+
+        currentHome = new HomeView(app.dataManager);
         currentHome.getRegions();
     }
 });
 
+
+HomeView.refresh = false;
 HomeView.regionsList = null;
 HomeView.regionsListTemplate = Handlebars.compile($("#region-li-tpl").html());
