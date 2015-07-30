@@ -76,9 +76,8 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 	}
 	*/
 
-	this.getRequests = function(param_1, param_2, param_3, param_4, url, callback) {
-		console.log("DataManagerLocal.getRequest");
-
+	this.getRequests = function(parameters, url, callback) {
+		
 		this.db.transaction(function(tx) {
 			var sql = "SELECT * FROM api_request WHERE url='"+url+"';";
 			console.log(sql);
@@ -88,16 +87,15 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 		    	for(var i=0; i<results.rows.length; i++) {
 		    		values.push(results.rows.item(i).value);
 		    	}
-				callback(param_1, param_2, param_3, param_4, values, callback);
+				callback(parameters, values, callback);
 			});
 		}, this.transaction_error);
 	}
 
 	this.setRequests = function(url, values, tx) {
 
-	    $.mobile.loading("show");
-
-		this.db.transaction( function(tx) {
+	    
+	    this.db.transaction( function(tx) {
 
 			var date;
 		    date = new Date();
@@ -106,8 +104,9 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 		            ('00' + date.getUTCDate()).slice(-2);     
 
 		    var sql = "";
+		    /*
 		    for(var i=0; i<values.length; i++) {
-				sql = "INSERT INTO api_request(url,value,last_update) VALUES('"+url+"','"+(JSON.stringify(values[i]))+"','"+date+"');" ;
+				sql = "INSERT INTO api_request(url,value,last_update) VALUES('"+url+"','"+JSON.stringify(values[i]).replace("'","\'")+"','"+date+"');" ;
 				console.log("INSERT "+url);
 				console.log("INSERT "+(JSON.stringify(values[i])));
 				console.log("");
@@ -115,8 +114,17 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 
 				tx.executeSql( sql );
 			}
+			*/
+		    
+			sql = "INSERT INTO api_request(url,value,last_update) VALUES('"+url+"','"+JSON.stringify(values).replace("'","\'")+"','"+date+"');" ;
+			console.log("INSERT "+url);
+			console.log("INSERT "+(JSON.stringify(values)));
+			console.log("");
+			console.log("");
 
-			$.mobile.loading("hide");
+			tx.executeSql( sql );
+
+
 		}, console.log(this.transaction_error));
 	}
 

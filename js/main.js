@@ -200,6 +200,26 @@ $(document).on("pageshow", "#splashPage", function(event) {
 
 });
 
+/*
+$(document).on("pageshow", "#splashPage", function(event) {
+    
+    app.initializeDB();
+    
+    app.dataManagerRemote.getLists(2, "http://www.gelatotour.com/api/json/icecreamshops/listall.php", function(){});
+    app.dataManagerRemote.getLists(1, "http://www.gelatotour.com/api/json/zones/listall.php", function(){});
+    app.dataManagerRemote.getLists(0, "http://www.gelatotour.com/api/json/regions/listall.php", function(){
+
+        $("#splash_big_logo").fadeIn(2000, "linear", function()
+            {   
+                $.mobile.loading("show");  
+
+            });
+
+    });
+
+});
+*/
+
 $(document).on("pageshow", "#homePage", function(event) {
     
     if (app.reloadHomepage)
