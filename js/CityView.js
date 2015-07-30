@@ -34,9 +34,20 @@ var CityView = function(dataManager) {
 	    	$('city-shops-not-found').hide();
     	}
 
-        var img = [];
+    	/*
         for (var i = 0; i < cityShopsList.length; i++) {
 	        cityVisualExists(cityShopsList[i].id);
+		}
+		*/
+		for (var i = 0; i < cityShopsList.length; i++) {
+			if (cityShopsList[i].cover)
+			{
+	      		$('.shop-city-visual#'+cityShopsList[i].id).show();
+			}
+			else
+			{
+	      		$('.shop-city-visual#'+cityShopsList[i].id).hide();
+			}
 		}
 	};
 
@@ -122,6 +133,7 @@ function markerClick_Shop(marker, i, cityShopsList)
 	});
 }
 
+/*
 function cityVisualExists(id){
   $.ajax({
     type: 'HEAD',
@@ -134,6 +146,7 @@ function cityVisualExists(id){
     }
   });
 }
+*/
 
 function ShowCity(id,name)
 {	

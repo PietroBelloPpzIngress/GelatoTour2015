@@ -4,7 +4,7 @@ var ShopView = function(dataManager) {
 
 	   	$.mobile.loading("show");
 		dataManager.getShop(id, currentShop.renderShopDetails );
-		dataManager.getGallery(id, currentShop.renderShopGallery );
+		//dataManager.getGallery(id, currentShop.renderShopGallery );
 	};
 
     this.renderShopDetails = function(shopDetails) {
@@ -34,6 +34,8 @@ var ShopView = function(dataManager) {
         currentShop.renderShopDetailsSingle(shopDetails.opening_hours, 'shop_opening_hours');
         currentShop.renderShopDetailsSingle(shopDetails.specialities, 'shop_specialities');
         currentShop.renderShopDetailsSingle(shopDetails.services, 'shop_services');
+
+        currentShop.renderShopGallery(shopDetails.gallery);
 
         currentShop.showPage();
         currentShop.showMap(shopDetails);
