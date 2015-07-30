@@ -7,10 +7,6 @@ var CityView = function(dataManager) {
 		$.mobile.loading("show");
 	    dataManager.getShopsByCity(region_id, region_name, city_id, city_name, currentCity.renderCityDetails );
 	};
-
-	this.getPOIs = function(id) {
-	    dataManager.getPOIsByCity(id, currentCity.renderShopsList );
-	};
  
     this.renderCityDetails = function(cityDetails) {
     	
@@ -18,7 +14,7 @@ var CityView = function(dataManager) {
     	
         $('.header-city-name').html(CityView.currentCity_name);
 
-	    $('.city-details').html(CityView.detailsTemplate(cityDetails));
+	   	currentCity.renderShopsList(cityDetails);
 
         currentCity.showPage(cityDetails);
 	};
@@ -26,7 +22,7 @@ var CityView = function(dataManager) {
 	this.renderShopsList = function(cityShopsList) {
 		if (cityShopsList.length>=1)
 		{
-	    	$('#city_Shops_list').html(CityView.poiListTemplate(cityShopsList));
+	    	$('#city_Shops_list').html(CityView.shopsListTemplate(cityShopsList));
 	    	$('#city_Shops_list').listview('refresh');
 
 	    	$('city-shops-not-found').hide();
@@ -45,9 +41,7 @@ var CityView = function(dataManager) {
 	};
 
 	this.showPage = function(cityDetails) {
-		
-	   	if (dataManager.tipo=='REMOTE')	currentCity.renderShopsList(cityDetails);
-	
+
 	   	console.log("Rigenera pulsanti");
 		$('button').button();
 
@@ -198,7 +192,6 @@ CityView.currentCity_id = null;
 CityView.currentCity_name = null;
 CityView.headerNameTemplate = Handlebars.compile($('#city-header-name-tpl').html());
 CityView.headerImageTemplate = Handlebars.compile($('#city-header-image-tpl').html());
-CityView.detailsTemplate = Handlebars.compile($('#city-tpl').html());
-CityView.poiListTemplate = Handlebars.compile($('#city-poi-li-tpl').html());
+CityView.shopsListTemplate = Handlebars.compile($('#city-shops-li-tpl').html());
 
 

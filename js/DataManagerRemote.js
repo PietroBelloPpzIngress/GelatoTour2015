@@ -80,8 +80,7 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 	        {
 	        	console.log("CACHED REGION *FOUND*");
 	        	console.log(values[0]);
-	        	DataManagerRemote.currentRegion = JSON.parse(values[0]);
-	        	callback(DataManagerRemote.currentRegion);
+	        	callback(JSON.parse(values[0]));
 	        	return;
 	        }
 
@@ -102,9 +101,8 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 
 		        	$.mobile.loading("hide");
 
-	        		DataManagerRemote.currentRegion = data;
-	        		console.log('DataManagerRemote.getCitiesByRegion '+parameters[0]+'/'+parameters[1]+' : Ajax success '+DataManagerRemote.currentRegion.id);
-		            callback(DataManagerRemote.currentRegion);
+	        		console.log('DataManagerRemote.getCitiesByRegion '+parameters[0]+'/'+parameters[1]+' : Ajax success '+data.id);
+		            callback(data);
 
 		            app.dataManagerLocal.setRequests( '/app-list.php?regione='+parameters[1], data);
 		        },
@@ -134,12 +132,11 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 	    parameters[3] = city_name;
 	    app.dataManagerLocal.getRequests( parameters, request_url, function(parameters, values){
 
-	        if (values.length>0)
+	        if (false)
 	        {
 	        	console.log("CACHED CITY *FOUND*");
 	        	console.log(values);
-	        	DataManagerRemote.currentCity = JSON.parse(values);
-	        	callback(DataManagerRemote.currentCity);
+	        	callback(JSON.parse(values));
 	        	return;
 	        }
 
@@ -162,9 +159,8 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 
 		        	$.mobile.loading("hide");
 
-	        		DataManagerRemote.currentCity = data;
-	        		console.log('DataManagerRemote.getShopsByCity '+parameters[0]+'/'+parameters[1]+' '+parameters[2]+'/'+parameters[3]+' : Ajax success '+DataManagerRemote.currentCity.id);
-		            callback(DataManagerRemote.currentCity);
+	        		console.log('DataManagerRemote.getShopsByCity '+parameters[0]+'/'+parameters[1]+' '+parameters[2]+'/'+parameters[3]+' : Ajax success ');
+		            callback(data);
 
 		            app.dataManagerLocal.setRequests( '/app-list.php?regione='+parameters[1]+'&provincia='+parameters[3], data);
 		        },
@@ -195,8 +191,7 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 	        {
 	        	console.log("CACHED SHOP *FOUND*");
 	        	console.log(values);
-	        	DataManagerRemote.currentShop = JSON.parse(values);
-	        	callback(DataManagerRemote.currentShop);
+	        	callback(JSON.parse(values));
 	        	return;
 	        }
 	        
@@ -218,10 +213,8 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 
 		        	$.mobile.loading("hide");
 
-	        		DataManagerRemote.currentShop = data[0];
-
-	        		console.log('DataManagerRemote.getShop '+parameters[0]+' : Ajax success '+DataManagerRemote.currentShop.id);
-		            callback(DataManagerRemote.currentShop);
+	        		console.log('DataManagerRemote.getShop '+parameters[0]+' : Ajax success '+data[0].id);
+		            callback(data[0]);
 
 		            app.dataManagerLocal.setRequests( '/app-list.php?id_gelateria='+parameters[0], data);
 		        },
@@ -251,8 +244,7 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 	        {
 	        	console.log("CACHED GALLERY *FOUND*");
 	        	console.log(values);
-	        	DataManagerRemote.currentGallery = JSON.parse(values);
-	        	callback(DataManagerRemote.currentGallery);
+	        	callback(JSON.parse(values));
 	        	return;
 	        }
 	        
@@ -275,10 +267,8 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 
 		        	$.mobile.loading("hide");
 
-	        		DataManagerRemote.currentGallery = data;
-
-	        		console.log('DataManagerRemote.getGallery '+parameters[0]+' : Ajax success '+DataManagerRemote.currentGallery);
-		            callback(DataManagerRemote.currentGallery);
+	        		console.log('DataManagerRemote.getGallery '+parameters[0]+' : Ajax success ');
+		            callback(data);
 
 		            app.dataManagerLocal.setRequests( '/app-galleryList.php?id_gelateria='+parameters[0]+'&size=1400', data);
 		        },
@@ -287,8 +277,8 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 		        	$.mobile.loading("hide");
 
 		            //runtimePopup(translate("CONNECTION_ERROR"));
-		            DataManagerRemote.currentGallery = [];
-		            callback(DataManagerRemote.currentGallery);
+		            var emptyGallery = [];
+		            callback(emptyGallery);
 
 		            console.log('DataManagerRemote.getGallery '+parameters[0]+' : Ajax error '+JSON.stringify(data));
 		            //errorCallback();
@@ -359,8 +349,3 @@ DataManagerRemote.lists = [];
 
 DataManagerRemote.regionsList = [];
 DataManagerRemote.regionsShopsCountList = [];
-DataManagerRemote.citiesList = [];
-DataManagerRemote.currentRegion = null;
-DataManagerRemote.currentCity = null;
-DataManagerRemote.currentShop = null;
-DataManagerRemote.currentGallery = null;

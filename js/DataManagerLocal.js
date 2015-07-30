@@ -118,9 +118,7 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 		    
 			sql = "INSERT INTO api_request(url,value,last_update) VALUES('"+url+"','"+JSON.stringify(values).replace("'","\'")+"','"+date+"');" ;
 			console.log("INSERT "+url);
-			console.log("INSERT "+(JSON.stringify(values)));
-			console.log("");
-			console.log("");
+			//console.log("INSERT "+(JSON.stringify(values)));
 
 			tx.executeSql( sql );
 
