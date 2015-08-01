@@ -170,8 +170,7 @@ function ShowRegionMap(id)
         {   transition: 'fade'
         }
     );
-   
-   translate_page();
+
 }
 
 var region_map = null;

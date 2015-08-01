@@ -59,8 +59,6 @@ var CityView = function(dataManager) {
 
 	   	console.log("Rigenera pulsanti");
 		$('button').button();
-
-		translate_page();
 		
 	   	$.mobile.loading("hide");
 	};
@@ -181,7 +179,6 @@ function ShowCityMap(id)
         }
     );
    
-   translate_page();
 }
 
 var city_map = null;

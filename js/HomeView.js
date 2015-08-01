@@ -21,8 +21,6 @@ var HomeView = function(dataManager) {
         //$('#regions_list').html(renderRegionsList());
         $('#regions_list').listview('refresh');
 
-        translate_page();
-
         $.mobile.loading("hide");
     };
 }
