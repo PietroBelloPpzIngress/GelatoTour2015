@@ -5,6 +5,10 @@ currentRegion = null;
 currentCity = null;
 currentShop = null;
 
+index_regions_list = 0;
+index_cities_list = 1;
+index_shops_list = 2;
+
 test_PC = true;//false;//true;
 //if (test_PC)    alert("RUNNING PC TEST");
 
@@ -163,10 +167,40 @@ document.addEventListener("deviceready", function() {
         clickHandler = "touchend";
     }
 
-    
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+
 
 }, false);
 
+/* WRITE FILE */
+ function gotFS(fileSystem) {
+        fileSystem.root.getFile("readme.txt", {create: true, exclusive: false}, gotFileEntry, fail);
+    }
+
+    function gotFileEntry(fileEntry) {
+        fileEntry.createWriter(gotFileWriter, fail);
+    }
+
+    function gotFileWriter(writer) {
+        writer.onwriteend = function(evt) {
+            console.log("contents of file now 'some sample text'");
+            writer.truncate(11);  
+            writer.onwriteend = function(evt) {
+                console.log("contents of file now 'some sample'");
+                writer.seek(4);
+                writer.write(" different text");
+                writer.onwriteend = function(evt){
+                    console.log("contents of file now 'some different text'");
+                }
+            };
+        };
+        writer.write("some sample text");
+    }
+
+    function fail(error) {
+        console.log(error.code);
+    }
+/* WRITE FILE - end */
 
 document.addEventListener("backbutton", function(e){
     if($.mobile.activePage.is('#homePage')){
@@ -189,6 +223,7 @@ function getUrlVars() {
     return vars;
 }
 
+/*
 $(document).on("pageshow", "#splashPage", function(event) {
     
     $("#splash_big_logo").fadeIn(2000, "linear", function()
@@ -199,26 +234,43 @@ $(document).on("pageshow", "#splashPage", function(event) {
         });
 
 });
+*/
 
-/*
 $(document).on("pageshow", "#splashPage", function(event) {
     
     app.initializeDB();
     
-    app.dataManagerRemote.getLists(2, "http://www.gelatotour.com/api/json/icecreamshops/listall.php", function(){});
-    app.dataManagerRemote.getLists(1, "http://www.gelatotour.com/api/json/zones/listall.php", function(){});
-    app.dataManagerRemote.getLists(0, "http://www.gelatotour.com/api/json/regions/listall.php", function(){
+    /*
+    app.dataManagerRemote.getLists(index_shops_list, "http://www.gelatotour.com/api/json/icecreamshops/listall.php", function(){
+        app.dataManagerRemote.getLists(index_cities_list, "http://www.gelatotour.com/api/json/zones/listall.php", function(){
+            app.dataManagerRemote.getLists(index_regions_list, "http://www.gelatotour.com/api/json/regions/listall.php", function(){
 
-        $("#splash_big_logo").fadeIn(2000, "linear", function()
-            {   
-                $.mobile.loading("show");  
+                $("#splash_big_logo").fadeIn(2000, "linear", function()
+                    {   
+                        $.mobile.loading("show");  
+
+                    });
 
             });
-
+        });
     });
-
-});
 */
+
+    app.dataManagerRemote.getLists(index_shops_list, "http://www.gelatotour.com/api/json/icecreamshops/listall.php", function(){
+    });
+        app.dataManagerRemote.getLists(index_cities_list, "http://www.gelatotour.com/api/json/zones/listall.php", function(){
+        });
+            app.dataManagerRemote.getLists(index_regions_list, "http://www.gelatotour.com/api/json/regions/listall.php", function(){
+
+                $("#splash_big_logo").fadeIn(2000, "linear", function()
+                    {   
+                        $.mobile.loading("show");  
+
+                    });
+
+            });
+});
+
 
 $(document).on("pageshow", "#homePage", function(event) {
     

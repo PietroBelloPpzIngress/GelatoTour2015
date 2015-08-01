@@ -4,19 +4,16 @@ var HomeView = function(dataManager) {
         dataManager.getRegions(this.render);
 	};
 
-	this.getRegionByName = function() {
-	    dataManager.Region_findByName($('.search-key').val(), this.renderRegionsList);
-	};
-
-	this.render = function(regions, free_POIs) {
+	this.render = function(regions) {
         
         console.log('renderRegionsList');
 
-        regions.sort(function(a, b){
-            if(a.name < b.name) return -1;
-            if(a.name > b.name) return 1;
-            return 0;
-        })
+        if (Array.isArray(regions))
+            regions.sort(function(a, b){
+                if(a.name < b.name) return -1;
+                if(a.name > b.name) return 1;
+                return 0;
+            })
         
         HomeView.regionsList = regions;
 
@@ -35,7 +32,9 @@ function ShowHomeView()
     $.mobile.loading("show");
 
     currentHome = new HomeView(app.dataManager);
-    currentHome.getRegions();
+    //currentHome.getRegions();
+    console.log(DataManagerRemote.lists[0]);
+    currentHome.render(DataManagerRemote.lists[0]);
 
     HomeView.refresh = true;
 
@@ -55,7 +54,7 @@ $(document).on("pageshow", "#homePage", function(event) {
         HomeView.refresh = false;
 
         currentHome = new HomeView(app.dataManager);
-        currentHome.getRegions();
+        //currentHome.getRegions();
     }
 });
 

@@ -9,9 +9,26 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 
 	this.init = function(SQL_init, callback) {
 		//DataManagerLocal.SQL_init = SQL_init;
-		//DataManagerLocal.SQL_init = "DROP TABLE api_request;";
-		DataManagerLocal.SQL_init = "CREATE TABLE IF NOT EXISTS api_request (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, url VARCHAR(255), value TEXT, last_update VARCHAR(10))";
+		//DataManagerLocal.SQL_init = "CREATE TABLE IF NOT EXISTS api_request (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, url TEXT, value TEXT, last_update VARCHAR(10));";
+		DataManagerLocal.SQL_init = "CREATE TABLE IF NOT EXISTS all_entities (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, entity TEXT, id_json INTEGER, value TEXT, last_update VARCHAR(10));";
 
+		//DataManagerLocal.SQL_init = "DROP TABLE all_entities;" ;
+		//	DataManagerLocal.SQL_init = "DROP TABLE api_request;" ;
+		//DataManagerLocal.SQL_init = "DROP TABLE region;" ;
+		//DataManagerLocal.SQL_init = "DROP TABLE zone;" ;
+		//DataManagerLocal.SQL_init = "DROP TABLE shop;" ;
+		
+/*
+		DataManagerLocal.SQL_init = [];
+		DataManagerLocal.SQL_init.push( "DROP TABLE api_request;" );
+		DataManagerLocal.SQL_init.push( "DROP TABLE region;" );
+		DataManagerLocal.SQL_init.push( "DROP TABLE zone;" );
+		DataManagerLocal.SQL_init.push( "DROP TABLE shop;" );
+		DataManagerLocal.SQL_init.push( "CREATE TABLE IF NOT EXISTS api_request (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, url TEXT, value TEXT, last_update VARCHAR(10));" ) ;
+		DataManagerLocal.SQL_init.push( "CREATE TABLE IF NOT EXISTS region (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, id_json INTEGER, value TEXT, last_update VARCHAR(10));" ) ;
+		DataManagerLocal.SQL_init.push( "CREATE TABLE IF NOT EXISTS zone (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, id_json INTEGER, value TEXT, last_update VARCHAR(10));" ) ;
+		DataManagerLocal.SQL_init.push( "CREATE TABLE IF NOT EXISTS shop (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, id_json INTEGER, value TEXT, last_update VARCHAR(10));" ) ;
+*/
 	    this.db = window.openDatabase("GelatoTour2015", "1.0", "Gelato Tour 2015 Local Database", 1024*1024);
 
 	    if (this.dbCreated)	{
@@ -24,7 +41,7 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 
 	this.transaction_error = function(tx, error) {
 		$('#busy').hide();
-	    //alert("Database Error: " + error);
+	    alert("Database Error: " + error);
 	}
 
 	this.populateDB_success = function(callback) {
@@ -44,15 +61,19 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 		console.log("Start init DB");
 
 		tx.executeSql( DataManagerLocal.SQL_init );
-		/*
+		console.log(DataManagerLocal.SQL_init);
+/*
 		for (var i = 0; i < length ; i++) {
 			//console.log(DataManagerLocal.SQL_init[i].replace("\\'",""));
-			if ( DataManagerLocal.SQL_init[i]!=null && DataManagerLocal.SQL_init[i]!="") tx.executeSql( DataManagerLocal.SQL_init[i] );
+			if ( DataManagerLocal.SQL_init[i]!=null && DataManagerLocal.SQL_init[i]!="") 
+			{	
+				tx.executeSql( DataManagerLocal.SQL_init[i] );
+				console.log(DataManagerLocal.SQL_init[i]);
+			}
 
-			app.progressBar.setValue('#slider',parseInt(i*mult));
+			//app.progressBar.setValue('#slider',parseInt(i*mult));
 		}
-		*/
-
+*/
 		console.log("Finish init DB");
 	}
 
@@ -76,10 +97,12 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 	}
 	*/
 
-	this.getRequests = function(parameters, url, callback) {
+	this.getRequests = function(parameters, entity, callback) {
 		
+		var values = [];callback(parameters, values, callback);return;
+
 		this.db.transaction(function(tx) {
-			var sql = "SELECT * FROM api_request WHERE url='"+url+"';";
+			var sql = "SELECT * FROM all_entities WHERE entity='"+entity+"';";
 			console.log(sql);
 
 			tx.executeSql(sql, [], function(tx, results) {
@@ -94,7 +117,25 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 
 	this.setRequests = function(url, values, tx) {
 
-	    
+	    this.db.transaction( function(tx) {
+
+			var date;
+		    date = new Date();
+		    date = date.getUTCFullYear() + '-' +
+		            ('00' + (date.getUTCMonth() + 1)).slice(-2) + '-' +
+		            ('00' + date.getUTCDate()).slice(-2);     
+
+		    var sql = "INSERT INTO api_request(url,value,last_update) VALUES('"+url+"','"+JSON.stringify(values).replace("'","&#39;").substring(0, 10000)+"','"+date+"');" ;
+			console.log("INSERT "+url);
+			//console.log("INSERT "+(JSON.stringify(values)));
+
+			tx.executeSql( sql );
+
+		}, console.log(this.transaction_error));
+	}
+
+	this.setRequestsMultiple = function(entity, values, tx) {
+
 	    this.db.transaction( function(tx) {
 
 			var date;
@@ -104,24 +145,16 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 		            ('00' + date.getUTCDate()).slice(-2);     
 
 		    var sql = "";
-		    /*
+		    
+		    sql = "DELETE FROM all_entities WHERE entity='"+entity+"';";
+		    tx.executeSql( sql );
+
 		    for(var i=0; i<values.length; i++) {
-				sql = "INSERT INTO api_request(url,value,last_update) VALUES('"+url+"','"+JSON.stringify(values[i]).replace("'","\'")+"','"+date+"');" ;
-				console.log("INSERT "+url);
-				console.log("INSERT "+(JSON.stringify(values[i])));
-				console.log("");
-				console.log("");
+				sql = "INSERT INTO all_entities(entity,id_json,value,last_update) VALUES('"+entity+"','"+values[i].id+"','"+JSON.stringify(values[i]).replace("'","&#39;").substring(1, 10)+"','"+date+"');" ;
+				console.log("INSERT "+entity+" "+values[i].id);
 
 				tx.executeSql( sql );
 			}
-			*/
-		    
-			sql = "INSERT INTO api_request(url,value,last_update) VALUES('"+url+"','"+JSON.stringify(values).replace("'","\'")+"','"+date+"');" ;
-			console.log("INSERT "+url);
-			//console.log("INSERT "+(JSON.stringify(values)));
-
-			tx.executeSql( sql );
-
 
 		}, console.log(this.transaction_error));
 	}

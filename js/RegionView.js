@@ -1,11 +1,18 @@
 var RegionView = function(dataManager) {
 
     this.id = "";
-    this.regionCitiesList = null;
+    this.regionCitiesList = [];
 
-    this.getRegionDetails = function(region_id, region_name) {
+    this.getRegionDetails = function(region_id) {
         $.mobile.loading("show");
-        dataManager.getCitiesByRegion(region_id, region_name, currentRegion.renderRegionDetails );
+
+        for (var i = 0; i < DataManagerRemote.lists[1].length; i++) {
+            if (DataManagerRemote.lists[1][i].region_id==region_id)
+            {
+                currentRegion.regionCitiesList.push(DataManagerRemote.lists[1][i]);
+            }
+        }
+        currentRegion.renderRegionDetails(currentRegion.regionCitiesList);
     };
  
     this.renderRegionDetails = function(regionCitiesList) {
@@ -18,23 +25,42 @@ var RegionView = function(dataManager) {
 
         currentRegion.showPage(regionCitiesList);
 
+        console.log(DataManagerRemote.lists);
+
+        for (var c = 0; c < regionCitiesList.length; c++) {
+            
+            regionCitiesList[c].count=0;
+
+            for (var s = 0; s < DataManagerRemote.lists[2].length; s++) {
+                if (DataManagerRemote.lists[2][s].province_id==regionCitiesList[c].id)
+                {
+                    regionCitiesList[c].count++;
+                }
+            }
+        }
+
+        currentRegion.renderCitiesList(regionCitiesList, RegionView.visual);
+
         for (var i = 0; i < regionCitiesList.length; i++) {
-            dataManager.getShopsByCity(RegionView.currentRegion_id, RegionView.currentRegion_name, regionCitiesList[i].id, regionCitiesList[i].name, currentRegion.updateCityShopCount );
+            currentRegion.updateCityShopCount(regionCitiesList[i]);
         }
     };
 
-    this.updateCityShopCount = function(cityDetails) {
+    this.updateCityShopCount = function(regionCity) {
 
-        if (cityDetails.length==1)
+        console.log(regionCity.id+" : "+regionCity.count);
+
+        if (regionCity.count==1)
         {   
-            $('.shops_counter-list#'+cityDetails[0].province_id).html("1 gelateria");
-            $('.shops_counter-slider#'+cityDetails[0].province_id).html("1 gelateria");
+            $('.shops_counter-list#'+regionCity.id).html("1 gelateria");
+            $('.shops_counter-slider#'+regionCity.id).html("1 gelateria");
         }
-        else if (cityDetails.length>1)
+        else if (regionCity.count>1)
         {   
-            $('.shops_counter-list#'+cityDetails[0].province_id).html(cityDetails.length+" gelaterie");
-            $('.shops_counter-slider#'+cityDetails[0].province_id).html(cityDetails.length+" gelaterie");
+            $('.shops_counter-list#'+regionCity.id).html(regionCity.count+" gelaterie");
+            $('.shops_counter-slider#'+regionCity.id).html(regionCity.count+" gelaterie");
         }
+
     };
 
     this.renderCitiesList = function(regionCitiesList, visual) {
@@ -69,19 +95,12 @@ var RegionView = function(dataManager) {
             $('.view-icon-circle').show();
         }
 
-        for (var i = 0; i < regionCitiesList.length; i++) {
-            dataManager.getShopsByCity(RegionView.currentRegion_id, RegionView.currentRegion_name, regionCitiesList[i].id, regionCitiesList[i].name, currentRegion.updateCityShopCount );
-        }
     };
 
     this.showPage = function(regionCitiesList) {
-        
-        if (dataManager.tipo=='REMOTE') currentRegion.renderCitiesList(regionCitiesList, RegionView.visual);
  
         console.log("Rigenera pulsanti");
         $('button').button();
-
-        translate_page();
         
         $.mobile.loading("hide");
     };
@@ -137,7 +156,7 @@ $(document).on("pageshow", "#regionPage", function(event) {
 
         currentRegion = new RegionView(app.dataManager);
         currentRegion.id = RegionView.currentRegion_id;
-        currentRegion.getRegionDetails(RegionView.currentRegion_id, RegionView.currentRegion_name);
+        currentRegion.getRegionDetails(RegionView.currentRegion_id);
     }
 });
 

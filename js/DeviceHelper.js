@@ -114,7 +114,8 @@ var DeviceHelper = function(successCallback, errorCallback) {
 		    }
 		);
 
-		app.dataManager.getRegions( function(regions) { ShowHomeView(); });
+		//app.dataManager.getRegions( function(regions) { ShowHomeView(); });
+		ShowHomeView();
 	}
 
 	this.toArray = function(callback) {

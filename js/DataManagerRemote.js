@@ -6,6 +6,7 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 		//sever solo come placeholder in caso inverta DataManagerRemote con DataManagerLocal
 	}
 
+	/*
     this.getRegions = function(callback) {
 	    var bugs = $('#bugs ul');
 
@@ -18,8 +19,7 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 	        {
 	        	console.log("CACHED REGIONS LIST *FOUND*");
 	        	console.log(values[0]);
-	        	DataManagerRemote.regionsList = JSON.parse(values[0]);
-	        	callback(DataManagerRemote.regionsList);
+	        	callback(JSON.parse(values[0]));
 	        	return;
 	        }
 
@@ -28,7 +28,6 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 		    $.mobile.loading("show");
 		     
 		    $.ajax({
-	            cache: true,
 		        type: 'GET',
 		        url: base_url+'/app-list.php',
 			    headers : { "cache-control": "max-age=86400" },
@@ -39,13 +38,8 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 
 		        	$.mobile.loading("hide");
 
-					DataManagerRemote.regionsList = [];
-
-	           		$.each(data, function(i,item){
-		                DataManagerRemote.regionsList.push(item);
-		            });
-	        		console.log('DataManagerRemote.getRegions : Ajax success '+DataManagerRemote.regionsList.length);
-		            callback(DataManagerRemote.regionsList);
+	        		console.log('DataManagerRemote.getRegions : Ajax success '+data.length);
+		            callback(data);
 
 		            app.dataManagerLocal.setRequests( '/app-list.php', data);
 		        },
@@ -89,7 +83,6 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 		    $.mobile.loading("show");
 		     
 		    $.ajax({
-            	cache: true,
 		        type: 'GET',
 		        url: base_url+'/app-list.php',
 		        headers : { "cache-control": "max-age=86400" },
@@ -145,7 +138,6 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 		    $.mobile.loading("show");
 		     
 		    $.ajax({
-            	cache: true,
 		        type: 'GET',
 		        url: base_url+'/app-list.php',
 		        headers : { "cache-control": "max-age=86400" },
@@ -200,7 +192,6 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 		    $.mobile.loading("show");
 		     
 		    $.ajax({
-	            cache: true,
 		        type: 'GET',
 		        url: base_url+'/app-list.php',
 			    headers : { "cache-control": "max-age=86400" },
@@ -253,13 +244,9 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 		    $.mobile.loading("show");
 		     
 		    $.ajax({
-	            cache: true,
 		        type: 'GET',
 		        url: base_url+'/app-galleryList.php?id_gelateria='+parameters[0]+'&size=1400',
 			    headers : { "cache-control": "max-age=86400" },
-		        /*data: { id_gelateria	: parameters[0],
-		        		size			: 1400
-		        	  },*/
 		        dataType: 'JSON',
 		        timeout: 50000,
 		        cache: false,
@@ -286,34 +273,42 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 		    });
 		});
 	}
-
+	*/
 	
-	this.getLists = function(index, request_url, callback) {
+	this.getLists = function(index_list, request_url, callback) {
 	    var bugs = $('#bugs ul');
 
-	    console.log("LOOK FOR LIST "+url);
+	    console.log("LOOK FOR LIST "+request_url);
 	    var parameters = [];
-	    parameters[0] = index;
+	    parameters[0] = index_list;
 	    parameters[1] = request_url;
-	    app.dataManagerLocal.getRequests( parameters, request_url, function(parameters, values){
+
+	    var entity = "";
+        if (parameters[0]==0)
+        	entity = "region";
+       	else if (parameters[0]==1)
+        	entity = "zone";
+       	else if (parameters[0]==2)
+        	entity = "shop";
+
+	    app.dataManagerLocal.getRequests( parameters, entity, function(parameters, values){
 
 	        if (values.length>0)
 	        {
-	        	console.log("CACHED LIST "+url+" *FOUND*");
+	        	console.log("CACHED LIST "+parameters[1]+" *FOUND*");
 	        	console.log(values);
-	        	DataManagerRemote.currentGallery = JSON.parse(values);
-	        	callback(DataManagerRemote.currentGallery);
+	        	DataManagerRemote.lists[parameters[0]] = JSON.parse(values);
+	        	callback();
 	        	return;
 	        }
 	        
-		    console.log("CACHED LIST "+url+" NOT FOUND");
+		    console.log("CACHED LIST "+parameters[1]+" NOT FOUND");
 
 		    $.mobile.loading("show");
 		     
 		    $.ajax({
-	            cache: true,
 		        type: 'GET',
-		        url: parameters[0],
+		        url: parameters[1],
 		        dataType: 'JSON',
 		        timeout: 50000,
 		        cache: false,
@@ -323,16 +318,24 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 
 	        		DataManagerRemote.lists[parameters[0]] = data;
 
-	        		console.log('DataManagerRemote.getLists '+parameters[1]+' : Ajax success ');
-		            callback(DataManagerRemote.currentGallery);
+	        		console.log('DataManagerRemote.getLists '+parameters[1]+' : Ajax success '+data.length);
+		            callback();
 
-		            app.dataManagerLocal.setRequests( parameters[1], data);
+		            //app.dataManagerLocal.setRequests( parameters[1], data);
+
+		            if (parameters[0]==0)
+		            	app.dataManagerLocal.setRequestsMultiple("region",data);
+		           	else if (parameters[0]==1)
+		            	app.dataManagerLocal.setRequestsMultiple("zone",data);
+		           	else if (parameters[0]==2)
+		            	app.dataManagerLocal.setRequestsMultiple("shop",data);
+		            	
 		        },
 		        error: function(data) {	
 
 		        	$.mobile.loading("hide");
 
-		            runtimePopup(translate("CONNECTION_ERROR"));
+		            //runtimePopup(translate("CONNECTION_ERROR getLists"));
 
 		            console.log('DataManagerRemote.getLists '+parameters[0]+' : Ajax error ');
 		            //errorCallback();
@@ -346,6 +349,8 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 DataManagerRemote.updateSQL = [];
 
 DataManagerRemote.lists = [];
+DataManagerRemote.lists[0] = new Array();
+DataManagerRemote.lists[1] = new Array();
+DataManagerRemote.lists[2] = new Array();
 
-DataManagerRemote.regionsList = [];
 DataManagerRemote.regionsShopsCountList = [];

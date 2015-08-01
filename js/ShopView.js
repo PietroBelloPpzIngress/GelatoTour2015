@@ -3,8 +3,17 @@ var ShopView = function(dataManager) {
 	this.getShopDetails = function(id) {
 
 	   	$.mobile.loading("show");
-		dataManager.getShop(id, currentShop.renderShopDetails );
-		//dataManager.getGallery(id, currentShop.renderShopGallery );
+		//dataManager.getShop(id, currentShop.renderShopDetails );
+
+		var shopDetails = null;
+        for (var i = 0; i < DataManagerRemote.lists[index_shops_list].length; i++) {
+            if (DataManagerRemote.lists[index_shops_list][i].id==id)
+            {
+                shopDetails = DataManagerRemote.lists[index_shops_list][i];
+                break;
+            }
+        }
+        currentShop.renderShopDetails(shopDetails);
 	};
 
     this.renderShopDetails = function(shopDetails) {
