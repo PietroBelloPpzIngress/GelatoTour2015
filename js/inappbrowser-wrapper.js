@@ -1,5 +1,6 @@
 "use strict";
 
+/*
 function open_inAppBrowser(url) {
       
       var t = new Date();
@@ -7,7 +8,8 @@ function open_inAppBrowser(url) {
 
       var ref = window.open('url');
       ref.addEventListener('loadstart', function(event) { });
-      ref.addEventListener('loadstop', function(event) { /*runtimePopup('stop: ' + event.url);*/ });
-      ref.addEventListener('loaderror', function(event) { /*app.refreshPOI = true;*/  });
-      ref.addEventListener('exit', function(event) { /*app.refreshPOI = true;*/ ref.close(); });
+      ref.addEventListener('loadstop', function(event) { });
+      ref.addEventListener('loaderror', function(event) {   });
+      ref.addEventListener('exit', function(event) { ref.close(); });
   }
+  */
