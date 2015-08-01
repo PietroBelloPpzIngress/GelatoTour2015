@@ -1,6 +1,4 @@
-//ShowHomeView = "http://grandtour.localhost";
 base_url = "http://www.gelatotour.com/api/json/icecreamshops";
-//base_url = "http://www.grandtourproject.com/API";
 currentRegion = null;
 currentCity = null;
 currentShop = null;
@@ -105,7 +103,7 @@ var app = {
 };
 
 
-app.name = "Grand Tour project";
+app.name = "Gelato Tour 2015";
 app.version = "1.2.0"
 app.dataManagerLocal = null;
 app.dataManagerRemote = null;   
@@ -205,6 +203,7 @@ document.addEventListener("deviceready", function() {
 document.addEventListener("backbutton", function(e){
     if($.mobile.activePage.is('#homePage')){
         e.preventDefault();
+        navigator.app.exitApp();
     }
     else {
         navigator.app.backHistory()
