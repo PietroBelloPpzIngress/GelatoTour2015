@@ -129,8 +129,7 @@ var RegionView = function(dataManager) {
 
 function ShowRegion(id,name)
 {   
-    $('.banner_region').attr('src',"");
-    $('.title_region').html("");
+    $('.header-region-name').html("");
     $('#region_cities_list').html("");
 
     RegionView.refresh = true;
