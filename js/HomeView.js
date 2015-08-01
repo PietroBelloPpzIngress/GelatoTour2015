@@ -33,7 +33,6 @@ function ShowHomeView()
 
     currentHome = new HomeView(app.dataManager);
     //currentHome.getRegions();
-    console.log(DataManagerRemote.lists[0]);
     currentHome.render(DataManagerRemote.lists[0]);
 
     HomeView.refresh = true;

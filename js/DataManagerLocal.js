@@ -148,12 +148,14 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 		    
 		    sql = "DELETE FROM all_entities WHERE entity='"+entity+"';";
 		    tx.executeSql( sql );
+		    console.log(sql);
 
 		    for(var i=0; i<values.length; i++) {
+
 				sql = "INSERT INTO all_entities(entity,id_json,value,last_update) VALUES('"+entity+"','"+values[i].id+"','"+JSON.stringify(values[i]).replace("'","&#39;").substring(1, 10)+"','"+date+"');" ;
+				tx.executeSql( sql );
 				console.log("INSERT "+entity+" "+values[i].id);
 
-				tx.executeSql( sql );
 			}
 
 		}, console.log(this.transaction_error));

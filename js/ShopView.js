@@ -128,24 +128,13 @@ var ShopView = function(dataManager) {
  
 	this.showPage = function() {
 
-		if (ShopView.already_shown==true)
-		{	console.log("Rigenera pulsanti ed select");
-
-			$('button').button();
-			$('.select_buy').selectmenu();
-			$('.select_play').selectmenu();
-		}
-		else
-		{	console.log("*NON* Rigenera pulsanti ed select");
-			ShopView.already_shown = true;
-		}
-
-		translate_page();
-
 	   	$.mobile.loading("hide");
 	};
 
 	this.showMap = function(shopDetails){ 
+
+    	$('#shopPage #map_shop_mask').show();
+    	$('#shopPage #map_shop_canvas_container').show();
 
 		var div = $('#map_shop_canvas');
 		var width = div.width();
@@ -190,25 +179,26 @@ var ShopView = function(dataManager) {
 	};
  }
 
-
-function shopFotoExists(id){
-  $.ajax({
-    type: 'HEAD',
-    url: 'http://www.gelatotour.com/img/shops/'+id+'/gallery/1400x800/Senzanome.jpg',
-    success: function(){
-      $('#map_thumbnail_foto').css('background-image', "url('http://www.gelatotour.com/img/shops/"+id+"/gallery/1400x800/Senzanome.jpg')");
-      $('#foto_shop').css('background-image', "url('http://www.gelatotour.com/img/shops/"+id+"/gallery/1400x800/Senzanome.jpg')");
-      $('#map_thumbnail_foto').show();
-      console.log(id);
-    },
-    error: function() {
-      $('#map_thumbnail_foto').hide();
-    }
-  });
-}
-
 function ShowShop(id)
 {	//$.mobile.showPageLoadingMsg('a', '');
+
+	$('#shop_slogan').html();
+	$('#map_thumbnail_foto').hide();
+	$('#map_thumbnail_map').hide();
+    $('#shopPage #slider_container').hide();
+
+    $('.header-shop-name').html("");
+
+	$('#shop_name').html("");
+	$('#shop_address').html("");
+	$('#shop_slogan').html("");
+	
+	$('.contact > span').removeClass("contact_enabled");
+	$('.contact > span').addClass("contact_disabled");
+
+	$('.shop_detail_single').hide();
+
+    $('#shopPage #map_shop_canvas_container').hide();
 
     $('#shopPage #slider_container').hide();
 
@@ -223,54 +213,11 @@ function ShowShop(id)
 }
 
 $(document).on("pageshow", "#shopPage", function(event) {
-    
-	$('#shop_slogan').html();
-	$('#map_thumbnail_foto').hide();
-	$('#map_thumbnail_map').hide();
-    $('#shopPage #slider_container').hide();
-
-    $('#shopPage #map_shop_canvas_container').show();
 
     currentShop = new ShopView(app.dataManager);
 	currentShop.getShopDetails(ShopView.currentShop_id);
 
-	translate_page();
-
-	try 
-	{	window.plugins.insomnia.keepAwake();
-	}
-    catch(err)
-    {}
 });
-
-$(document).on("pagebeforehide", "#shopPage", function(event) {
-    console.log("shopPage UNLOAD");
-	
-	try 
-	{	window.plugins.insomnia.allowSleepAgain();
-	}
-    catch(err)
-    {}
-});
-
-/*
-function ShowShopMap(id)
-{	
-	console.log("ShowPOIMap:"+id);
-
-	//$.mobile.showPageLoadingMsg('a', '');
-	$.mobile.loading("show");
-
-
-	$.mobile.changePage(
-        '#shopPage',
-        {   transition: 'fade'
-        }
-    );
-   
-   translate_page();
-}
-*/
 
 ShopView.currentShop_id = null;
 ShopView.already_shown = true;
