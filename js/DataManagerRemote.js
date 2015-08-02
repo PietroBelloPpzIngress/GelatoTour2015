@@ -368,7 +368,8 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 
 
 		            if (values.length==0)
-		            	alert("Aprire l'applicazione con internet attivo almeno una volta");
+		            	if (parameters[0]==0)
+		            		alert("Aprire l'applicazione con internet attivo ");
 
 		            console.log('DataManagerRemote.getLists '+parameters[0]+' : Ajax error ');
 		            //errorCallback();
