@@ -293,7 +293,7 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 	var error = function(error) { 
 	                  console.error("ERROR: \r\n"+error ); 
 	            };
-	DataManagerRemote.lists[index_list] = FilePlugin.callNativeFunction( success, error,{'result':returnSuccess,'file':localFileName,'downloadurl':SettingsDownloadUrl,'base_path':base} ); 
+	DataManagerRemote.lists[index_list] = JSON.parse(FilePlugin.callNativeFunction( success, error,{'result':returnSuccess,'file':localFileName,'downloadurl':SettingsDownloadUrl,'base_path':base} )); 
 	}	
 	
 	this.getLists_OLD = function(index_list, request_url, callback) {
