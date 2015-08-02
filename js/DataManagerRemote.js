@@ -275,7 +275,7 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 	}
 	*/
 
-	this.getLists = function(index_list, request_url, callback) {
+	this.getLists_FILE = function(index_list, request_url, callback) {
 	var returnSuccess='success';
 	var localFileName='';
     if (index_list==0)
@@ -296,7 +296,7 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 	DataManagerRemote.lists[index_list] = JSON.parse(FilePlugin.callNativeFunction( success, error,{'result':returnSuccess,'file':localFileName,'downloadurl':SettingsDownloadUrl,'base_path':base} )); 
 	}	
 	
-	this.getLists_OLD = function(index_list, request_url, callback) {
+	this.getLists = function(index_list, request_url, callback) {
 
 		$.mobile.loading("show");
 

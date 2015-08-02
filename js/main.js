@@ -61,7 +61,7 @@ var app = {
         app.dataManagerRemote = new DataManagerRemote(app);
         app.dataManagerLocal = new DataManagerLocal();
         app.dataManagerLocal.init();
-        
+/*        
         app.dataManagerRemote.getLists(index_regions_list, "http://www.gelatotour.com/api/json/regions/listall.php", function(){
 
             app.dataManagerRemote.getLists(index_cities_list, "http://www.gelatotour.com/api/json/zones/listall.php", function(){
@@ -74,7 +74,7 @@ var app = {
                         });
                 });
             });
-
+*/
         app.initialize();
 
     },

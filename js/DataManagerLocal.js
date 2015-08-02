@@ -40,8 +40,8 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 	}
 
 	this.transaction_error = function(tx, error) {
-		$.mobile.loading("hide");
-	    alert("Database Error: " + error);
+		//$.mobile.loading("hide");
+	    //alert("Database Error: " + error);
 	}
 
 	this.populateDB_success = function(callback) {
@@ -75,7 +75,6 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 		}
 */
 
-/*
  $("#splash_big_logo").fadeIn(1, "linear", function()
                     {  
     app.dataManagerRemote.getLists(index_regions_list, "http://www.gelatotour.com/api/json/regions/listall.php", function(){
@@ -91,7 +90,7 @@ var DataManagerLocal = function(successCallback, errorCallback) {
             });
         });
     });
-*/
+
 		console.log("Finish init DB");
 	}
 
