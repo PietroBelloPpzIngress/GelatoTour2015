@@ -1,8 +1,4 @@
 var HomeView = function(dataManager) {
-	
-	this.getRegions = function() {
-        dataManager.getRegions(this.render);
-	};
 
 	this.render = function(regions) {
         
@@ -30,7 +26,6 @@ function ShowHomeView()
     $.mobile.loading("show");
 
     currentHome = new HomeView(app.dataManager);
-    //currentHome.getRegions();
     currentHome.render(DataManagerRemote.lists[0]);
 
     HomeView.refresh = true;
@@ -51,7 +46,6 @@ $(document).on("pageshow", "#homePage", function(event) {
         HomeView.refresh = false;
 
         currentHome = new HomeView(app.dataManager);
-        //currentHome.getRegions();
     }
 });
 
