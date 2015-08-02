@@ -197,6 +197,7 @@ function ShowShop(id)
 
 	$('.shop_detail_single').hide();
 
+    $('#shopPage #map_shop_canvas_container').show();
     $('#shopPage #map_shop_canvas_container').css('visibility','hidden');
 
     $('#shopPage #slider_container').hide();
