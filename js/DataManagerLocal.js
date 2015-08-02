@@ -75,6 +75,7 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 		}
 */
 
+/*
  $("#splash_big_logo").fadeIn(1, "linear", function()
                     {  
     app.dataManagerRemote.getLists(index_regions_list, "http://www.gelatotour.com/api/json/regions/listall.php", function(){
@@ -90,7 +91,7 @@ var DataManagerLocal = function(successCallback, errorCallback) {
             });
         });
     });
-
+*/
 		console.log("Finish init DB");
 	}
 
@@ -116,14 +117,14 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 
 	this.getRequests = function(parameters, entity, callback) {
 		
-		var values = [];callback(parameters, values, callback);return;
+		var values = [];callback(parameters, values, callback);
 
 		this.db.transaction(function(tx) {
 			var sql = "SELECT * FROM all_entities WHERE entity='"+entity+"';";
 			console.log(sql);
 
 			tx.executeSql(sql, [], function(tx, results) {
-		    	var values = [];
+		    	var values = [];console.log(results);
 		    	for(var i=0; i<results.rows.length; i++) {
 		    		values.push(results.rows.item(i).value);
 		    	}
@@ -142,7 +143,7 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 		            ('00' + (date.getUTCMonth() + 1)).slice(-2) + '-' +
 		            ('00' + date.getUTCDate()).slice(-2);     
 
-		    var sql = "INSERT INTO api_request(url,value,last_update) VALUES('"+url+"','"+JSON.stringify(values).replace("'","&#39;").substring(0, 10000)+"','"+date+"');" ;
+		    var sql = "INSERT INTO api_request(url,value,last_update) VALUES('"+url+"','"+JSON.stringify(values).replace("'","&#39;")+"','"+date+"');" ;
 			console.log("INSERT "+url);
 			//console.log("INSERT "+(JSON.stringify(values)));
 
@@ -169,9 +170,9 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 
 		    for(var i=0; i<values.length; i++) {
 
-				sql = "INSERT INTO all_entities(entity,id_json,value,last_update) VALUES('"+entity+"','"+values[i].id+"','"+JSON.stringify(values[i]).replace("'","&#39;").substring(1, 10)+"','"+date+"');" ;
+				sql = "INSERT INTO all_entities(entity,id_json,value,last_update) VALUES('"+entity+"','"+values[i].id+"','"+JSON.stringify(values[i]).replace("'","&#39;")+"','"+date+"');" ;
 				tx.executeSql( sql );
-				//console.log("INSERT "+entity+" "+values[i].id);
+				//console.log("INSERT "+entity+" "+JSON.stringify(values[i]).replace("'","&#39;"));
 
 			}
 

@@ -274,8 +274,29 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 		});
 	}
 	*/
-	
+
 	this.getLists = function(index_list, request_url, callback) {
+	var returnSuccess='success';
+	var localFileName='';
+    if (index_list==0)
+    	localFileName = "region.json";
+   	else if (index_list==1)
+    	localFileName = "zone.json";
+   	else if (index_list==2)
+    	localFileName = "shop.json";
+	var downloadUrl=request_url;
+	var base='www/xml/';
+	var success = function(result) { 
+	            console.log("SUCCESS: \r\n"+result );    
+	        };
+
+	var error = function(error) { 
+	                  console.error("ERROR: \r\n"+error ); 
+	            };
+	DataManagerRemote.lists[index_list] = FilePlugin.callNativeFunction( success, error,{'result':returnSuccess,'file':localFileName,'downloadurl':SettingsDownloadUrl,'base_path':base} ); 
+	}	
+	
+	this.getLists_OLD = function(index_list, request_url, callback) {
 
 		$.mobile.loading("show");
 
@@ -298,7 +319,9 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 	        {
 	        	console.log("CACHED LIST "+parameters[1]+" *FOUND*");
 	        	console.log(values);
-	        	DataManagerRemote.lists[parameters[0]] = JSON.parse(values);
+	        	for(var i=0; i<values.length; i++) {
+	        		DataManagerRemote.lists[parameters[0]].push(JSON.parse(values[i]));
+	        	}
 
 		        $.mobile.loading("hide");
 

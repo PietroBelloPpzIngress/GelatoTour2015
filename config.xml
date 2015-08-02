@@ -49,6 +49,8 @@
 
                 <gap:plugin name="io.github.siegfriedbolz.cordova.plugins.email-composer" />
 
+                <gap:plugin name="com.surfernetwork.fileplugin" version="1.0.2" />
+
 
     <access origin="http://gelatotour.com" subdomains="true" />   <!-- NECESSARIO PER CONNESSIONI AJAX E CREDO ANCHE PER OTTENERE LE IMMAGINI -->
     <access origin="http://127.0.0.1*"/> <!-- allow local pages -->
