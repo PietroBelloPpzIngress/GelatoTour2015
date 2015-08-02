@@ -119,7 +119,7 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 		var values = [];callback(parameters, values, callback);
 
 		this.db.transaction(function(tx) {
-			var sql = "SELECT * FROM all_entities WHERE entity='"+entity+"';";
+			var sql = "SELECT value FROM all_entities WHERE entity='"+entity+"';";
 			console.log(sql);
 
 			tx.executeSql(sql, [], function(tx, results) {

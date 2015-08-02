@@ -366,6 +366,7 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 
 		            //runtimePopup(translate("CONNECTION_ERROR getLists"));
 
+	        		DataManagerRemote.lists[parameters[0]] = values;
 
 		            if (values.length==0)
 		            	if (parameters[0]==0)
