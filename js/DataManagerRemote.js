@@ -276,7 +276,8 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 	*/
 	
 	this.getLists = function(index_list, request_url, callback) {
-	    var bugs = $('#bugs ul');
+
+		$.mobile.loading("show");
 
 	    console.log("LOOK FOR LIST "+request_url);
 	    var parameters = [];
@@ -298,13 +299,15 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 	        	console.log("CACHED LIST "+parameters[1]+" *FOUND*");
 	        	console.log(values);
 	        	DataManagerRemote.lists[parameters[0]] = JSON.parse(values);
+
+		        $.mobile.loading("hide");
+
 	        	callback();
 	        	return;
 	        }
 	        
 		    console.log("CACHED LIST "+parameters[1]+" NOT FOUND");
 
-		    $.mobile.loading("show");
 		     
 		    $.ajax({
 		        type: 'GET',
@@ -329,6 +332,9 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 		            	app.dataManagerLocal.setRequestsMultiple("zone",data);
 		           	else if (parameters[0]==2)
 		            	app.dataManagerLocal.setRequestsMultiple("shop",data);
+
+		            if (values.length>0)
+		            	alert("aggiornamento "+parameters[0]);
 		            	
 		        },
 		        error: function(data) {	
@@ -336,6 +342,10 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 		        	$.mobile.loading("hide");
 
 		            //runtimePopup(translate("CONNECTION_ERROR getLists"));
+
+
+		            if (values.length==0)
+		            	alert("Aprire l'applicazione con internet attivo almeno una volta");
 
 		            console.log('DataManagerRemote.getLists '+parameters[0]+' : Ajax error ');
 		            //errorCallback();

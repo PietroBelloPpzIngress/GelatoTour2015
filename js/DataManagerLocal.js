@@ -154,7 +154,7 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 
 				sql = "INSERT INTO all_entities(entity,id_json,value,last_update) VALUES('"+entity+"','"+values[i].id+"','"+JSON.stringify(values[i]).replace("'","&#39;").substring(1, 10)+"','"+date+"');" ;
 				tx.executeSql( sql );
-				console.log("INSERT "+entity+" "+values[i].id);
+				//console.log("INSERT "+entity+" "+values[i].id);
 
 			}
 
