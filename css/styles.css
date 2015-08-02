@@ -317,7 +317,7 @@ h3.ui-li-heading {
   font-family: HelveticaNeueBold, "HelveticaNeueBold", Helvetica, Arial, "Lucida Grande", sans-serif!important; 
   line-height: 38px;
   padding-left : 10px;
-  font-size: 18px;
+  font-size: 20px;
   /*font-weight: bold;*/
 }
 
@@ -349,7 +349,7 @@ h3.ui-li-heading {
 
 
 .region-list h3.ui-li-heading {
-  line-height: 32px;
+  line-height: 34px;
 }
 
 .region-city-text h3.ui-li-heading, .shop-city-text  h3.ui-li-heading {

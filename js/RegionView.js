@@ -91,6 +91,10 @@ var RegionView = function(dataManager) {
                 $('#region_cities_list').listview('refresh');
             }
 
+            for (var i = 0; i < regionCitiesList.length; i++) {
+                currentRegion.updateCityShopCount(regionCitiesList[i]);
+            }
+
             $('.view-icon-list').hide();
             $('.view-icon-circle').show();
         }
