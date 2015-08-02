@@ -32,7 +32,7 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 	    this.db = window.openDatabase("GelatoTour2015", "1.0", "Gelato Tour 2015 Local Database", 1024*1024);
 
 	    if (this.dbCreated)	{
-	    	//this.db.transaction(this.getCities, this.transaction_error, callback);
+	    	this.db.transaction(this.populateDB, this.transaction_error, this.populateDB_success(callback));
 	    }
 	    else {
 	    	this.db.transaction(this.populateDB, this.transaction_error, this.populateDB_success(callback));
@@ -90,7 +90,7 @@ var DataManagerLocal = function(successCallback, errorCallback) {
             });
         });
     });
-    
+
 		console.log("Finish init DB");
 	}
 
