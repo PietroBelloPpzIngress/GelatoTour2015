@@ -40,7 +40,7 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 	}
 
 	this.transaction_error = function(tx, error) {
-		$('#busy').hide();
+		$.mobile.loading("hide");
 	    alert("Database Error: " + error);
 	}
 
@@ -51,7 +51,7 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 	}
 
 	this.populateDB= function(tx) {
-		$('#busy').show();
+		$.mobile.loading("show");
 
 		//alert(DataManagerLocal.SQL_init);
 
@@ -74,6 +74,23 @@ var DataManagerLocal = function(successCallback, errorCallback) {
 			//app.progressBar.setValue('#slider',parseInt(i*mult));
 		}
 */
+
+
+    app.dataManagerRemote.getLists(index_regions_list, "http://www.gelatotour.com/api/json/regions/listall.php", function(){
+
+        app.dataManagerRemote.getLists(index_cities_list, "http://www.gelatotour.com/api/json/zones/listall.php", function(){
+        
+            app.dataManagerRemote.getLists(index_shops_list, "http://www.gelatotour.com/api/json/icecreamshops/listall.php", function(){
+
+                $("#splash_big_logo").fadeIn(1000, "linear", function()
+                    {   
+                        //$.mobile.loading("show");  
+
+                    });
+            });
+        });
+    });
+    
 		console.log("Finish init DB");
 	}
 
