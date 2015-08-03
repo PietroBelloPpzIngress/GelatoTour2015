@@ -276,27 +276,46 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 	*/
 
 	this.getLists_FILE = function(index_list, request_url, callback) {
-	var returnSuccess='success';
-	var localFileName='';
-    if (index_list==0)
-    	localFileName = "region.json";
-   	else if (index_list==1)
-    	localFileName = "zone.json";
-   	else if (index_list==2)
-    	localFileName = "shop.json";
-	var downloadUrl=request_url;
-	var base='www/xml/';
-	var success = function(result) { 
-	            console.log("SUCCESS: \r\n"+result );    
-	        };
+		var returnSuccess='success';
+		var localFileName='';
+	    if (index_list==0)
+	    	localFileName = "region.json";
+	   	else if (index_list==1)
+	    	localFileName = "zone.json";
+	   	else if (index_list==2)
+	    	localFileName = "shop.json";
+		var downloadUrl=request_url;
+		var base='www/xml/';
+		var success = function(result) { 
+		            console.log("SUCCESS: \r\n"+result );    
+		        };
 
-	var error = function(error) { 
-	                  console.error("ERROR: \r\n"+error ); 
-	            };
-	DataManagerRemote.lists[index_list] = JSON.parse(FilePlugin.callNativeFunction( success, error,{'result':returnSuccess,'file':localFileName,'downloadurl':SettingsDownloadUrl,'base_path':base} )); 
+		var error = function(error) { 
+		                  console.error("ERROR: \r\n"+error ); 
+		            };
+		DataManagerRemote.lists[index_list] = JSON.parse(FilePlugin.callNativeFunction( success, error,{'result':returnSuccess,'file':localFileName,'downloadurl':SettingsDownloadUrl,'base_path':base} )); 
+	}	
+
+
+	this.getLists = function(index_list, request_url, callback) {
+
+	    if (index_list==0)
+	    	DataManagerRemote.lists[index_list] = JSON.parse(staticListRegions);
+	   	else if (index_list==1)
+	    	DataManagerRemote.lists[index_list] = JSON.parse(staticListZones);
+	   	else if (index_list==2)
+	    {	
+	    	for(var i=0; i<staticListShops.length; i++) {
+	    		DataManagerRemote.lists[index_list].push(JSON.parse(staticListShops[i]));
+	    	}
+
+	    }
+
+	    callback();
+ 
 	}	
 	
-	this.getLists = function(index_list, request_url, callback) {
+	this.getLists_DYNAMIC = function(index_list, request_url, callback) {
 
 		$.mobile.loading("show");
 
@@ -342,6 +361,28 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 
 		        	$.mobile.loading("hide");
 
+for(var i=0; i<data.length; i++) {
+	//delete data[i].description;
+	//delete data[i].slogan;
+	//delete data[i].master;
+	//delete data[i].phone;
+	//delete data[i].website;
+	//delete data[i].email;
+	delete data[i].staff;
+	delete data[i].opening_hours;
+	delete data[i].specialities;
+	//delete data[i].lat;
+	//delete data[i].lng;
+	delete data[i].show_details;
+	delete data[i].created_at;
+	delete data[i].updated_at;
+	delete data[i].gallery;
+	delete data[i].services;
+}
+
+console.log(JSON.stringify(data));
+
+
 	        		DataManagerRemote.lists[parameters[0]] = data;
 
 	        		console.log('DataManagerRemote.getLists '+parameters[1]+' : Ajax success '+data.length);
@@ -377,6 +418,40 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 		        }
 		    });
 		});
+	}
+
+
+    this.getShop = function(shop_id, callback, errorCallback) {
+
+		    $.mobile.loading("show");
+		     
+		    $.ajax({
+		        type: 'GET',
+		        url: base_url+'/app-list.php',
+			    headers : { "cache-control": "max-age=86400" },
+		        data: { id_gelateria	: shop_id
+		        	  },
+		        dataType: 'JSON',
+		        timeout: 50000,
+		        cache: false,
+		        success: function(data) {
+
+		        	$.mobile.loading("hide");
+
+	        		console.log('DataManagerRemote.getShop '+shop_id+' : Ajax success '+data[0].id);
+		            callback(data[0]);
+
+		            app.dataManagerLocal.setRequests( '/app-list.php?id_gelateria='+shop_id, data);
+		        },
+		        error: function(data) {	
+
+		        	$.mobile.loading("hide");
+
+		            console.log('DataManagerRemote.getShop '+shop_id+' : Ajax error '+JSON.stringify(data));
+		            errorCallback();
+		        }
+	    	});
+
 	}
 
 }

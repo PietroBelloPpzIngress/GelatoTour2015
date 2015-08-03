@@ -82,7 +82,6 @@ var DataManagerLocal = function(successCallback, errorCallback) {
         app.dataManagerRemote.getLists(index_cities_list, "http://www.gelatotour.com/api/json/zones/listall.php", function(){
         
             app.dataManagerRemote.getLists(index_shops_list, "http://www.gelatotour.com/api/json/icecreamshops/listall.php", function(){
-
                 
                         ShowHomeView();
 

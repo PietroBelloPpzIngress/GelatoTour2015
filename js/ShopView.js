@@ -3,17 +3,20 @@ var ShopView = function(dataManager) {
 	this.getShopDetails = function(id) {
 
 	   	$.mobile.loading("show");
-		//dataManager.getShop(id, currentShop.renderShopDetails );
 
-		var shopDetails = null;
-        for (var i = 0; i < DataManagerRemote.lists[index_shops_list].length; i++) {
-            if (DataManagerRemote.lists[index_shops_list][i].id==id)
-            {
-                shopDetails = DataManagerRemote.lists[index_shops_list][i];
-                break;
-            }
-        }
-        currentShop.renderShopDetails(shopDetails);
+		dataManager.getShop(id, currentShop.renderShopDetails , function() {
+
+			var shopDetails = null;
+	        for (var i = 0; i < DataManagerRemote.lists[index_shops_list].length; i++) {
+	            if (DataManagerRemote.lists[index_shops_list][i].id==id)
+	            {
+	                shopDetails = DataManagerRemote.lists[index_shops_list][i];
+	                break;
+	            }
+	        }
+	        currentShop.renderShopDetails(shopDetails);
+	    });
+        
 	};
 
     this.renderShopDetails = function(shopDetails) {
@@ -91,6 +94,7 @@ var ShopView = function(dataManager) {
 	{
     	currentShop.gallery = shopGallery;
 
+    	if (Array.isArray(shopGallery))
     	if (shopGallery.length>0)
     	{
 			$('#map_thumbnail_foto').css({'background-image':'url(http://www.gelatotour.com/img/shops/'+ShopView.currentShop_id+'/gallery/1400x800/'+shopGallery[0]+')'});
