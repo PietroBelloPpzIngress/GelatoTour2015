@@ -421,6 +421,69 @@ console.log(JSON.stringify(data));
 	}
 
 
+    this.getCitiesByRegion = function(region_id, region_name, callback, errorCallback) {
+	 
+		    $.mobile.loading("show");
+		     
+		    $.ajax({
+		        type: 'GET',
+		        url: base_url+'/app-list.php',
+		        data: { regione	: region_name  },
+		        dataType: 'JSON',
+		        timeout: 50000,
+		        cache: false,
+		        success: function(data) {
+
+		        	$.mobile.loading("hide");
+
+	        		console.log('DataManagerRemote.getCitiesByRegion '+region_id+'/'+region_name+' : Ajax success '+data.id);
+		            callback(data);
+
+		            app.dataManagerLocal.setRequests( '/app-list.php?regione='+region_name, data);
+		        },
+		        error: function(data) {	
+
+		        	$.mobile.loading("hide");
+
+		            console.log('DataManagerRemote.getCitiesByRegion '+region_id+'/'+region_name+' : Ajax error '+JSON.stringify(data));
+		            errorCallback();
+		        }
+		    });
+	}
+
+
+    this.getShopsByCity = function(region_id, region_name, city_id, city_name, callback, errorCallback) {
+	    
+		    $.mobile.loading("show");
+		     
+		    $.ajax({
+		        type: 'GET',
+		        url: base_url+'/app-list.php',
+		        data: { regione		: region_name,
+		        		provincia	: city_name
+		        	  },
+		        dataType: 'JSON',
+		        timeout: 50000,
+		        cache: false,
+		        success: function(data) {
+
+		        	$.mobile.loading("hide");
+
+	        		console.log('DataManagerRemote.getShopsByCity '+region_id+'/'+region_name+' '+city_id+'/'+city_name+' : Ajax success ');
+		            callback(data);
+
+		            app.dataManagerLocal.setRequests( '/app-list.php?regione='+region_name+'&provincia='+city_name, data);
+		        },
+		        error: function(data) {	
+
+		        	$.mobile.loading("hide");
+
+		            console.log('DataManagerRemote.getShopsByCity '+region_id+'/'+region_name+' '+city_id+'/'+city_name+' : Ajax error '+JSON.stringify(data));
+		            errorCallback();
+		        }
+		    });
+	}
+
     this.getShop = function(shop_id, callback, errorCallback) {
 
 		    $.mobile.loading("show");
@@ -428,7 +491,6 @@ console.log(JSON.stringify(data));
 		    $.ajax({
 		        type: 'GET',
 		        url: base_url+'/app-list.php',
-			    headers : { "cache-control": "max-age=86400" },
 		        data: { id_gelateria	: shop_id
 		        	  },
 		        dataType: 'JSON',

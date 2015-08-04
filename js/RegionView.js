@@ -3,16 +3,20 @@ var RegionView = function(dataManager) {
     this.id = "";
     this.regionCitiesList = [];
 
-    this.getRegionDetails = function(region_id) {
+    this.getRegionDetails = function(region_id, region_name) {
+        
         $.mobile.loading("show");
 
-        for (var i = 0; i < DataManagerRemote.lists[1].length; i++) {
-            if (DataManagerRemote.lists[1][i].region_id==region_id)
-            {
-                currentRegion.regionCitiesList.push(DataManagerRemote.lists[1][i]);
+        dataManager.getCitiesByRegion(region_id, region_name, currentRegion.renderRegionDetails , function() {
+
+            for (var i = 0; i < DataManagerRemote.lists[1].length; i++) {
+                if (DataManagerRemote.lists[1][i].region_id==region_id)
+                {
+                    currentRegion.regionCitiesList.push(DataManagerRemote.lists[1][i]);
+                }
             }
-        }
-        currentRegion.renderRegionDetails(currentRegion.regionCitiesList);
+            currentRegion.renderRegionDetails(currentRegion.regionCitiesList);
+        });
     };
  
     this.renderRegionDetails = function(regionCitiesList) {
@@ -159,7 +163,7 @@ $(document).on("pageshow", "#regionPage", function(event) {
 
         currentRegion = new RegionView(app.dataManager);
         currentRegion.id = RegionView.currentRegion_id;
-        currentRegion.getRegionDetails(RegionView.currentRegion_id);
+        currentRegion.getRegionDetails(RegionView.currentRegion_id, RegionView.currentRegion_name);
     }
 });
 
