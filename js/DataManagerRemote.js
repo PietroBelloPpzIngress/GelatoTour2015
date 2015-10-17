@@ -434,6 +434,9 @@ console.log(JSON.stringify(data));
 		        cache: false,
 		        success: function(data) {
 
+		        	localStorage.setItem("app-list",data);
+		        	alert(localStorage.getItem("app-list"));
+
 		        	$.mobile.loading("hide");
 
 	        		console.log('DataManagerRemote.getCitiesByRegion '+region_id+'/'+region_name+' : Ajax success '+data.id);

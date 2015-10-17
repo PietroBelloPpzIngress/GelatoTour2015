@@ -116,7 +116,7 @@ var app = {
 
 
 app.name = "Gelato Tour 2015";
-app.version = "1.0.0"
+app.version = "1.0.1"
 app.dataManagerLocal = null;
 app.dataManagerRemote = null;   
 app.deviceHelper = null;
