@@ -26,7 +26,6 @@
     <feature name="http://api.phonegap.com/1.0/notification"/>
     <feature name="http://api.phonegap.com/1.0/storage"/>
 
-                <gap:platform name="android"/>
 
 
     <access origin="http://gelatotour.com" subdomains="true" />   <!-- NECESSARIO PER CONNESSIONI AJAX E CREDO ANCHE PER OTTENERE LE IMMAGINI -->
@@ -69,4 +68,7 @@
     <gap:splash src="res/screen/android/screen-xhdpi-portrait.png" gap:platform="android" gap:density="xhdpi" />
     
     <!-- Parametro mancante per Application Loader -->
+    <gap:config-file platform="ios" parent="CFBundleShortVersionString">
+        <string>1.2.0</string>
+    </gap:config-file>
 </widget>
