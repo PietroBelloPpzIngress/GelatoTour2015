@@ -37,6 +37,15 @@
                 <!--<gap:platform name="ios"/>-->
                 <gap:platform name="android"/>
 
+                <!-- X-Services PhoneGap Build plugins -->
+                <gap:plugin name="org.apache.cordova.device" />
+                <!--<gap:plugin name="org.apache.cordova.geolocation" version="0.3.6" />-->
+
+                <gap:plugin name="nl.x-services.plugins.socialsharing" />
+
+                <gap:plugin name="io.github.siegfriedbolz.cordova.plugins.email-composer" />
+
+                <gap:plugin name="org.apache.cordova.inappbrowser" />
 
 
     <access origin="http://gelatotour.com" subdomains="true" />   <!-- NECESSARIO PER CONNESSIONI AJAX E CREDO ANCHE PER OTTENERE LE IMMAGINI -->
