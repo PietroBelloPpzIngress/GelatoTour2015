@@ -28,10 +28,6 @@
 
                 <gap:platform name="android"/>
 
-                <!-- X-Services PhoneGap Build plugins -->
-                <gap:plugin name="org.apache.cordova.device" />
-                <!--<gap:plugin name="org.apache.cordova.geolocation" version="0.3.6" />-->
-
 
                 <gap:plugin name="io.github.siegfriedbolz.cordova.plugins.email-composer" />
 
