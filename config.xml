@@ -25,11 +25,6 @@
     <feature name="http://api.phonegap.com/1.0/network"/>
     <feature name="http://api.phonegap.com/1.0/notification"/>
     <feature name="http://api.phonegap.com/1.0/storage"/>
-    <!--
-    <feature name="InAppBrowser">
-        <param name="ios-package" value="CDVInAppBrowser" />
-    </feature>
-	-->
 
                 <gap:platform name="android"/>
 
@@ -41,21 +36,16 @@
 
                 <gap:plugin name="com.phonegap.plugin.statusbar" />
 
-                <gap:plugin name="com.alexvillaro.plugins.inapppurchase" version="2.0.0" />
-
                 <gap:plugin name="io.github.siegfriedbolz.cordova.plugins.email-composer" />
 
-                <gap:plugin name="com.surfernetwork.fileplugin" version="1.0.2" />
-
                 <gap:plugin name="org.apache.cordova.inappbrowser" />
-
 
     <access origin="http://gelatotour.com" subdomains="true" />   <!-- NECESSARIO PER CONNESSIONI AJAX E CREDO ANCHE PER OTTENERE LE IMMAGINI -->
     <access origin="http://127.0.0.1*"/> <!-- allow local pages -->
     <access origin="*" />
     <access origin=".*"/>
 
-    <preference name="phonegap-version" value="3.7.0" /> <!-- all: current version of PhoneGap -->
+    <preference name="phonegap-version" value="cli-5.2.2" /> <!-- all: current version of PhoneGap -->
     <preference name="orientation" value="portrait" /> <!-- all: default means both landscape and portrait are enabled -->
     <preference name="target-device" value="universal" /> <!-- all: possible values handset, tablet, or universal -->
     <preference name="fullscreen" value="false" /> <!-- all: hides the status bar at the top of the screen -->
