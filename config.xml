@@ -29,7 +29,6 @@
                 <gap:platform name="android"/>
 
 
-                <gap:plugin name="io.github.siegfriedbolz.cordova.plugins.email-composer" />
 
                 <gap:plugin name="org.apache.cordova.inappbrowser" />
 
