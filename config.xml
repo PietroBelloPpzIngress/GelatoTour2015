@@ -34,6 +34,7 @@
 
                 <gap:plugin name="org.apache.cordova.inappbrowser" />
 
+
     <access origin="http://gelatotour.com" subdomains="true" />   <!-- NECESSARIO PER CONNESSIONI AJAX E CREDO ANCHE PER OTTENERE LE IMMAGINI -->
     <access origin="http://127.0.0.1*"/> <!-- allow local pages -->
     <access origin="*" />
@@ -54,14 +55,11 @@
     <icon src="res/icon/android/icon-36-ldpi.png" gap:platform="android" gap:density="ldpi" />
     <icon src="res/icon/android/icon-48-mdpi.png" gap:platform="android" gap:density="mdpi" />
     <icon src="res/icon/android/icon-72-hdpi.png" gap:platform="android" gap:density="hdpi" />
-    <icon src="res/icon/android/icon-96-xhdpi.png" gap:platform="android" gap:density="xxhdpi" />
-    <icon src="res/icon/android/icon-96-xhdpi.png" gap:platform="android" gap:density="xxxhdpi" />
+    <icon src="res/icon/android/icon-96-xhdpi.png" gap:platform="android" gap:density="xhdpi" />
   
     <!-- Define app splash screen for each platform. -->
     <gap:splash src="res/screen/android/screen-ldpi-portrait.png" gap:platform="android" gap:density="ldpi" />
     <gap:splash src="res/screen/android/screen-mdpi-portrait.png" gap:platform="android" gap:density="mdpi" />
     <gap:splash src="res/screen/android/screen-hdpi-portrait.png" gap:platform="android" gap:density="hdpi" />
     <gap:splash src="res/screen/android/screen-xhdpi-portrait.png" gap:platform="android" gap:density="xhdpi" />
-    <gap:splash src="res/screen/android/screen-xhdpi-portrait.png" gap:platform="android" gap:density="xxhdpi" />
-    <gap:splash src="res/screen/android/screen-xhdpi-portrait.png" gap:platform="android" gap:density="xxxhdpi" />
 </widget>
