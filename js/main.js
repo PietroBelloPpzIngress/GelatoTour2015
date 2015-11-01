@@ -61,20 +61,7 @@ var app = {
         app.dataManagerRemote = new DataManagerRemote(app);
         app.dataManagerLocal = new DataManagerLocal();
         app.dataManagerLocal.init();
-/*        
-        app.dataManagerRemote.getLists(index_regions_list, "http://www.gelatotour.com/api/json/regions/listall.php", function(){
 
-            app.dataManagerRemote.getLists(index_cities_list, "http://www.gelatotour.com/api/json/zones/listall.php", function(){
-            
-                app.dataManagerRemote.getLists(index_shops_list, "http://www.gelatotour.com/api/json/icecreamshops/listall.php", function(){
-
-                    
-                            ShowHomeView();
-
-                        });
-                });
-            });
-*/
         app.initialize();
 
     },
@@ -143,40 +130,8 @@ document.addEventListener("deviceready", function() {
         clickHandler = "touchend";
     }
 
-    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
-
 
 }, false);
-
-/* WRITE FILE */
- function gotFS(fileSystem) {
-        fileSystem.root.getFile("readme.txt", {create: true, exclusive: false}, gotFileEntry, fail);
-    }
-
-    function gotFileEntry(fileEntry) {
-        fileEntry.createWriter(gotFileWriter, fail);
-    }
-
-    function gotFileWriter(writer) {
-        writer.onwriteend = function(evt) {
-            console.log("contents of file now 'some sample text'");
-            writer.truncate(11);  
-            writer.onwriteend = function(evt) {
-                console.log("contents of file now 'some sample'");
-                writer.seek(4);
-                writer.write(" different text");
-                writer.onwriteend = function(evt){
-                    console.log("contents of file now 'some different text'");
-                }
-            };
-        };
-        writer.write("some sample text");
-    }
-
-    function fail(error) {
-        console.log(error.code);
-    }
-/* WRITE FILE - end */
 
 document.addEventListener("backbutton", function(e){
     if($.mobile.activePage.is('#homePage')){
@@ -218,18 +173,6 @@ function ShowInfo()
     );
 }
 
-function AdjustFontSize(container,text)
-{   /*
-    var originalFontSize = 32;
-    var sectionWidth = $(container).width()/2;
-    $(text).each(function(){
-        var spanWidth = $(this).width();
-        var newFontSize = (sectionWidth/spanWidth) * originalFontSize;
-        $(this).css({"font-size" : newFontSize, "line-height" : newFontSize/1.2 + "px"});
-    }); 
-    */
-}
-
 $.mobile.back = function() {
     var nav = window.navigator;
 
@@ -263,25 +206,4 @@ function Exit()
 function runtimePopup(message, popupafterclose) {
     
     alert(message);
-
-    /*
-    var template = "<div data-role='popup' data-theme='e' data-overlay-theme='a'  data-shadow='true' class='ui-content messagePopup' style='max-width:280px'>"
-        + "<a href='#' data-role='button' data-theme='g' data-icon='delete' data-iconpos='notext' "
-        + " class='ui-btn-right closePopup'>Close</a> <span style='text-align:center;min-width:240px;min-height:100px;font-weight:bold;valing:middle;'> "
-        + message + " </span> </div>";
-    popupafterclose = popupafterclose ? popupafterclose : function () {};
-     
-    $.mobile.activePage.append(template).trigger("create");
-     
-    $.mobile.activePage.find(".closePopup").bind("tap", function (e) {
-            $.mobile.activePage.find(".messagePopup").popup("close");
-        });
-     
-    $.mobile.activePage.find(".messagePopup").popup().popup("open").bind({
-                popupafterclose: function () {
-                    $(this).unbind("popupafterclose").remove();
-                    popupafterclose();
-            }
-        });
-    */
 }
