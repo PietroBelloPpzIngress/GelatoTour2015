@@ -25,7 +25,29 @@
     <feature name="http://api.phonegap.com/1.0/network"/>
     <feature name="http://api.phonegap.com/1.0/notification"/>
     <feature name="http://api.phonegap.com/1.0/storage"/>
+    <!--
+    <feature name="InAppBrowser">
+        <param name="ios-package" value="CDVInAppBrowser" />
+    </feature>
+	-->
 
+                <gap:platform name="android"/>
+
+                <!-- X-Services PhoneGap Build plugins -->
+                <gap:plugin name="org.apache.cordova.device" />
+                <!--<gap:plugin name="org.apache.cordova.geolocation" version="0.3.6" />-->
+
+                <gap:plugin name="nl.x-services.plugins.socialsharing" />
+
+                <gap:plugin name="com.phonegap.plugin.statusbar" />
+
+                <gap:plugin name="com.alexvillaro.plugins.inapppurchase" version="2.0.0" />
+
+                <gap:plugin name="io.github.siegfriedbolz.cordova.plugins.email-composer" />
+
+                <gap:plugin name="com.surfernetwork.fileplugin" version="1.0.2" />
+
+                <gap:plugin name="org.apache.cordova.inappbrowser" />
 
 
     <access origin="http://gelatotour.com" subdomains="true" />   <!-- NECESSARIO PER CONNESSIONI AJAX E CREDO ANCHE PER OTTENERE LE IMMAGINI -->
@@ -66,6 +88,4 @@
     <gap:splash src="res/screen/android/screen-mdpi-portrait.png" gap:platform="android" gap:density="mdpi" />
     <gap:splash src="res/screen/android/screen-hdpi-portrait.png" gap:platform="android" gap:density="hdpi" />
     <gap:splash src="res/screen/android/screen-xhdpi-portrait.png" gap:platform="android" gap:density="xhdpi" />
-    
-    <!-- Parametro mancante per Application Loader -->
 </widget>
