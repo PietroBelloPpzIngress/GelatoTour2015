@@ -26,18 +26,13 @@
     <feature name="http://api.phonegap.com/1.0/notification"/>
     <feature name="http://api.phonegap.com/1.0/storage"/>
 
-                <gap:platform name="android"/>
+        <gap:platform name="android"/>
 
-                <!-- X-Services PhoneGap Build plugins -->
-                <gap:plugin name="org.apache.cordova.device" />
-                <!--<gap:plugin name="org.apache.cordova.geolocation" version="0.3.6" />-->
+        <gap:plugin name="de.martinreinhardt.cordova.plugins.email" version="0.8.2" />
 
-                <gap:plugin name="nl.x-services.plugins.socialsharing" />
-
-                <gap:plugin name="io.github.siegfriedbolz.cordova.plugins.email-composer" />
-
-                <gap:plugin name="org.apache.cordova.inappbrowser" />
-
+        <feature name="SocialSharing">
+          <param name="android-package" value="nl.xservices.plugins.SocialSharing" />
+        </feature>
 
     <access origin="http://gelatotour.com" subdomains="true" />   <!-- NECESSARIO PER CONNESSIONI AJAX E CREDO ANCHE PER OTTENERE LE IMMAGINI -->
     <access origin="http://127.0.0.1*"/> <!-- allow local pages -->
