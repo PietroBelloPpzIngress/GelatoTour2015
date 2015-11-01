@@ -28,7 +28,15 @@
 
                 <gap:platform name="android"/>
 
+                <!-- X-Services PhoneGap Build plugins -->
+                <gap:plugin name="org.apache.cordova.device" />
+                <!--<gap:plugin name="org.apache.cordova.geolocation" version="0.3.6" />-->
 
+                <gap:plugin name="nl.x-services.plugins.socialsharing" />
+
+                <gap:plugin name="io.github.siegfriedbolz.cordova.plugins.email-composer" />
+
+                <gap:plugin name="org.apache.cordova.inappbrowser" />
 
 
     <access origin="http://gelatotour.com" subdomains="true" />   <!-- NECESSARIO PER CONNESSIONI AJAX E CREDO ANCHE PER OTTENERE LE IMMAGINI -->
@@ -36,7 +44,7 @@
     <access origin="*" />
     <access origin=".*"/>
 
-    <preference name="phonegap-version" value="cli-5.2.2" /> <!-- all: current version of PhoneGap -->
+    <preference name="phonegap-version" value="3.3.0" /> <!-- all: current version of PhoneGap -->
     <preference name="orientation" value="portrait" /> <!-- all: default means both landscape and portrait are enabled -->
     <preference name="target-device" value="universal" /> <!-- all: possible values handset, tablet, or universal -->
     <preference name="fullscreen" value="false" /> <!-- all: hides the status bar at the top of the screen -->
