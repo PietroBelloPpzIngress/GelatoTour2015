@@ -48,6 +48,8 @@ var DataManagerRemote = function(successCallback, errorCallback) {
 
 	            console.log('GET LIST '+index_list+' : Ajax error '+JSON.stringify(data));
 
+	            DataManagerRemote.lists[index_list] = JSON.parse(localStorage.getItem("app-list_"+index_list));
+
 	            callback();
 	        }
 	    });
