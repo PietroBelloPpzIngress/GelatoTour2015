@@ -32,6 +32,15 @@ var CityView = function(dataManager) {
 	};
 
 	this.renderShopsList = function(cityShopsList) {
+		
+		
+	        if (Array.isArray(cityShopsList))
+            cityShopsList.sort(function(a, b){
+                if(a.name < b.name) return -1;
+                if(a.name > b.name) return 1;
+                return 0;
+            })
+
 		if (cityShopsList.length>=1)
 		{
 	    	$('#city_Shops_list').html(CityView.shopsListTemplate(cityShopsList));
