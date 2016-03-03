@@ -1,10 +1,10 @@
 var ShopView = function(dataManager) {
 
 	this.getShopDetails = function(id) {
-
+		/*
 	   	$.mobile.loading("show");
 
-		dataManager.getShop(id, currentShop.renderShopDetails , function() {
+		dataManager.getShop(id, currentShop.renderShopDetails , function() {*/
 
 			var shopDetails = null;
 	        for (var i = 0; i < DataManagerRemote.lists[index_shops_list].length; i++) {
@@ -15,7 +15,7 @@ var ShopView = function(dataManager) {
 	            }
 	        }
 	        currentShop.renderShopDetails(shopDetails);
-	    });
+	    /*});*/
         
 	};
 

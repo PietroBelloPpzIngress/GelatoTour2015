@@ -4,10 +4,10 @@ var CityView = function(dataManager) {
 	this.cityDetails = null;
 
 	this.getCityDetails = function(region_id, region_name, city_id, city_name) {
-		
+		/*
 		$.mobile.loading("show");
 
-		dataManager.getShopsByCity(region_id, region_name, city_id, city_name, currentCity.renderCityDetails , function() {
+		dataManager.getShopsByCity(region_id, region_name, city_id, city_name, currentCity.renderCityDetails , function() {*/
 
 	    	var cityShopsList = [];
 	        for (var i = 0; i < DataManagerRemote.lists[index_shops_list].length; i++) {
@@ -17,7 +17,7 @@ var CityView = function(dataManager) {
 	            }
 	        }
 	        currentCity.renderCityDetails(cityShopsList);
-	    });
+	    /*});*/
 	};
  
     this.renderCityDetails = function(cityDetails) {

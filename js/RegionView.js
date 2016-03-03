@@ -4,10 +4,10 @@ var RegionView = function(dataManager) {
     this.regionCitiesList = [];
 
     this.getRegionDetails = function(region_id, region_name) {
-        
+        /*
         $.mobile.loading("show");
 
-        dataManager.getCitiesByRegion(region_id, region_name, currentRegion.renderRegionDetails , function() {
+        dataManager.getCitiesByRegion(region_id, region_name, currentRegion.renderRegionDetails , function() {*/
 
             for (var i = 0; i < DataManagerRemote.lists[1].length; i++) {
                 if (DataManagerRemote.lists[1][i].region_id==region_id)
@@ -16,7 +16,7 @@ var RegionView = function(dataManager) {
                 }
             }
             currentRegion.renderRegionDetails(currentRegion.regionCitiesList);
-        });
+        /*});*/
     };
  
     this.renderRegionDetails = function(regionCitiesList) {
