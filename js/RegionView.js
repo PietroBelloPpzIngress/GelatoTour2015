@@ -45,9 +45,6 @@ var RegionView = function(dataManager) {
 
         currentRegion.renderCitiesList(regionCitiesList, RegionView.visual);
 
-        for (var i = 0; i < regionCitiesList.length; i++) {
-            currentRegion.updateCityShopCount(regionCitiesList[i]);
-        }
     };
 
     this.updateCityShopCount = function(regionCity) {
@@ -95,12 +92,13 @@ var RegionView = function(dataManager) {
                 $('#region_cities_list').listview('refresh');
             }
 
-            for (var i = 0; i < regionCitiesList.length; i++) {
-                currentRegion.updateCityShopCount(regionCitiesList[i]);
-            }
 
             $('.view-icon-list').hide();
             $('.view-icon-circle').show();
+        }
+
+        for (var i = 0; i < regionCitiesList.length; i++) {
+            currentRegion.updateCityShopCount(regionCitiesList[i]);
         }
 
     };
