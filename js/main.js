@@ -102,7 +102,7 @@ var app = {
 };
 
 
-app.name = "Gelato Tour 2015";
+app.name = "Gelato Tour 2016";
 app.version = "1.0.1"
 app.dataManagerLocal = null;
 app.dataManagerRemote = null;   
